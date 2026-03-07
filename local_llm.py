@@ -8,6 +8,7 @@ import time
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 import prompts as prompts_mod
+import review_code
 
 OUT_DIR = "local-llm-results/qwen2.5-coder-7b"
 
@@ -73,4 +74,6 @@ if __name__ == "__main__":
     start_time = time.time()
     call_local_model_batch()
     end_time = time.time()
+    review_code.main("datasets/test.json", OUT_DIR)
     print(f"Time taken: {end_time - start_time:.2f} seconds")
+    

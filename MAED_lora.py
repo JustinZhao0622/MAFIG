@@ -15,8 +15,9 @@ from transformers import AutoTokenizer,AutoModelForCausalLM
 from peft import PeftModel
 import prompts as prompts_mod
 import MAED_decision
+import review_code
 
-scenario = "gangkou"
+scenario = "cangchu"
 raw_model_path = "/data/huggingface/Qwen2.5-Coder-7B-Instruct"
 perception_models_path = f"/root/code/neuralcomputing-models/{scenario}/perception"
 perception_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_perception"
@@ -118,89 +119,9 @@ def perception_agent():
         if text == emergency_situations[i]["functions"]:
             correct += 1
         else:
-            print(f"准确率: {correct}/{len(outputs)} ({correct/len(outputs)*100:.1f}%)")
-    print(f"感知智能体耗时: {time.time() - time_start:.2f}秒")
-
-
-    """
-    向模型的tokenizer添加<<EDIT_START>>和<<EDIT_END>>，并初始化对应embedding
-    """
-    # 1. 设置路径
-    model_path = raw_model_path# 你刚才 resize 后保存的路径
-    save_path = raw_model_path + "-edit-init" # 初始化后的新路径
-    if os.path.exists(save_path):
-        shutil.rmtree(save_path)
-    os.makedirs(save_path)
-
-    print(f"正在加载模型: {model_path} ...")
-    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True, torch_dtype="auto")
-
-    # 2. 获取 Embedding 权重
-    embedding_matrix = model.get_input_embeddings().weight.data
-    vocab_size, hidden_dim = embedding_matrix.shape
-
-    # 3. 找到新 Token 的 ID
-    new_tokens = ["<<EDIT_START>>", "<<EDIT_END>>"]
-    new_ids = tokenizer.convert_tokens_to_ids(new_tokens)
-    print(f"新 Token IDs: {new_ids}")
-
-    # 4. 计算旧 Token 的均值和方差 (用来初始化新 Token)
-    # 我们只用前 151665 个原有词来计算，避开新加的
-    old_embeddings = embedding_matrix[:new_ids[0]] 
-    mean_emb = old_embeddings.mean(dim=0)
-    std_emb = old_embeddings.std(dim=0)
-
-    # 5. 核心修复：给新 Token 赋值
-    print("正在执行均值初始化...")
-    for idx in new_ids:
-        # 赋值为：均值 + 微小的随机扰动
-        # 这样既符合整体分布，又保留了一点点随机性方便梯度下降
-        embedding_matrix[idx] = mean_emb + torch.randn_like(mean_emb) * std_emb * 0.01
-
-    # 6. 如果模型共享输出权重 (Tie Weights)，通常会自动更新，但为了保险再检查一下
-    output_embeddings = model.get_output_embeddings()
-    if output_embeddings is not None and output_embeddings.weight.data_ptr() != embedding_matrix.data_ptr():
-        print("同步更新 Output Embeddings...")
-        output_embeddings.weight.data[new_ids] = embedding_matrix[new_ids]
-
-    # 7. 保存修复后的模型
-    print(f"保存初始化后的模型到: {save_path}")
-    model.save_pretrained(save_path)
-    tokenizer.save_pretrained(save_path)
-    print("完成！请使用新路径进行微调。")
-    # save_path = raw_model_path + "-edit-init"
-
-    # print(f"正在加载模型: {raw_model_path} ...")
-    # tokenizer = AutoTokenizer.from_pretrained(raw_model_path, trust_remote_code=True)
-    # model = AutoModelForCausalLM.from_pretrained(raw_model_path, trust_remote_code=True, torch_dtype="auto")
-
-    # new_tokens = ["<<EDIT_START>>", "<<EDIT_END>>"]
-    # num_added = tokenizer.add_tokens(new_tokens, special_tokens=True)
-    # print(f"新增 {num_added} 个 token")
-    # model.resize_token_embeddings(len(tokenizer))
-
-    # new_ids = tokenizer.convert_tokens_to_ids(new_tokens)
-    # print(f"新 Token IDs: {new_ids}")
-
-    # embedding_matrix = model.get_input_embeddings().weight.data
-    # old_embeddings = embedding_matrix[:new_ids[0]]
-    # mean_emb = old_embeddings.mean(dim=0)
-    # std_emb = old_embeddings.std(dim=0)
-
-    # print("正在执行均值初始化...")
-    # for idx in new_ids:
-    #     embedding_matrix[idx] = mean_emb + torch.randn_like(mean_emb) * std_emb * 0.01
-
-    # output_embeddings = model.get_output_embeddings()
-    # if output_embeddings is not None and output_embeddings.weight.data_ptr() != embedding_matrix.data_ptr():
-    #     print("同步更新 Output Embeddings...")
-    #     output_embeddings.weight.data[new_ids] = embedding_matrix[new_ids]
-
-    # print(f"保存初始化后的模型到: {save_path}")
-    # model.save_pretrained(save_path)
-    # tokenizer.save_pretrained(save_path)
-    # print("完成！请使用新路径进行微调。")
+            print(f"第{i+1}条记录错误，正确答案: {emergency_situations[i]['functions']}, 模型答案: {text}")
+    print(f"准确率: {correct}/{len(outputs)} ({correct/len(outputs)*100:.1f}%)")
+    print(f"感知智能体耗时: {time.time() - start_time:.2f}秒")
 def decision_loss_agent():
     """
     向模型的tokenizer添加<<EDIT_START>>和<<EDIT_END>>，并初始化对应embedding
@@ -339,6 +260,9 @@ def decision_agent():
     return MAED_decision.decision_agent(DIR, decision_combined_models_path)
 
 if __name__ == "__main__":
+    # lora_perception_agent()
+    perception_agent()
     # decision_loss_agent()
-    lora_decision_agent()
+    # lora_decision_agent()
     print("决策智能体耗时: ", decision_agent())
+    # review_code.main("datasets/test.json", f"/root/code/neuralcomputing/MAED_lora/results")

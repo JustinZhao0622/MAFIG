@@ -1,24 +1,49 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        if i == 0:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 10 * 60))
-        duration = 20 if i == 1 else 10
-        location = (i,9) if i == 1 else (i,10)
-        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": location})
-    return vessels
+        if i >= 2:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * 2 + 8 * 60 * (i - 2)))
+        else:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
     for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        if i == 2:
+            continue
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    forklifts = []
+    for i in range(nums):
+        if i == 1:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (34, 27),
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size

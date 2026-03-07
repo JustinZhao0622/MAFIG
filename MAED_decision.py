@@ -18,8 +18,8 @@ def decision_agent(DIR, model_path):
     """
     with open(f"{DIR}/perception_events.json", "r", encoding="utf-8") as f:
         emergency_situations = json.load(f)
-
     start_time = time.time()
+
     # 决策智能体
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     llm = LLM(

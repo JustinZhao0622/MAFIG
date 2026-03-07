@@ -13,31 +13,42 @@ def generate_emergency_candidates():
     "生成突发事件"
     x = random.randint(3, 6)
     y = random.randint(3, 6)
-
-    end_point_x = random.randint(7, 9)
-    end_point_y = random.randint(7, 9)
+    end_x = random.randint(7, 9)
+    end_y = random.randint(7, 9)
 
     return [
         (
-            f"id为{random.randint(0,9)}的资源不可用",
-            "init_resources"
+            f"从第{random.randint(3,7)}辆货车开始间隔改为{random.choice([5,6,8])}分钟",
+            "init_truck_arrival_time",
         ),
         (
-            f"第{random.randint(0,4)}艘到达的船舶延迟10分钟到达",
-            "init_cranes"
+            f"Zone_{random.randint(1,4)}堆积区当前库存增加{random.randint(20,80)}",
+            "init_stacking_zones",
+        ),
+        (
+            f"Zone_{random.randint(1,4)}堆积区最大容量缩减至{random.randint(50,150)}",
+            "init_stacking_zones",
+        ),
+        (
+            f"Zone_{random.randint(1,4)}堆积区发生故障不可用",
+            "init_stacking_zones",
+        ),
+        (
+            f"Forklift_{random.randint(1,3)}叉车发生故障不可用",
+            "init_forklifts",
+        ),
+        (
+            f"Forklift_{random.randint(1,3)}叉车初始位置调整为({random.randint(10,50)},{random.randint(10,50)})",
+            "init_forklifts",
         ),
         (
             f"站位({x},{y})({x+1},{y})({x},{y+1})({x+1},{y+1})四个点发生故障",
-            "route_planning"
+            "route_planning",
         ),
         (
-            f"站位({end_point_x},{end_point_y})发生故障,以该点为终点的调整为({end_point_x+1},{end_point_y})",
-            "route_planning"
+            f"站位({end_x},{end_y})发生故障,以该点为终点的调整为({end_x+1},{end_y})",
+            "route_planning",
         ),
-        (
-            f"id为{random.randint(0,4)}的船舶任务时长延长至20分钟",
-            "init_cranes"
-        )
     ]
 
 

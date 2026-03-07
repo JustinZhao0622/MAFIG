@@ -9,6 +9,7 @@ import time
 from zai import ZhipuAiClient
 import prompts
 import shutil
+import review_code
 
 OUT_DIR = "cllm-results/glm-5"
 MODEL_NAME = "glm-5"
@@ -16,12 +17,8 @@ API_KEYS = [
     "5c6d3d4312f94fa1a6773b17aa97b75d.w9cZbahrqSsPSeTt",
     "5123fb6446a248648c88a1c20007a5a6.GzwNMUsco0qkbQl1",
     "11724e5a71d24cd9bb1cccd52fe6a29a.DnAUeBnWIte1Nqvm",
-    "5c6d3d4312f94fa1a6773b17aa97b75d.w9cZbahrqSsPSeTt",
-    "5123fb6446a248648c88a1c20007a5a6.GzwNMUsco0qkbQl1",
-    "11724e5a71d24cd9bb1cccd52fe6a29a.DnAUeBnWIte1Nqvm",
-    "5c6d3d4312f94fa1a6773b17aa97b75d.w9cZbahrqSsPSeTt",
-    "5123fb6446a248648c88a1c20007a5a6.GzwNMUsco0qkbQl1",
-    "11724e5a71d24cd9bb1cccd52fe6a29a.DnAUeBnWIte1Nqvm"
+    "35da9a35c1f149d6905d9accb5218caf.ynVDb5rZfz6RXRsp",
+    "90bab6b6ce984d46897b139da16fa8df.k3X9o8wUFVCRAamq",
 ]
 
 with open("datasets/test.json", "r", encoding="utf-8") as f:
@@ -108,11 +105,12 @@ async def main():
     ]
     elapsed_list = await asyncio.gather(*workers)
     total_processing = sum(elapsed_list)
-    print(f"Total processing time (sum of all workers): {total_processing:.2f}s")
-
+    return total_processing
 
 if __name__ == "__main__":
     start_time = time.time()
-    asyncio.run(main())
+    total_processing = asyncio.run(main())
     wall_time = time.time() - start_time
     print(f"Wall time: {wall_time:.2f}s")
+    review_code.main("datasets/test.json", OUT_DIR)
+    print(f"Total processing time: {total_processing:.2f}s")

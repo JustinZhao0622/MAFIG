@@ -1,22 +1,58 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        if (i+1, 1) in [(3, 1), (4, 1), (3, 2), (4, 2), (3, 3), (4, 3), (3, 4), (4, 4), (3, 5), (4, 5)]:
+            continue
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    if (22, 47) in [(3, 4), (4, 4), (3, 5), (4, 5)]:
+        forklifts.append({
+            "id": f"Forklift_{1}",
+            "location": (0, 25),
+        })
+    else:
+        forklifts.append({
+            "id": f"Forklift_{1}",
+            "location": (22, 47),
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -148,30 +184,3 @@ def init_o():
     """初始化o"""
     o = 15
     return o
-
-# 调度逻辑修改
-def schedule(vessels, resources):
-    """调度船舶和资源"""
-    available_resources = {res["id"] for res in resources if res["location"] not in [(5,5), (6,5), (5,6), (6,6)]}
-    for vessel in vessels:
-        if vessel["id"] == 8:
-            vessel["duration"] = 20
-        if vessel["id"] == 2:
-            vessel["time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(vessel["time"], "%H:%M:%S")) + 10 * 60))
-        if vessel["id"] in [2, 8]:
-            continue
-        vessel["location"] = (vessel["location"][0] + 1, vessel["location"][1] + 1)
-        if vessel["id"] in available_resources:
-            available_resources.remove(vessel["id"])
-    return vessels, available_resources
-
-# 系统主循环
-def main():
-    vessels = init_cranes()
-    resources = init_resources()
-    vessels, available_resources = schedule(vessels, resources)
-    for vessel in vessels:
-        print(f"Vessel {vessel['id']} at {vessel['location']} with duration {vessel['duration']}")
-
-if __name__ == "__main__":
-    main()

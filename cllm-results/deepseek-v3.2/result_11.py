@@ -1,27 +1,54 @@
+"""
+原子函数库
+"""
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        duration = 20 if i == 4 else 10
-        if i == 0:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10 * 60))
-        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 7:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0, 25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -37,8 +64,15 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """
     width, height = grid_size
     
-    if end_point == (9, 8):
-        end_point = (10, 8)
+    # 处理突发事件：站位(8,7)发生故障,以该点为终点的调整为(9,7)
+    if end_point == (8, 7):
+        end_point = (9, 7)
+    
+    # 处理突发事件：Zone_1堆积区发生故障不可用
+    # 该事件已在init_stacking_zones中体现，这里不需要额外处理
+    
+    # 处理突发事件：站位(5,6)(6,6)(5,7)(6,7)四个点发生故障
+    faulty_points = [(5, 6), (6, 6), (5, 7), (6, 7)]
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -67,6 +101,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+
+            # 检查是否为故障点
+            if next_pos in faulty_points:
                 continue
 
             # 检查是否已访问
@@ -101,7 +139,7 @@ def init_d():
     """初始化d"""
     d = 4
     return d
-    
+
 def init_e():
     """初始化e"""
     e = 5

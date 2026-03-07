@@ -2,26 +2,42 @@ import heapq
 import time
 import random
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i != 8:
-            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
-
-def init_cranes(nums=5,start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
-    for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
         if i == 0:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 20 * 60))
-        elif i == 2:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10 * 60))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (47, 47),
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
+
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
+    for i in range(nums):
+        if i >= 4:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * (i - 4)))
+        else:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -71,7 +87,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
 
             # 检查是否在故障点
-            if next_pos in {(4, 3), (5, 3), (4, 4), (5, 4)}:
+            if next_pos in {(6, 5), (7, 5), (6, 6), (7, 6)}:
                 continue
 
             visited.add(next_pos)

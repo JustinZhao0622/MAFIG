@@ -1,11 +1,16 @@
 import heapq
 import time
-import random 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
     for i in range(nums):
-        if i == 8:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        if i < 4:
+            offset = 3 * 60 * i
+        else:
+            offset = 9 * 60 + (i - 3) * 5 * 60
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + offset))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks

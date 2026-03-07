@@ -9,24 +9,27 @@ import time
 from openai import AsyncOpenAI
 import prompts
 import shutil
+import review_code
 
 # 模型 Qwen/Qwen3-32B deepseek-ai/DeepSeek-V3.2 Qwen/Qwen3-Coder-480B-A35B-Instruct
-OUT_DIR = "cllm-results/deepseek-v3.2"
-MODEL_NAME = "deepseek-ai/DeepSeek-V3.2"
+RESULT_DIR = "cllm-results/qwen3-coder-480b-a35b-instruct"
+DATASET_FILE = "datasets/test.json"
+MODEL_NAME = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
 BASE_URL = "https://api-inference.modelscope.cn/v1"
 PER_THREAD_NUMS = 1
 
-with open("datasets/test.json", "r", encoding="utf-8") as f:
+with open(DATASET_FILE, "r", encoding="utf-8") as f:
     emergency_situation = json.load(f)
 
-API_KEYS = [
-    "ms-92c3238b-15c9-4118-ac1c-57b408b341b0",
+BASE_KEYS = [
     "ms-5c9ec602-3554-4d46-b858-15b4f90756ed",
     "ms-578abbfe-1f6f-4649-8186-0541ba4a1452",
     "ms-f5cf8848-e0a7-435a-bd16-3595ef54f8dd",
-    "ms-d1abc073-c66f-4fa2-805c-3b67f7f479c8",
+    "ms-e7515d03-7395-4d88-817a-3b3aa267c948",
+    "ms-917a1896-16f9-428f-849a-518a5e35c226",
+    "ms-61e45448-b478-49a7-a86f-b52c449b9059",
 ]
-
+API_KEYS = [key for key in BASE_KEYS for _ in range(1)]
 
 def clean_code_block(text: str) -> str:
     """清理代码无用信息"""
@@ -51,10 +54,12 @@ async def call_model(index: int, client: AsyncOpenAI):
                     ORIGINAL_CODE=prompts.ORIGINAL_CODE,
                 ),
             },
-        ]
+        ],
+        extra_body={
+            "enable_thinking": False,
+        }
     )
-    index += 1
-    out_path = os.path.join(OUT_DIR, f"result_{index}.py")
+    out_path = os.path.join(RESULT_DIR, f"result_{index + 1+50}.py")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(clean_code_block(resp.choices[0].message.content))
 
@@ -84,9 +89,9 @@ async def key_worker(
 
 async def main():
     """主函数"""
-    if os.path.exists(OUT_DIR):
-        shutil.rmtree(OUT_DIR)
-    os.makedirs(OUT_DIR)
+    if os.path.exists(RESULT_DIR):
+        shutil.rmtree(RESULT_DIR)
+    os.makedirs(RESULT_DIR)
 
     clients = [AsyncOpenAI(base_url=BASE_URL, api_key=k) for k in API_KEYS]
 
@@ -105,11 +110,14 @@ async def main():
     ]
     elapsed_list = await asyncio.gather(*workers)
     total_processing = sum(elapsed_list)
-    print(f"Total processing time (sum of all workers): {total_processing:.2f}s")
+    return total_processing
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    asyncio.run(main())
-    wall_time = time.time() - start_time
-    print(f"Wall time: {wall_time:.2f}s")
+    # start_time = time.time()
+    # total_processing = asyncio.run(main())
+    # wall_time = time.time() - start_time
+    # print(f"Wall time: {wall_time:.2f}s")
+    review_code.main(DATASET_FILE, RESULT_DIR)
+    # print(f"Total processing time: {total_processing:.2f}s")
+    

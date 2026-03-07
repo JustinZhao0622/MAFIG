@@ -1,53 +1,85 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        if i == 2:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 10 * 60 + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 20 if i == 2 else 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
     for i in range(nums):
-        if i == 9:
-            resources.append({"id": i, "type": "crane", "location": (-1,-1)}) 
+        if i == 3:  # Zone_4
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": 0,
+                "max_capacity": 87,  # Zone_4最大容量缩减至87
+                "desc": f"货物堆积区域{i+1}"
+            })
         else:
-            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+    return zones
+
+def init_forklifts(nums=3):
+    forklifts = []
+    for i in range(nums):
+        if i == 1:  # Forklift_2发生故障不可用
+            continue
+        elif i == 2:  # Forklift_3初始位置调整为(29,35)
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (29, 35),
+            })
+        else:  # 其他叉车保持默认位置
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
+
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
+
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
-    
-    forbidden_positions = {(6,5),(7,5),(6,6),(7,6)}
-    
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
+
         if current == end_point:
             return path
-        
+
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
-            
+
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            if next_pos in visited or next_pos in forbidden_positions:
+
+            if next_pos in visited:
                 continue
-                
+
             visited.add(next_pos)
             new_path = path + [next_pos]
             g_score = len(new_path) - 1  

@@ -1,2206 +1,1734 @@
 [
     {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(36,33)",
+        "functions": "init_forklifts"
     },
     {
         "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_1堆积区最大容量缩减至96;Zone_4堆积区当前库存增加60;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_1堆积区最大容量缩减至119;Zone_3堆积区当前库存增加66",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(25,48)",
+        "functions": "init_forklifts"
     },
     {
         "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,44)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "emergency_situation": "Zone_1堆积区最大容量缩减至74",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至68;Zone_2堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(37,25);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_3叉车初始位置调整为(21,19)",
+        "functions": "init_forklifts"
     },
     {
         "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至62;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(6,3)(7,3)(6,4)(7,4)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区最大容量缩减至88",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_2堆积区最大容量缩减至124",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(13,46)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_4堆积区当前库存增加65;Zone_1堆积区最大容量缩减至99",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加20;Zone_4堆积区最大容量缩减至116",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
         "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "id为7的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_1堆积区当前库存增加34;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(13,20)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_2堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "emergency_situation": "Zone_3堆积区当前库存增加69;Zone_4堆积区最大容量缩减至51",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "emergency_situation": "Zone_2堆积区当前库存增加58;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加40;Zone_3堆积区最大容量缩减至78",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_2堆积区最大容量缩减至78",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_1叉车初始位置调整为(18,25)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至62",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "emergency_situation": "Zone_3堆积区最大容量缩减至119",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
         "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加44",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(31,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(40,19);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_3堆积区当前库存增加61",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至95",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至141;Zone_4堆积区当前库存增加61",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(48,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加55;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
         "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_4堆积区最大容量缩减至68",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为9的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
         "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "emergency_situation": "站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_3堆积区当前库存增加49;Zone_4堆积区最大容量缩减至70",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,10);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为5的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_3堆积区当前库存增加44;Zone_1堆积区最大容量缩减至64;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(29,35)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "emergency_situation": "Zone_3堆积区当前库存增加72;Zone_4堆积区最大容量缩减至126",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加50;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的船舶任务时长延长至20分钟;第2艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为3的船舶任务时长延长至20分钟;第3艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为0的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4艘到达的船舶延迟10分钟到达;id为1的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "id为2的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8);站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为6的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第0艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为1的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为0的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "第2艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为2的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "id为4的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
-    },
-    {
-        "emergency_situation": "第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为8的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Zone_1堆积区当前库存增加65;Zone_1堆积区最大容量缩减至124;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "emergency_situation": "Forklift_3叉车初始位置调整为(39,26)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第4艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为4的船舶任务时长延长至20分钟;第1艘到达的船舶延迟10分钟到达",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_2堆积区最大容量缩减至145",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加44",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(32,28)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至91",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加28;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(42,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(13,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至128",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至93",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加21",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(40,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加59",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至61",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(45,27)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(23,35)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加71;Zone_3堆积区最大容量缩减至127",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(23,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加25",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(31,12)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(25,26)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_4堆积区当前库存增加55",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_2叉车初始位置调整为(18,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_3堆积区最大容量缩减至89",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至115;Zone_3堆积区发生故障不可用;Zone_1堆积区当前库存增加67",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_2叉车初始位置调整为(35,49)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至94",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(20,40)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_3叉车初始位置调整为(14,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_3堆积区当前库存增加34",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至82;Zone_1堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(28,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(35,28);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至86;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_2叉车初始位置调整为(33,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_2堆积区当前库存增加49;Zone_2堆积区最大容量缩减至85",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(16,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(43,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至135;Zone_1堆积区当前库存增加48;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(26,44)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_3叉车初始位置调整为(29,14)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加76;Zone_4堆积区最大容量缩减至60",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(29,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至115",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加55;Zone_2堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(14,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至114;Zone_3堆积区当前库存增加51",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
         "functions": "route_planning"
     },
     {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(17,33)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加56;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区当前库存增加65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(38,47)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区最大容量缩减至56;Zone_2堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(22,46)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至107;Zone_3堆积区当前库存增加80",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(21,16);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(21,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加35",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(29,43)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至105",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(27,34);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至121;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至112",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,36);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_1叉车初始位置调整为(24,48)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(33,20)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至138;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_1堆积区最大容量缩减至131;Zone_1堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(43,14);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至90",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(28,40)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(34,49)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至77;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加58;Zone_2堆积区最大容量缩减至105",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至95",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(25,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(12,16)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_4堆积区最大容量缩减至76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_4堆积区当前库存增加51",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(35,49);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(17,23)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(14,25);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加25;Zone_2堆积区最大容量缩减至113",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至128;Zone_1堆积区当前库存增加63;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至79",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加63;Zone_2堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至122;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至144;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加69",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(13,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至55",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加27;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至54",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加40;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(37,41);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加47",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(46,32);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至128;Zone_4堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至84;Zone_1堆积区当前库存增加21",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(30,46)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加24",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_1堆积区最大容量缩减至128",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(43,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_2堆积区最大容量缩减至142",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(39,16)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至149;Zone_1堆积区当前库存增加31",
+        "functions": "init_stacking_zones"
+    },
+    {
         "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "id为3的资源不可用",
-        "functions": "init_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第3艘到达的船舶延迟10分钟到达;id为4的船舶任务时长延长至20分钟",
-        "functions": "init_cranes"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加58",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至139;Zone_3堆积区当前库存增加37",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至112;Zone_4堆积区当前库存增加26;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(49,18)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加21;Zone_2堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(22,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_3堆积区最大容量缩减至76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(30,31)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加30;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(34,18)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至62;Zone_3堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至125;Zone_1堆积区当前库存增加64;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至57;Zone_1堆积区当前库存增加26;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加74;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加78;Zone_4堆积区最大容量缩减至54",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至93;Zone_3堆积区当前库存增加25",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加45",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,16);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(22,19)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(41,21)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(15,12)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加66;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(20,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至91",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加36;Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至102",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(30,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至109;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(23,37);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至138",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_4堆积区当前库存增加22",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至82",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(36,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区当前库存增加72",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_1叉车初始位置调整为(18,35)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加27;Zone_1堆积区发生故障不可用;Zone_2堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     }
 ]

@@ -2,30 +2,6 @@ import heapq
 import time
 import random
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
-    for i in range(nums):
-        delay = 0
-        if i == 0:
-            delay = 10 * 60
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay))
-        duration = 10
-        if i == 4:
-            duration = 20
-        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
-    return vessels
-
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
-    for i in range(nums):
-        if i == 7:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
-
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -40,9 +16,12 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """
     width, height = grid_size
 
-    # 突发事件处理：终点调整
-    if end_point == (9, 8):
-        end_point = (10, 8)
+    # 突发事件处理：终点故障调整
+    if end_point == (8, 7):
+        end_point = (9, 7)
+
+    # 突发事件处理：故障点集合
+    blocked_points = {(5, 6), (6, 6), (5, 7), (6, 7)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -73,6 +52,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
+            # 检查是否为故障点
+            if next_pos in blocked_points:
+                continue
+
             # 检查是否已访问
             if next_pos in visited:
                 continue
@@ -85,4 +68,24 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
+
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        zone_id = f"Zone_{i+1}"
+        if zone_id == "Zone_1":
+            continue
+        zones.append({
+            "id": zone_id,
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
