@@ -1,60 +1,44 @@
 import heapq
 import time
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
+    初始化舰载机到达时间。每3分钟到达一架舰载机。
+    返回舰载机列表，每架包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
+def init_fixed_resources(nums=4):
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
+    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
     """
-    zones = []
+    resources = []
     for i in range(nums):
-        zone = {
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
-        if i == 0:
-            zone["max_capacity"] = 119
-        zones.append(zone)
-    return zones
+        resources.append({
+            "id": f"FixedRes_{i+1}",
+        })
+    return resources
 
-def init_forklifts(nums=3):
+def init_mobile_resources(nums=3):
     """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
+    初始化甲板移动资源（牵引车）。
+    返回可用移动资源列表，每个资源包含id、坐标
     """
-    forklifts = []
+    mobile_resources = []
     for i in range(nums):
-        if i == 1:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (20, 16),
-            })
-        else:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (0, 25),
-            })
-    return forklifts
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
+        })
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -186,3 +170,73 @@ def init_o():
     """初始化o"""
     o = 15
     return o
+
+def init_p():
+    """初始化p"""
+    p = 16
+    return p
+
+def init_q():
+    """初始化q"""
+    q = 17
+    return q
+
+def init_r():
+    """初始化r"""
+    r = 18
+    return r
+
+def init_s():
+    """初始化s"""
+    s = 19
+    return s
+
+def init_t():
+    """初始化t"""
+    t = 20
+    return t
+
+def init_u():
+    """初始化u"""
+    u = 21
+    return u
+
+# 忽略故障的点
+def ignore_faulty_points(points):
+    faulty_points = [(5, 6), (6, 6), (5, 7), (6, 7), (8, 8)]
+    return [point for point in points if point not in faulty_points]
+
+# 修改调度逻辑以考虑故障
+def schedule_missions(aircrafts, resources, mobile_resources):
+    # 忽略故障点
+    fixed_resources = ignore_faulty_points(resources)
+    mobile_resources = ignore_faulty_points(mobile_resources)
+
+    # 调度逻辑
+    for aircraft in aircrafts:
+        # 简单的调度逻辑：选择最近的可用资源
+        if fixed_resources and mobile_resources:
+            nearest_resource = min(fixed_resources, key=lambda r: abs(r['id'][8:] - aircraft['id'][8:]))
+            nearest_truck = min(mobile_resources, key=lambda t: abs(t['id'][7:] - aircraft['id'][8:]))
+
+            # 移除已分配的资源
+            fixed_resources.remove(nearest_resource)
+            mobile_resources.remove(nearest_truck)
+
+            # 计算路径
+            path = route_planning((0, 0), (int(nearest_resource['id'][8:]), int(nearest_resource['id'][8:])))
+
+            # 模拟执行调度
+            print(f"Scheduling {aircraft['id']} to use {nearest_resource['id']} via {nearest_truck['id']} on path {path}")
+
+# 主函数
+def main():
+    aircrafts = init_aircraft_arrival()
+    resources = init_fixed_resources()
+    mobile_resources = init_mobile_resources()
+
+    # 调度任务
+    schedule_missions(aircrafts, resources, mobile_resources)
+
+if __name__ == "__main__":
+    main()

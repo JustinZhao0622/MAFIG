@@ -1,52 +1,43 @@
 import heapq
 import time
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
-    zones = []
+def init_fixed_resources(nums=4):
+    resources = []
     for i in range(nums):
-        if i == 0:
-            continue  
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    return zones
+    return resources
 
-def init_forklifts(nums=3):
-    forklifts = []
+def init_mobile_resources(nums=3):
+    mobile_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
+        if i == 1:
+            continue
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
         })
-    return forklifts
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
-    forbidden_points = [(8,7), (5,6), (6,6), (5,7), (6,7)]
-    
+
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-    
-    if end_point == (8,7):
-        end_point = (9,7)
-    
+
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
@@ -64,12 +55,15 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            if next_pos in forbidden_points:
-                continue
-                
+
             if next_pos in visited:
                 continue
+
+            if next_pos in [(5,4),(6,4),(5,5),(6,5)]:
+                continue
+
+            if end_point == (9,9):
+                end_point = (10,9)
 
             visited.add(next_pos)
             new_path = path + [next_pos]
@@ -139,3 +133,27 @@ def init_n():
 def init_o():
     o = 15
     return o
+
+def init_p():
+    p = 16
+    return p
+
+def init_q():
+    q = 17
+    return q
+
+def init_r():
+    r = 18
+    return r
+
+def init_s():
+    s = 19
+    return s
+
+def init_t():
+    t = 20
+    return t
+
+def init_u():
+    u = 21
+    return u

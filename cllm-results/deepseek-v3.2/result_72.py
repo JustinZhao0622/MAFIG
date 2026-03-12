@@ -1,57 +1,52 @@
 import heapq
 import time
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        if f"Aircraft_{i}" == "Aircraft_6":
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 600))
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
-    zones = []
+def init_fixed_resources(nums=4):
+    resources = []
     for i in range(nums):
-        zone_id = f"Zone_{i+1}"
-        current_stock = 0
-        max_capacity = 100
-        if zone_id == "Zone_3":
-            current_stock = 79
-        if zone_id == "Zone_2":
-            max_capacity = 51
-        zones.append({
-            "id": zone_id,
-            "location": (0,25),
-            "current_stock": current_stock,
-            "max_capacity": max_capacity,
-            "desc": f"货物堆积区域{i+1}"
+        if f"FixedRes_{i+1}" == "FixedRes_2":
+            continue
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    return zones
+    return resources
 
-def init_forklifts(nums=3):
-    forklifts = []
+def init_mobile_resources(nums=3):
+    mobile_resources = []
     for i in range(nums):
-        forklift_id = f"Forklift_{i+1}"
-        location = (0, 25)
-        if forklift_id == "Forklift_3":
-            location = (36, 15)
-        forklifts.append({
-            "id": forklift_id,
-            "location": location,
+        if f"Tractor_{i+1}" == "Tractor_1":
+            continue
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
         })
-    return forklifts
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
+    if end_point == (8, 9):
+        end_point = (9, 9)
+
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
+
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
         if current == end_point:
@@ -131,3 +126,27 @@ def init_n():
 def init_o():
     o = 15
     return o
+
+def init_p():
+    p = 16
+    return p
+
+def init_q():
+    q = 17
+    return q
+
+def init_r():
+    r = 18
+    return r
+
+def init_s():
+    s = 19
+    return s
+
+def init_t():
+    t = 20
+    return t
+
+def init_u():
+    u = 21
+    return u

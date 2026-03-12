@@ -1,44 +1,40 @@
 import heapq
 import time
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
-    zones = []
+def init_fixed_resources(nums=4):
+    resources = []
     for i in range(nums):
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
+        if i + 1 == 1:
+            continue
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    zones[3]["max_capacity"] = 145
-    zones[2]["current_stock"] = 69
-    return zones
+    return resources
 
-def init_forklifts(nums=3):
-    forklifts = []
+def init_mobile_resources(nums=3):
+    mobile_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
         })
-    forklifts = [f for f in forklifts if f["id"] != "Forklift_3"]
-    forklifts[1]["location"] = (10, 23)
-    return forklifts
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
+    if end_point == (8, 8):
+        end_point = (9, 8)
+    faulty_cells = {(5, 3), (6, 3), (5, 4), (6, 4)}
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
@@ -54,6 +50,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
             if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+            if next_pos in faulty_cells:
                 continue
             if next_pos in visited:
                 continue
@@ -124,3 +122,27 @@ def init_n():
 def init_o():
     o = 15
     return o
+
+def init_p():
+    p = 16
+    return p
+
+def init_q():
+    q = 17
+    return q
+
+def init_r():
+    r = 18
+    return r
+
+def init_s():
+    s = 19
+    return s
+
+def init_t():
+    t = 20
+    return t
+
+def init_u():
+    u = 21
+    return u

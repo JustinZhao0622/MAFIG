@@ -20,33 +20,20 @@ def generate_emergency_candidates():
     end_y = random.randint(7, 9)
 
     candidates = [
-        # init_truck_arrival_time 相关
+        # init_aircraft_arrival 相关
         (
-            f"从第{random.randint(3,7)}辆货车开始间隔改为{random.choice([5,6,8])}分钟",
-            "init_truck_arrival_time",
+            f"Aircraft_{random.randint(0,9)}舰载机延迟{random.choice([5,10,15])}分钟到达",
+            "init_aircraft_arrival",
         ),
-        # init_stacking_zones 相关
+        # init_fixed_resources 相关
         (
-            f"Zone_{random.randint(1,4)}堆积区当前库存增加{random.randint(20,80)}",
-            "init_stacking_zones",
+            f"FixedRes_{random.randint(1,4)}固定资源损坏不可用",
+            "init_fixed_resources",
         ),
+        # init_mobile_resources 相关
         (
-            f"Zone_{random.randint(1,4)}堆积区最大容量缩减至{random.randint(50,150)}",
-            "init_stacking_zones",
-        ),
-        (
-            f"Zone_{random.randint(1,4)}堆积区发生故障不可用",
-            "init_stacking_zones",
-        ),
-
-        # init_forklifts 相关
-        (
-            f"Forklift_{random.randint(1,3)}叉车发生故障不可用",
-            "init_forklifts",
-        ),
-        (
-            f"Forklift_{random.randint(1,3)}叉车初始位置调整为({random.randint(10,50)},{random.randint(10,50)})",
-            "init_forklifts",
+            f"Tractor_{random.randint(1,3)}牵引车损坏不可用",
+            "init_mobile_resources",
         ),
         # route_planning 相关
         (
@@ -62,7 +49,7 @@ def generate_emergency_candidates():
     return candidates
 
 
-def generate_dataset(num_samples=100, save_path="datasets/test.json"):
+def generate_dataset(num_samples=80, save_path="datasets/test.json"):
     dataset = []
 
     for _ in range(num_samples):

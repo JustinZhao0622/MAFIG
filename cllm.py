@@ -12,9 +12,9 @@ import shutil
 import review_code
 
 # 模型 Qwen/Qwen3-32B deepseek-ai/DeepSeek-V3.2 Qwen/Qwen3-Coder-480B-A35B-Instruct
-RESULT_DIR = "cllm-results/qwen3-coder-480b-a35b-instruct"
+RESULT_DIR = "cllm-results/glm-5"
 DATASET_FILE = "datasets/test.json"
-MODEL_NAME = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
+MODEL_NAME = "ZhipuAI/GLM-5"
 BASE_URL = "https://api-inference.modelscope.cn/v1"
 PER_THREAD_NUMS = 1
 
@@ -23,7 +23,7 @@ with open(DATASET_FILE, "r", encoding="utf-8") as f:
 
 BASE_KEYS = [
     "ms-5c9ec602-3554-4d46-b858-15b4f90756ed",
-    "ms-578abbfe-1f6f-4649-8186-0541ba4a1452",
+    "ms-c45ac4c4-65fe-4941-8208-bc8c82e223d8",
     "ms-f5cf8848-e0a7-435a-bd16-3595ef54f8dd",
     "ms-e7515d03-7395-4d88-817a-3b3aa267c948",
     "ms-917a1896-16f9-428f-849a-518a5e35c226",
@@ -59,7 +59,7 @@ async def call_model(index: int, client: AsyncOpenAI):
             "enable_thinking": False,
         }
     )
-    out_path = os.path.join(RESULT_DIR, f"result_{index + 1+50}.py")
+    out_path = os.path.join(RESULT_DIR, f"result_{index + 1}.py")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(clean_code_block(resp.choices[0].message.content))
 
@@ -114,10 +114,10 @@ async def main():
 
 
 if __name__ == "__main__":
-    # start_time = time.time()
-    # total_processing = asyncio.run(main())
-    # wall_time = time.time() - start_time
-    # print(f"Wall time: {wall_time:.2f}s")
+    start_time = time.time()
+    total_processing = asyncio.run(main())
+    wall_time = time.time() - start_time
+    print(f"Wall time: {wall_time:.2f}s")
     review_code.main(DATASET_FILE, RESULT_DIR)
-    # print(f"Total processing time: {total_processing:.2f}s")
+    print(f"Total processing time: {total_processing:.2f}s")
     

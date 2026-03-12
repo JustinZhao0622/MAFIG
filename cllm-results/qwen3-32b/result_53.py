@@ -1,102 +1,92 @@
 import heapq
 import time
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    # Aircraft_2延迟5分钟到达
+    if nums > 2:
+        original_arrival = aircrafts[2]["arrival_time"]
+        # 将时间转换为秒数并+5分钟后再转回格式化时间
+        aircrafts[2]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(original_arrival, "%H:%M:%S")) + 5 * 60))
+    return aircrafts
 
-def init_stacking_zones(nums=4):
-    zones = []
+def init_fixed_resources(nums=4):
+    resources = []
     for i in range(nums):
-        zone_info = {
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
-        
-        # Zone_2堆积区发生故障不可用
-        if i == 1:
-            zone_info["available"] = False
-            zone_info["desc"] += "（故障不可用）"
-            
-        # Zone_3堆积区当前库存增加24
-        if i == 2:
-            zone_info["current_stock"] += 24
-            
-        zones.append(zone_info)
-    return zones
+        if i == 3:  # FixedRes_4损坏不可用
+            continue
+        resources.append({
+            "id": f"FixedRes_{i+1}",
+        })
+    return resources
 
-def init_forklifts(nums=3):
-    forklifts = []
+def init_mobile_resources(nums=3):
+    mobile_resources = []
     for i in range(nums):
-        forklift = {
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
-        }
-        
-        # Forklift_1叉车发生故障不可用
-        if i == 0:
-            forklift["available"] = False
-            forklift["desc"] = "故障不可用"
-        else:
-            forklift["available"] = True
-            forklift["desc"] = "正常运行中"
-            
-        forklifts.append(forklift)
-    return forklifts
+        if i == 0:  # Tractor_1牵引车损坏不可用
+            continue
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
+        })
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
-    
+
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
-    
+
+    def is_blocked(point):
+        # 故障点列表：(7,8); (6,5)(7,5)(6,6)(7,6)
+        blocked_points = [(7,8), (6,5), (7,5), (6,6), (7,6)]
+        if point in blocked_points:
+            return True
+        return False
+
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-    
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
-    forbidden_points = {(6,6),(7,6),(6,7),(7,7)}
-    
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
+        # 到达终点
         if current == end_point:
             return path
 
+        # 如果当前点是故障点(7,8)，则终点调整为(8,8)
+        if current == (7,8):
+            end_point = (8,8)
+
+        # 探索四个方向
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
 
+            # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            if next_pos in visited:
+
+            # 检查是否已访问或是否是故障点
+            if next_pos in visited or is_blocked(next_pos):
                 continue
-                
-            if next_pos in forbidden_points:
-                continue
-                
-            if next_pos == (7,7) and end_point != (7,7):
-                next_pos = (8,7)
-                
+
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1  
-            f_score_new = g_score + heuristic(next_pos)  
+            g_score = len(new_path) - 1
+            f_score = g_score + heuristic(next_pos)
 
             counter += 1
-            heapq.heappush(heap, (f_score_new, counter, next_pos, new_path))
+            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
 def init_a():
@@ -158,3 +148,27 @@ def init_n():
 def init_o():
     o = 15
     return o
+
+def init_p():
+    p = 16
+    return p
+
+def init_q():
+    q = 17
+    return q
+
+def init_r():
+    r = 18
+    return r
+
+def init_s():
+    s = 19
+    return s
+
+def init_t():
+    t = 20
+    return t
+
+def init_u():
+    u = 21
+    return u

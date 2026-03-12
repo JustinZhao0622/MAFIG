@@ -1,61 +1,50 @@
 import heapq
 import time
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
+    初始化舰载机到达时间。每3分钟到达一架舰载机。
+    返回舰载机列表，每架包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
-    base_interval = 3 * 60
+    aircrafts = []
     for i in range(nums):
-        interval = base_interval
-        if i >= 6:
-            interval = 8 * 60
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + interval * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 0:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60))
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
+def init_fixed_resources(nums=4):
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
+    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
     """
-    zones = []
+    resources = []
     for i in range(nums):
-        max_capacity = 100
-        if i == 0:
-            max_capacity = 62
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": max_capacity,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+        resource_id = f"FixedRes_{i+1}"
+        if resource_id != "FixedRes_4":
+            resources.append({
+                "id": resource_id,
+            })
+    return resources
 
-def init_forklifts(nums=3):
+def init_mobile_resources(nums=3):
     """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
+    初始化甲板移动资源（牵引车）。
+    返回可用移动资源列表，每个资源包含id、坐标
     """
-    forklifts = []
+    mobile_resources = []
     for i in range(nums):
-        location = (0, 25)
-        if i == 0:
-            location = (20, 40)
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": location,
-        })
-    return forklifts
+        resource_id = f"Tractor_{i+1}"
+        if resource_id != "Tractor_2":
+            mobile_resources.append({
+                "id": resource_id,
+            })
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -70,7 +59,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         如果没有路径则返回 None
     """
     width, height = grid_size
-    faulty_positions = {(6,6), (7,6), (6,7), (7,7)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -101,18 +89,14 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否是故障站位
-            if next_pos in faulty_positions:
-                continue
-
             # 检查是否已访问
             if next_pos in visited:
                 continue
 
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1
-            f_score = g_score + heuristic(next_pos)
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(next_pos)  # 总评估代价
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
@@ -192,3 +176,33 @@ def init_o():
     """初始化o"""
     o = 15
     return o
+
+def init_p():
+    """初始化p"""
+    p = 16
+    return p
+
+def init_q():
+    """初始化q"""
+    q = 17
+    return q
+
+def init_r():
+    """初始化r"""
+    r = 18
+    return r
+
+def init_s():
+    """初始化s"""
+    s = 19
+    return s
+
+def init_t():
+    """初始化t"""
+    t = 20
+    return t
+
+def init_u():
+    """初始化u"""
+    u = 21
+    return u

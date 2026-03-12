@@ -54,61 +54,55 @@ CODE:
 """
 
 # 初始的函数
-init_truck_arrival_time = '''
+init_aircraft_arrival = '''
 import heapq
 import time
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
+    初始化舰载机到达时间。每3分钟到达一架舰载机。
+    返回舰载机列表，每架包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 '''
 
-init_stacking_zones = '''
+init_fixed_resources = '''
 import heapq
 import time
-def init_stacking_zones(nums=4):
+def init_fixed_resources(nums=4):
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
+    返回可用固定资源列表，每个资源包含id
     """
-    zones = []
+    resources = []
     for i in range(nums):
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    return zones
+    return resources
 '''
 
-init_forklifts = '''
+init_mobile_resources = '''
 import heapq
 import time
-def init_forklifts(nums=3):
+def init_mobile_resources(nums=3):
     """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
+    初始化甲板移动资源（牵引车）。
+    返回可用移动资源列表，每个资源包含id
     """
-    forklifts = []
+    mobile_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
         })
-    return forklifts
+    return mobile_resources
 '''
 
 route_planning = '''
@@ -172,9 +166,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 '''
 
 functions_mapping = {
-    "init_truck_arrival_time": init_truck_arrival_time,
-    "init_stacking_zones": init_stacking_zones,
-    "init_forklifts": init_forklifts,
+    "init_aircraft_arrival": init_aircraft_arrival,
+    "init_fixed_resources": init_fixed_resources,
+    "init_mobile_resources": init_mobile_resources,
     "route_planning": route_planning,
 }
 
@@ -185,20 +179,20 @@ perception_system_prompt = """
 ### 1. 原子函数库定义
 你拥有以下四个核心函数的逻辑权限：
 
-1.  **`init_truck_arrival_time`**: 
-    * **职责**: 负责货车到达时间的初始化生成。
-    * **管理属性**: 货车到达时间（arrival_time）、货车ID、到达间隔、货车列表生成。
-    * **相关关键词**: 货车、到达、延迟、间隔、Truck。
+1.  **`init_aircraft_arrival`**: 
+    * **职责**: 负责舰载机到达时间的初始化生成。
+    * **管理属性**: 舰载机到达时间（arrival_time）、舰载机ID、到达间隔、舰载机列表生成。
+    * **相关关键词**: 舰载机、到达、延迟、Aircraft。
 
-2.  **`init_stacking_zones`**: 
-    * **职责**: 负责货物堆积区域的初始化。
-    * **管理属性**: 区域ID、坐标、当前库存（current_stock）、最大容量（max_capacity）、区域可用性。
-    * **相关关键词**: Zone、堆积区、库存、容量、缩减、故障不可用。
+2.  **`init_fixed_resources`**: 
+    * **职责**: 负责甲板固定资源的初始化。
+    * **管理属性**: 固定资源ID、资源可用性。
+    * **相关关键词**: FixedRes、固定资源、损坏、不可用。
 
-3.  **`init_forklifts`**: 
-    * **职责**: 负责叉车队的初始化。
-    * **管理属性**: 叉车ID、叉车位置（location）、叉车可用性。
-    * **相关关键词**: Forklift、叉车、故障、位置调整、不可用。
+3.  **`init_mobile_resources`**: 
+    * **职责**: 负责甲板移动资源（牵引车）的初始化。
+    * **管理属性**: 牵引车ID、牵引车可用性。
+    * **相关关键词**: Tractor、牵引车、损坏、不可用。
 
 4.  **`route_planning`**: 
     * **职责**: 负责路径规划与地图逻辑。
@@ -207,7 +201,7 @@ perception_system_prompt = """
 
 ### 2. 输出格式（必须严格遵守）
 突发事件按分号(;)分隔，有N个独立事件。你必须按事件顺序输出一个Python列表，第i个元素对应第i个事件需要修改的函数名。
-如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_stacking_zones", "None", "init_truck_arrival_time"]
+如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_fixed_resources", "None", "init_aircraft_arrival"]
 只输出列表，禁止Markdown、解释或其他任何废话。
 """
 

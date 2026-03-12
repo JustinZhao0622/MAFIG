@@ -1,63 +1,51 @@
 """
-原子函数库
+原子函数库 —— 甲板舰载机调度
 """
 import heapq
 import time
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
+    初始化舰载机到达时间。每3分钟到达一架舰载机。
+    返回舰载机列表，每架包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
-        if i < 3:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * 2 + 5 * 60 * (i - 2)))
-        trucks.append({
-            "id": f"Truck_{i}",
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
+def init_fixed_resources(nums=4):
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
+    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
     """
-    zones = []
+    resources = []
     for i in range(nums):
-        zone = {
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
-        if zone["id"] == "Zone_3":
-            zone["current_stock"] = 51
-            zone["max_capacity"] = 91
-        zones.append(zone)
-    return zones
-
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
-    for i in range(nums):
-        if f"Forklift_{i+1}" == "Forklift_2":
-            continue
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    return forklifts
+    unavailable_fixed_res = ["FixedRes_2"]
+    available_resources = [res for res in resources if res["id"] not in unavailable_fixed_res]
+    return available_resources
+
+def init_mobile_resources(nums=3):
+    """
+    初始化甲板移动资源（牵引车）。
+    返回可用移动资源列表，每个资源包含id、坐标
+    """
+    mobile_resources = []
+    for i in range(nums):
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
+        })
+    unavailable_tractors = ["Tractor_2"]
+    available_mobile_resources = [res for res in mobile_resources if res["id"] not in unavailable_tractors]
+    return available_mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -79,6 +67,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+    
+    # 故障点检查
+    fault_point = (7, 8)
+    adjusted_end_point = (8, 8) if end_point == fault_point else end_point
 
     # 优先队列：(f值, 计数器, 当前点, 路径)
     counter = 0
@@ -89,7 +81,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         f_score, _, current, path = heapq.heappop(heap)
 
         # 到达终点
-        if current == end_point:
+        if current == adjusted_end_point:
             return path
 
         # 探索四个方向
@@ -189,3 +181,33 @@ def init_o():
     """初始化o"""
     o = 15
     return o
+
+def init_p():
+    """初始化p"""
+    p = 16
+    return p
+
+def init_q():
+    """初始化q"""
+    q = 17
+    return q
+
+def init_r():
+    """初始化r"""
+    r = 18
+    return r
+
+def init_s():
+    """初始化s"""
+    s = 19
+    return s
+
+def init_t():
+    """初始化t"""
+    t = 20
+    return t
+
+def init_u():
+    """初始化u"""
+    u = 21
+    return u

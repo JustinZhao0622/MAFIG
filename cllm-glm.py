@@ -14,13 +14,9 @@ import review_code
 OUT_DIR = "cllm-results/glm-5"
 MODEL_NAME = "glm-5"
 API_KEYS = [
-    "5c6d3d4312f94fa1a6773b17aa97b75d.w9cZbahrqSsPSeTt",
-    "5123fb6446a248648c88a1c20007a5a6.GzwNMUsco0qkbQl1",
-    "11724e5a71d24cd9bb1cccd52fe6a29a.DnAUeBnWIte1Nqvm",
-    "35da9a35c1f149d6905d9accb5218caf.ynVDb5rZfz6RXRsp",
-    "90bab6b6ce984d46897b139da16fa8df.k3X9o8wUFVCRAamq",
+    "3fe6b6f241f14a54a297ba4a7fbabca3.FNjOCaAHpekg90S5",
 ]
-
+API_KEYS = [key for key in API_KEYS for _ in range(1)]
 with open("datasets/test.json", "r", encoding="utf-8") as f:
     emergency_situation = json.load(f)
 

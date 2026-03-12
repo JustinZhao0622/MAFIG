@@ -20,95 +20,50 @@ class DynamicVerifier:
     def __init__(self, module):
         self.module = module
 
-    def check_truck_interval(self, text):
-        """验证: 从第X辆货车开始间隔改为Y分钟"""
-        match = re.search(r"从第(\d+)辆货车开始间隔改为(\d+)分钟", text)
-        if not match:
-            return False
-        start_idx = int(match.group(1))-1 if int(match.group(1)) > 0 else 0
-        new_interval = int(match.group(2))
-        try:
-            trucks = self.module.init_truck_arrival_time(15)
-            if start_idx + 1 >= len(trucks):
-                return False
-            t1 = time.mktime(time.strptime(trucks[start_idx]['arrival_time'], "%H:%M:%S"))
-            t2 = time.mktime(time.strptime(trucks[start_idx + 1]['arrival_time'], "%H:%M:%S"))
-            return abs((t2 - t1) - new_interval * 60) < 1
-        except:
-            return False
-
-    def check_zone_stock_increase(self, text):
-        """验证: Zone_X堆积区当前库存增加Y"""
-        match = re.search(r"(Zone_\d+)堆积区当前库存增加(\d+)", text)
+    def check_aircraft_delay(self, text):
+        """验证: Aircraft_X舰载机延迟Y分钟到达"""
+        match = re.search(r"(Aircraft_\d+)舰载机延迟(\d+)分钟", text)
         if not match:
             return False
         target_id = match.group(1)
-        increase = int(match.group(2))
+        delay_min = int(match.group(2))
+        idx = int(target_id.split("_")[1])
         try:
-            zones = self.module.init_stacking_zones()
-            target = next((z for z in zones if z.get('id') == target_id), None)
+            aircrafts = self.module.init_aircraft_arrival(15)
+            target = next((a for a in aircrafts if a.get('id') == target_id), None)
             if not target:
                 return False
-            return target.get('current_stock', 0) == increase
+            correct_time = time.strftime(
+                "%H:%M:%S",
+                time.localtime(time.mktime(time.strptime("8:00:00", "%H:%M:%S")) + 3 * 60 * idx + delay_min * 60),
+            )
+            return target['arrival_time'] == correct_time
         except:
             return False
 
-    def check_zone_capacity_reduce(self, text):
-        """验证: Zone_X堆积区最大容量缩减至Y"""
-        match = re.search(r"(Zone_\d+)堆积区最大容量缩减至(\d+)", text)
-        if not match:
-            return False
-        target_id = match.group(1)
-        new_cap = int(match.group(2))
-        try:
-            zones = self.module.init_stacking_zones()
-            target = next((z for z in zones if z.get('id') == target_id), None)
-            if not target:
-                return False
-            return target.get('max_capacity') == new_cap
-        except:
-            return False
-
-    def check_zone_unavailable(self, text):
-        """验证: Zone_X堆积区发生故障不可用"""
-        match = re.search(r"(Zone_\d+)堆积区发生故障不可用", text)
+    def check_fixed_resource_unavailable(self, text):
+        """验证: FixedRes_X固定资源损坏不可用"""
+        match = re.search(r"(FixedRes_\d+)固定资源损坏不可用", text)
         if not match:
             return False
         target_id = match.group(1)
         try:
-            zones = self.module.init_stacking_zones()
-            ids = [z.get('id') for z in zones]
+            resources = self.module.init_fixed_resources()
+            ids = [r.get('id') for r in resources]
             return target_id not in ids
         except:
             return False
 
-    def check_forklift_unavailable(self, text):
-        """验证: Forklift_X叉车发生故障不可用"""
-        match = re.search(r"(Forklift_\d+)叉车发生故障不可用", text)
+    def check_mobile_resource_unavailable(self, text):
+        """验证: Tractor_X牵引车损坏不可用"""
+        match = re.search(r"(Tractor_\d+)牵引车损坏不可用", text)
         if not match:
             return False
         target_id = match.group(1)
         try:
-            forklifts = self.module.init_forklifts()
-            ids = [f.get('id') for f in forklifts]
+            resources = self.module.init_mobile_resources()
+            ids = [r.get('id') for r in resources]
             return target_id not in ids
-        except:
-            return False
-
-    def check_forklift_location(self, text):
-        """验证: Forklift_X叉车初始位置调整为(a,b)"""
-        match = re.search(r"(Forklift_\d+)叉车初始位置调整为\((\d+),(\d+)\)", text)
-        if not match:
-            return False
-        target_id = match.group(1)
-        new_x, new_y = int(match.group(2)), int(match.group(3))
-        try:
-            forklifts = self.module.init_forklifts()
-            target = next((f for f in forklifts if f.get('id') == target_id), None)
-            if not target:
-                return False
-            loc = target.get('location')
-            return loc == (new_x, new_y) or loc == [new_x, new_y]
         except:
             return False
 
@@ -156,18 +111,12 @@ def run_verify_case(file_path, emergency_list, return_dict):
         for event in emergency_list:
             is_solved = False
 
-            if "间隔改为" in event:
-                is_solved = verifier.check_truck_interval(event)
-            elif "库存增加" in event:
-                is_solved = verifier.check_zone_stock_increase(event)
-            elif "容量缩减" in event:
-                is_solved = verifier.check_zone_capacity_reduce(event)
-            elif "堆积区发生故障不可用" in event:
-                is_solved = verifier.check_zone_unavailable(event)
-            elif "叉车发生故障不可用" in event:
-                is_solved = verifier.check_forklift_unavailable(event)
-            elif "叉车初始位置调整" in event:
-                is_solved = verifier.check_forklift_location(event)
+            if "舰载机延迟" in event:
+                is_solved = verifier.check_aircraft_delay(event)
+            elif "固定资源损坏不可用" in event:
+                is_solved = verifier.check_fixed_resource_unavailable(event)
+            elif "牵引车损坏不可用" in event:
+                is_solved = verifier.check_mobile_resource_unavailable(event)
             elif "四个点发生故障" in event:
                 is_solved = verifier.check_route_fault(event)
             elif "终点" in event:

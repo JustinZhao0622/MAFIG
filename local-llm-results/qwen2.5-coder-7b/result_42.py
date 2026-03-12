@@ -1,57 +1,44 @@
 import heapq
 import time
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+def init_aircraft_arrival(nums=10, start_time="8:00:00"):
     """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
+    初始化舰载机到达时间。每3分钟到达一架舰载机。
+    返回舰载机列表，每架包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    aircrafts = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
+        aircrafts.append({
+            "id": f"Aircraft_{i}",
             "arrival_time": arrival_time,
         })
-    return trucks
+    return aircrafts
 
-def init_stacking_zones(nums=4):
+def init_fixed_resources(nums=4):
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
+    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
     """
-    zones = []
+    resources = []
     for i in range(nums):
-        if i == 2:
-            current_stock = 72
-        else:
-            current_stock = 0
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": current_stock,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
+        resources.append({
+            "id": f"FixedRes_{i+1}",
         })
-    return zones
+    return resources
 
-def init_forklifts(nums=3):
+def init_mobile_resources(nums=3):
     """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
+    初始化甲板移动资源（牵引车）。
+    返回可用移动资源列表，每个资源包含id、坐标
     """
-    forklifts = []
+    mobile_resources = []
     for i in range(nums):
-        if i == 2:
-            continue
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
+        mobile_resources.append({
+            "id": f"Tractor_{i+1}",
         })
-    return forklifts
+    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -183,3 +170,68 @@ def init_o():
     """初始化o"""
     o = 15
     return o
+
+def init_p():
+    """初始化p"""
+    p = 16
+    return p
+
+def init_q():
+    """初始化q"""
+    q = 17
+    return q
+
+def init_r():
+    """初始化r"""
+    r = 18
+    return r
+
+def init_s():
+    """初始化s"""
+    s = 19
+    return s
+
+def init_t():
+    """初始化t"""
+    t = 20
+    return t
+
+def init_u():
+    """初始化u"""
+    u = 21
+    return u
+
+def check_availability():
+    """检查资源可用性"""
+    return True
+
+def schedule_aircraft(aircraft_id, resource_id):
+    """调度舰载机到资源"""
+    if not check_availability():
+        return False
+    return True
+
+def main():
+    aircrafts = init_aircraft_arrival()
+    fixed_resources = init_fixed_resources()
+    mobile_resources = init_mobile_resources()
+
+    for aircraft in aircrafts:
+        if aircraft["id"] == "Aircraft_4":
+            aircraft["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(aircraft["arrival_time"], "%H:%M:%S")) + 600))
+        
+        for resource in fixed_resources:
+            if resource["id"] == "FixedRes_2":
+                continue
+
+        for resource in mobile_resources:
+            if resource["id"] == "Tractor_3":
+                continue
+
+            if schedule_aircraft(aircraft["id"], resource["id"]):
+                print(f"Aircraft {aircraft['id']} scheduled to resource {resource['id']}")
+            else:
+                print(f"Aircraft {aircraft['id']} not scheduled to resource {resource['id']}")
+
+if __name__ == "__main__":
+    main()
