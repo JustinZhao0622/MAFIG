@@ -54,60 +54,36 @@ CODE:
 """
 
 # 初始的函数
-init_aircraft_arrival = '''
+init_cranes =  '''
 import heapq
 import time
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
-    """
-    初始化舰载机到达时间。每3分钟到达一架舰载机。
-    返回舰载机列表，每架包含id和到达时间
-    """
+import random 
+def init_cranes(nums=5,start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 '''
 
-init_fixed_resources = '''
+init_resources = '''
 import heapq
 import time
-def init_fixed_resources(nums=4):
-    """
-    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
-    返回可用固定资源列表，每个资源包含id
-    """
+import random 
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
     resources = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
-'''
-
-init_mobile_resources = '''
-import heapq
-import time
-def init_mobile_resources(nums=3):
-    """
-    初始化甲板移动资源（牵引车）。
-    返回可用移动资源列表，每个资源包含id
-    """
-    mobile_resources = []
-    for i in range(nums):
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 '''
 
 route_planning = '''
 import heapq
 import time
+import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -164,12 +140,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 '''
-
 functions_mapping = {
-    "init_aircraft_arrival": init_aircraft_arrival,
-    "init_fixed_resources": init_fixed_resources,
-    "init_mobile_resources": init_mobile_resources,
-    "route_planning": route_planning,
+    "init_cranes": init_cranes,
+    "init_resources": init_resources,
+    "route_planning": route_planning
 }
 
 # 感知智能体
@@ -177,31 +151,26 @@ perception_system_prompt = """
 你是一名资深的信息处理与系统诊断专家。你的任务是分析“突发事件描述”，并根据给定的“原子函数库”定义，判断该事件需要修改哪个函数来应对。
 
 ### 1. 原子函数库定义
-你拥有以下四个核心函数的逻辑权限：
+你拥有以下三个核心函数的逻辑权限：
 
-1.  **`init_aircraft_arrival`**: 
-    * **职责**: 负责舰载机到达时间的初始化生成。
-    * **管理属性**: 舰载机到达时间（arrival_time）、舰载机ID、到达间隔、舰载机列表生成。
-    * **相关关键词**: 舰载机、到达、延迟、Aircraft。
+1.  **`init_cranes`**: 
+    * **职责**: 负责船舶（vessels）的初始化生成。
+    * **管理属性**: 船舶到达时间（time）、船舶ID、任务时长（duration）、船舶列表生成。
+    * **相关关键词**: 船舶、到达、延迟、任务时长、vessel。
 
-2.  **`init_fixed_resources`**: 
-    * **职责**: 负责甲板固定资源的初始化。
-    * **管理属性**: 固定资源ID、资源可用性。
-    * **相关关键词**: FixedRes、固定资源、损坏、不可用。
+2.  **`init_resources`**: 
+    * **职责**: 负责岸桥/场桥等资源（resources）的初始化。
+    * **管理属性**: 资源ID、资源类型、资源可用性、资源初始位置。
+    * **相关关键词**: 资源、不可用、损坏、resource、id。
 
-3.  **`init_mobile_resources`**: 
-    * **职责**: 负责甲板移动资源（牵引车）的初始化。
-    * **管理属性**: 牵引车ID、牵引车可用性。
-    * **相关关键词**: Tractor、牵引车、损坏、不可用。
-
-4.  **`route_planning`**: 
+3.  **`route_planning`**: 
     * **职责**: 负责路径规划与地图逻辑。
     * **管理属性**: 起点、终点、障碍物（故障点）、网格地图（Grid）、A*算法逻辑。
     * **相关关键词**: 站位、故障点、坐标、路径、终点调整、不可达、route。
 
 ### 2. 输出格式（必须严格遵守）
 突发事件按分号(;)分隔，有N个独立事件。你必须按事件顺序输出一个Python列表，第i个元素对应第i个事件需要修改的函数名。
-如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_fixed_resources", "None", "init_aircraft_arrival"]
+如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_resources", "None", "init_cranes"]
 只输出列表，禁止Markdown、解释或其他任何废话。
 """
 

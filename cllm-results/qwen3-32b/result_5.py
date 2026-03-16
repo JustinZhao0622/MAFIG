@@ -1,51 +1,27 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
-    """
-    初始化舰载机到达时间。每3分钟到达一架舰载机。
-    返回舰载机列表，每架包含id和到达时间
-    """
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        if f"Aircraft_{i}" == "Aircraft_7":
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10 * 60))
-        else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 1:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 4 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    vessels[3]["duration"] = 20
+    return vessels
 
-def init_fixed_resources(nums=4):
-    """
-    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
-    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
-    """
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
     resources = []
     for i in range(nums):
-        if f"FixedRes_{i+1}" == "FixedRes_4":
+        if i == 3:
             continue
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
-
-def init_mobile_resources(nums=3):
-    """
-    初始化甲板移动资源（牵引车）。
-    返回可用移动资源列表，每个资源包含id、坐标
-    """
-    mobile_resources = []
-    for i in range(nums):
-        if f"Tractor_{i+1}" == "Tractor_2":
-            continue
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -60,8 +36,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         如果没有路径则返回 None
     """
     width, height = grid_size
-    forbidden_positions = [(9,9), (5,4), (6,4), (5,5), (6,5)]
-    
+
     # 曼哈顿距离启发式函数
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
@@ -79,8 +54,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
         # 到达终点
         if current == end_point:
-            if end_point == (9,9):
-                return path[:-1] + [(10,9)]
             return path
 
         # 探索四个方向
@@ -91,10 +64,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
-                continue
-
-            # 检查是否是禁用位置
-            if next_pos in forbidden_positions:
                 continue
 
             # 检查是否已访问
@@ -184,33 +153,3 @@ def init_o():
     """初始化o"""
     o = 15
     return o
-
-def init_p():
-    """初始化p"""
-    p = 16
-    return p
-
-def init_q():
-    """初始化q"""
-    q = 17
-    return q
-
-def init_r():
-    """初始化r"""
-    r = 18
-    return r
-
-def init_s():
-    """初始化s"""
-    s = 19
-    return s
-
-def init_t():
-    """初始化t"""
-    t = 20
-    return t
-
-def init_u():
-    """初始化u"""
-    u = 21
-    return u

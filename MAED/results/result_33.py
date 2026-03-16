@@ -2,25 +2,6 @@ import heapq
 import time
 import random
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
-    for i in range(nums):
-        if i == 0:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (22, 46),
-            })
-        else:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (0, 25),
-            })
-    return forklifts
-
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -47,6 +28,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
+    # 突发事件约束：站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障
+    blocked_points = {(3, 4), (4, 4), (3, 5), (4, 5), (9, 9)}
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -64,12 +48,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问
-            if next_pos in visited:
-                continue
-
-            # 检查是否在故障点
-            if next_pos in {(7, 7), (5, 4), (6, 4), (5, 5), (6, 5)}:
+            # 检查是否已访问或是否为故障点
+            if next_pos in visited or next_pos in blocked_points:
                 continue
 
             visited.add(next_pos)
@@ -80,4 +60,12 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
+
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
+    for i in range(nums):
+        if i != 8:
+            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return resources
 

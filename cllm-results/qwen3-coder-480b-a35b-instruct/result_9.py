@@ -1,52 +1,34 @@
 """
-原子函数库 —— 甲板舰载机调度
+原子函数库
 """
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
-    """
-    初始化舰载机到达时间。每3分钟到达一架舰载机。
-    返回舰载机列表，每架包含id和到达时间
-    """
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        delay = 0
-        if i == 8:
-            delay = 15
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay * 60))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        delay = 10 if i == 0 else 0
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay * 60))
+        duration = 20 if i == 0 else 10
+        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
-    """
-    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
-    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
-    """
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
     resources = []
+    unavailable_ids = {9}
+    available_id = 0
     for i in range(nums):
-        if i == 0:
+        if i in unavailable_ids:
             continue
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+        available_id += 1
+        if available_id >= nums - len(unavailable_ids):
+            break
     return resources
-
-def init_mobile_resources(nums=3):
-    """
-    初始化甲板移动资源（牵引车）。
-    返回可用移动资源列表，每个资源包含id、坐标
-    """
-    mobile_resources = []
-    for i in range(nums):
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -61,6 +43,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         如果没有路径则返回 None
     """
     width, height = grid_size
+    blocked_points = {(6,3),(7,3),(6,4),(7,4)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -68,11 +51,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-    
-    # 故障点列表
-    broken_points = {(5, 6), (6, 6), (5, 7), (6, 7)}
-    if end_point == (8, 9):
-        end_point = (9, 9)
 
     # 优先队列：(f值, 计数器, 当前点, 路径)
     counter = 0
@@ -97,7 +75,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
 
             # 检查是否是故障点
-            if next_pos in broken_points:
+            if next_pos in blocked_points:
                 continue
 
             # 检查是否已访问
@@ -187,33 +165,3 @@ def init_o():
     """初始化o"""
     o = 15
     return o
-
-def init_p():
-    """初始化p"""
-    p = 16
-    return p
-
-def init_q():
-    """初始化q"""
-    q = 17
-    return q
-
-def init_r():
-    """初始化r"""
-    r = 18
-    return r
-
-def init_s():
-    """初始化s"""
-    s = 19
-    return s
-
-def init_t():
-    """初始化t"""
-    t = 20
-    return t
-
-def init_u():
-    """初始化u"""
-    u = 21
-    return u

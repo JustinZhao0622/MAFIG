@@ -1,44 +1,22 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
-    """
-    初始化舰载机到达时间。每3分钟到达一架舰载机。
-    返回舰载机列表，每架包含id和到达时间
-    """
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
-    """
-    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
-    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
-    """
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
     resources = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
-
-def init_mobile_resources(nums=3):
-    """
-    初始化甲板移动资源（牵引车）。
-    返回可用移动资源列表，每个资源包含id、坐标
-    """
-    mobile_resources = []
-    for i in range(nums):
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -171,32 +149,46 @@ def init_o():
     o = 15
     return o
 
-def init_p():
-    """初始化p"""
-    p = 16
-    return p
+# 修改船舶任务时长
+def adjust_vessel_duration(vessels):
+    for vessel in vessels:
+        if vessel["id"] == 3:
+            vessel["duration"] = 20
 
-def init_q():
-    """初始化q"""
-    q = 17
-    return q
+# 修改资源可用性
+def adjust_resources(resources):
+    for resource in resources:
+        if resource["id"] == 3:
+            resource["available"] = False
 
-def init_r():
-    """初始化r"""
-    r = 18
-    return r
+# 修改站位故障
+def adjust_station_faults(station_faults):
+    for fault in station_faults:
+        if fault in [(6,4), (7,4), (6,5), (7,5)]:
+            station_faults.remove(fault)
 
-def init_s():
-    """初始化s"""
-    s = 19
-    return s
+# 修改第0艘到达的船舶延迟
+def adjust_first_vessel_delay(vessels):
+    if vessels[0]["id"] == 0:
+        vessels[0]["time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(vessels[0]["time"], "%H:%M:%S")) + 10 * 60))
 
-def init_t():
-    """初始化t"""
-    t = 20
-    return t
+# 修改以(7,9)为终点的调整
+def adjust_end_point_adjustment(end_point_adjustments):
+    if (7,9) in end_point_adjustments:
+        end_point_adjustments.remove((7,9))
+        end_point_adjustments.append((8,9))
 
-def init_u():
-    """初始化u"""
-    u = 21
-    return u
+# 调整船舶任务时长
+adjust_vessel_duration(init_cranes())
+
+# 调整资源可用性
+adjust_resources(init_resources())
+
+# 调整站位故障
+adjust_station_faults([(6,4), (7,4), (6,5), (7,5)])
+
+# 调整第0艘到达的船舶延迟
+adjust_first_vessel_delay(init_cranes())
+
+# 调整以(7,9)为终点的调整
+adjust_end_point_adjustment([(7,9), (8,9)])

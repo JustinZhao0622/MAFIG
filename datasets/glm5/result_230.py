@@ -1,5 +1,6 @@
 import heapq
 import time
+import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -12,10 +13,11 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
         如果没有路径则返回 None
     """
-    # 突发事件处理：终点(8,8)调整为(9,8)
-    if end_point == (8, 8):
-        end_point = (9, 8)
+    if end_point == (8, 9):
+        end_point = (9, 9)
 
+    blocked_points = {(6, 3), (7, 3), (6, 4), (7, 4), (8, 9)}
+    
     width, height = grid_size
 
     # 曼哈顿距离启发式函数
@@ -25,7 +27,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-    # 优先队列：, counter, begin_point, [begin_point])]
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
     while heap:
@@ -45,12 +49,11 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 突发事件处理：站位(8,8)发生故障，不可通行
-            if next_pos == (8, 8):
-                continue
-
             # 检查是否已访问
             if next_pos in visited:
+                continue
+
+            if next_pos in blocked_points:
                 continue
 
             visited.add(next_pos)

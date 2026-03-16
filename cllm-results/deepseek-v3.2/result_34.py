@@ -1,43 +1,44 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        delay_minutes = 15 if f"Aircraft_{i}" == "Aircraft_7" else 0
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay_minutes * 60))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 1:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10 * 60))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
     resources = []
     for i in range(nums):
-        if f"FixedRes_{i+1}" == "FixedRes_4":
-            continue
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
 
-def init_mobile_resources(nums=3):
-    mobile_resources = []
-    for i in range(nums):
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
-
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
+    """从一个点到另一个点的路径规划 (使用A*算法)
+
+    参数:
+        begin_point: 起点坐标 (x, y)
+        end_point: 终点坐标 (x, y)
+        grid_size: 地图大小 (width, height)，默认 (100, 100)
+
+    返回:
+        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        如果没有路径则返回 None
+    """
     width, height = grid_size
-    fault_points = {(4,5),(5,5),(4,6),(5,6)}
-    adjusted_end = (9,9) if end_point == (8,9) else end_point
+    faulty_points = {(5,3),(6,3),(5,4),(6,4)}
+    if end_point == (9,8):
+        end_point = (10,8)
 
     def heuristic(pos):
-        return abs(pos[0] - adjusted_end[0]) + abs(pos[1] - adjusted_end[1])
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
     counter = 0
@@ -46,7 +47,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
-        if current == adjusted_end:
+        if current == end_point:
             return path
         for dx, dy in directions:
             next_x = current[0] + dx
@@ -56,7 +57,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
             if next_pos in visited:
                 continue
-            if next_pos in fault_points:
+            if next_pos in faulty_points:
                 continue
             visited.add(next_pos)
             new_path = path + [next_pos]
@@ -67,85 +68,76 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     return None
 
 def init_a():
+    """初始化a"""
     a = 1
     return a
 
 def init_b():
+    """初始化b"""
     b = 2
     return b
 
 def init_c():
+    """初始化c"""
     c = 3
     return c    
 
 def init_d():
+    """初始化d"""
     d = 4
     return d
     
 def init_e():
+    """初始化e"""
     e = 5
     return e
 
 def init_f():
+    """初始化f"""
     f = 6
     return f
     
 def init_g():
+    """初始化g"""
     g = 7
     return g
 
 def init_h():
+    """初始化h"""
     h = 8
     return h
     
 def init_i():
+    """初始化i"""
     i = 9
     return i
 
 def init_j():
+    """初始化j"""
     j = 10
     return j
     
 def init_k():
+    """初始化k"""
     k = 11
     return k
 
 def init_l():
+    """初始化l"""
     l = 12
     return l
     
 def init_m():
+    """初始化m"""
     m = 13
     return m
 
 def init_n():
+    """初始化n"""
     n = 14
     return n
     
 def init_o():
+    """初始化o"""
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

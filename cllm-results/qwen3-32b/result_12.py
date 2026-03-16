@@ -1,38 +1,23 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+def init_cranes(nums=5,start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
-        # Aircraft_0延迟5分钟到达
         if i == 0:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60))
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 10 * 60))
         else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
+def init_resources(nums=10):
     resources = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
-
-def init_mobile_resources(nums=3):
-    mobile_resources = []
-    # Tractor_1牵引车损坏不可用
-    for i in range(nums):
-        if f"Tractor_{i+1}" != "Tractor_1":
-            mobile_resources.append({
-                "id": f"Tractor_{i+1}",
-            })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
@@ -41,38 +26,29 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
-    
-    # 故障点定义
-    failed_points = [(7,9),(5,3),(6,3),(5,4),(6,4)]
-    # (7,9)故障时的替代终点
-    alternative_end = (8,9) if end_point == (7,9) else end_point
-    
+    faulty_points = {(9,9), (5,4), (6,4), (5,5), (6,5)}
+    if end_point == (9,9):
+        end_point = (10,9)
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
-        # 到达终点
-        if current == alternative_end:
+        if current == end_point:
             return path
 
-        # 探索四个方向
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
 
-            # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            # 检查是否是故障点
-            if next_pos in failed_points:
-                continue
 
-            # 检查是否已访问
-            if next_pos in visited:
+            if next_pos in visited or next_pos in faulty_points:
                 continue
 
             visited.add(next_pos)
@@ -143,27 +119,3 @@ def init_n():
 def init_o():
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

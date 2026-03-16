@@ -56,39 +56,39 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
+
+        # 特殊情况处理：如果当前点为(9,9)，则尝试调整到(10,9)
+        if current == (9, 9):
+            adjusted_point = (10, 9)
+            if not (0 <= adjusted_point[0] < width and 0 <= adjusted_point[1] < height):
+                continue
+            if adjusted_point in visited:
+                continue
+            visited.add(adjusted_point)
+            new_path = path + [adjusted_point]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(adjusted_point)  # 总评估代价
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, adjusted_point, new_path))
     return None
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
     for i in range(nums):
-        if i == 1:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (27, 44),
-            })
-        else:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (0, 25),
-            })
-    return forklifts
+        if i != 5:  # 确保id为5的资源不可用
+            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return resources
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
+def init_cranes(nums=5, start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    vessels = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+        if i == 0:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * (i + 10)))  # 延迟10分钟
+        else:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 

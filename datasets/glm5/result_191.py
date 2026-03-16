@@ -1,19 +1,11 @@
 import heapq
 import time
-def init_stacking_zones(nums=4):
-    zones = []
+import random 
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
     for i in range(nums):
-        zone_id = f"Zone_{i+1}"
-        if zone_id == "Zone_3":
+        if i == 3:
             continue
-        zone = {
-            "id": zone_id,
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
-        if zone_id == "Zone_2":
-            zone["current_stock"] = 56
-        zones.append(zone)
-    return zones
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return resources

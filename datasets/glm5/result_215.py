@@ -1,5 +1,6 @@
 import heapq
 import time
+import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -14,11 +15,13 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """
     width, height = grid_size
 
+    # 突发事件处理：终点调整
     target = end_point
-    if end_point == (8, 8):
-        target = (9, 8)
+    if end_point == (9, 9):
+        target = (10, 9)
 
-    faulty_stations = {(3, 3), (4, 3), (3, 4), (4, 4), (8, 8)}
+    # 突发事件处理：故障点定义
+    blocked_points = {(3, 5), (4, 5), (3, 6), (4, 6), (9, 9)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -54,7 +57,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
 
             # 检查是否为故障点
-            if next_pos in faulty_stations:
+            if next_pos in blocked_points:
                 continue
 
             visited.add(next_pos)

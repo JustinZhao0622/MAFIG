@@ -1,22 +1,22 @@
 import heapq
 import time
+import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
     参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
+        begin_point: 起点坐标
+        end_point: 终点坐标
+        grid_size: 地图大小，默认 (100, 100)
 
     返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        包含路径点的列表，每个点为 元组，从起点到终点
         如果没有路径则返回 None
     """
-    width, height = grid_size
+    if end_point == (9, 8):
+        end_point = (10, 8)
 
-    # 突发事件处理：终点为故障点(7,9)时调整为(8,9)
-    if end_point == (7, 9):
-        end_point = (8, 9)
+    width, height = grid_size
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -25,10 +25,12 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-    # 优先队列：, 计数器, 当前点, 路径)
+    # 优先队列：(f值, 计数器, 当前点, 路径)
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
+
+    blocked_points = {(3, 5), (4, 5), (3, 6), (4, 6)}
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
@@ -47,8 +49,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 突发事件处理：故障点(7,9)不可通行
-            if next_pos == (7, 9):
+            if next_pos in blocked_points:
                 continue
 
             # 检查是否已访问

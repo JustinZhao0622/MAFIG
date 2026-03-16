@@ -2,6 +2,20 @@ import heapq
 import time
 import random
 
+def init_cranes(nums=5, start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    vessels = []
+    for i in range(nums):
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 2:
+            vessels.append({"time": vessel_time, "id": i, "duration": 20, "location": (i, 10)})
+        elif i == 3:
+            vessels.append({"time": vessel_time, "id": i, "duration": 10, "delay": 10, "location": (i, 10)})
+        else:
+            vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i, 10)})
+    return vessels
+
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -28,6 +42,13 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
+    # 突发事件约束：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+    if end_point == (7, 8):
+        end_point = (8, 8)
+
+    # 突发事件约束：站位(6,4)(7,4)(6,5)(7,5)四个点发生故障
+    blocked_points = {(6, 4), (7, 4), (6, 5), (7, 5)}
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -45,12 +66,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问
-            if next_pos in visited:
-                continue
-
-            # 检查是否在故障点
-            if next_pos in {(9, 9), (3, 3), (4, 3), (3, 4), (4, 4)}:
+            # 检查是否已访问或是否为故障点
+            if next_pos in visited or next_pos in blocked_points:
                 continue
 
             visited.add(next_pos)
@@ -61,21 +78,4 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
-
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 65 if i == 2 else 0,  # 修改Zone_3的当前存放数量
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
 

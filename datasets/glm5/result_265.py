@@ -1,28 +1,19 @@
 import heapq
 import time
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+import random 
+def init_cranes(nums=5,start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    vessels = []
     for i in range(nums):
-        zone_id = f"Zone_{i+1}"
-        zone = {
-            "id": zone_id,
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
+        delay = 0
+        if i == 0:
+            delay = 10 * 60
         
-        if zone_id == "Zone_1":
-            zone["current_stock"] = 63
-        
-        if zone_id == "Zone_3":
-            zone["max_capacity"] = 128
-            zone["current_stock"] = 128
+        duration = 10
+        if i == 2:
+            duration = 20
             
-        zones.append(zone)
-    return zones
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay))
+        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
+    return vessels

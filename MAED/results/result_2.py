@@ -2,6 +2,18 @@ import heapq
 import time
 import random
 
+def init_cranes(nums=5, start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    vessels = []
+    for i in range(nums):
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 2:  # 第3艘船舶延迟10分钟
+            vessels.append({"time": vessel_time, "id": i, "duration": 20, "location": (i, 10)})
+        else:
+            vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i, 10)})
+    return vessels
+
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -28,6 +40,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
+    # 突发事件约束：四个点发生故障
+    blocked_points = {(6, 6), (7, 6), (6, 7), (7, 7)}
+
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -45,12 +60,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问
-            if next_pos in visited:
-                continue
-
-            # 检查是否在故障点
-            if next_pos in {(6, 3), (7, 3), (6, 4), (7, 4)}:
+            # 检查是否已访问或是否为故障点
+            if next_pos in visited or next_pos in blocked_points:
                 continue
 
             visited.add(next_pos)
@@ -62,35 +73,11 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
     for i in range(nums):
-        if i+1 == 2 or i+1 == 3:
-            continue
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
-        })
-    return forklifts
-
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 102 if i == 1 else 100,  # 修改Zone_2的最大容量
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+        if i != 7:
+            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return resources
 

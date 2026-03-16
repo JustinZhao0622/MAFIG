@@ -1,55 +1,38 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+def init_cranes(nums=5,start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    vessels = []
     for i in range(nums):
         if i == 0:
-            # Aircraft_0延迟5分钟到达
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60))
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 13 * 60))
         else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
+def init_resources(nums=10):
     resources = []
     for i in range(nums):
-        if i == 1:
-            continue  # FixedRes_2损坏不可用
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        if i == 3:
+            continue
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
     return resources
-
-def init_mobile_resources(nums=3):
-    mobile_resources = []
-    for i in range(nums):
-        if i == 0:
-            continue  # Tractor_1损坏不可用
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
-
+    forbidden_positions = [(4,5),(5,5),(4,6),(5,6)]
+    
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    fault_positions = {(5,5),(6,5),(5,6),(6,6),(7,7)}  # 故障点集合
-    
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -63,15 +46,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            if next_pos in visited:
-                continue
-                
-            # 检查是否为故障点
-            if next_pos == (7,7): 
-                next_pos = (8,7)  # 调整终点坐标
-            
-            if next_pos in visited:
+
+            if next_pos in visited or next_pos in forbidden_positions:
                 continue
 
             visited.add(next_pos)
@@ -142,27 +118,3 @@ def init_n():
 def init_o():
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

@@ -8,27 +8,44 @@ import os
 import time
 import shutil
 import subprocess
+import logging
 import json
 import torch
+import gc
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer,AutoModelForCausalLM
 from peft import PeftModel
 import prompts as prompts_mod
 import MAED_decision
-import review_code
 
-scenario = "cangchu"
+import review_code
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    filename='MAED_lora.log',
+                    filemode='a'
+                    )
+logger = logging.getLogger(__name__)
+
+scenario = "gangkou"
 raw_model_path = "/data/huggingface/Qwen2.5-Coder-7B-Instruct"
 perception_models_path = f"/root/code/neuralcomputing-models/{scenario}/perception"
 perception_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_perception"
 decision_models_path = f"/root/code/neuralcomputing-models/{scenario}/decision"
 decision_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_decision"
+DIR = "/root/code/neuralcomputing/MAED_lora/"
+DATASET_FILE = "datasets/test.json"
 def lora_perception_agent():
     """
     微调并合并感知智能体
     """
+    with open("perception_train_datas.json", "r", encoding="utf-8") as f:
+        perception_train_datas = json.load(f)[:30]
+    with open("datasets/perception_train_datas.json", "w", encoding="utf-8") as f:
+        json.dump(perception_train_datas, f, ensure_ascii=False, indent=4)
+        
     learning_rate = 5e-5
-    num_train_epochs = 2
+    num_train_epochs = 3
     per_device_train_batch_size = 2
     gradient_accumulation_steps = 2
     
@@ -100,7 +117,7 @@ def perception_agent():
         trust_remote_code=True,
         gpu_memory_utilization=0.9,
     )
-    sampling_params = SamplingParams(temperature=0.9, top_p=0.95, max_tokens=2560)
+    sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=2560)
     inputs = []
     with open(f"datasets/test.json", "r", encoding="utf-8") as f:
         emergency_situations = json.load(f)
@@ -118,10 +135,8 @@ def perception_agent():
         text = eval(output.outputs[0].text.replace("```python", "").replace("```", "").strip())
         if text == emergency_situations[i]["functions"]:
             correct += 1
-        else:
-            print(f"第{i+1}条记录错误，正确答案: {emergency_situations[i]['functions']}, 模型答案: {text}")
     print(f"准确率: {correct}/{len(outputs)} ({correct/len(outputs)*100:.1f}%)")
-    print(f"感知智能体耗时: {time.time() - start_time:.2f}秒")
+    print(f"感知智能体耗时: {time.time() - time_start:.2f}秒")
 def decision_loss_agent():
     """
     向模型的tokenizer添加<<EDIT_START>>和<<EDIT_END>>，并初始化对应embedding
@@ -180,12 +195,14 @@ def decision_loss_agent():
     print(f"保存初始化后的模型到: {save_path}")
     model.save_pretrained(save_path)
     tokenizer.save_pretrained(save_path)
-    print("完成！请使用新路径进行微调。")
+    print("完成！请使用新路径进行微调。")  
 def lora_decision_agent():
     """
     微调并合并决策智能体（基于添加了EDIT tokens的模型）
     """
     edit_model_path = raw_model_path + "-edit-init"
+    # edit_model_path = raw_model_path
+    
     learning_rate = 5e-5
     num_train_epochs = 3
     per_device_train_batch_size = 2
@@ -234,11 +251,13 @@ def lora_decision_agent():
         "--lora_dropout", "0",
         "--lora_target", "all",
     ]
+    time_start = time.time()
     subprocess.run(
         ["conda", "run", "-n", "llama_new", "--no-capture-output",
          "llamafactory-cli", "train"] + train_args,
         check=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": "0"},
     )
+    time_end = time.time()
     # 合并模型
     base_model = AutoModelForCausalLM.from_pretrained(edit_model_path, torch_dtype="auto", trust_remote_code=True)
     base_tokenizer = AutoTokenizer.from_pretrained(edit_model_path, trust_remote_code=True)
@@ -246,12 +265,18 @@ def lora_decision_agent():
     combined_model = lora_model.merge_and_unload()
     combined_model.save_pretrained(decision_combined_models_path)
     base_tokenizer.save_pretrained(decision_combined_models_path)
+    # 【新增】显式销毁对象并清空缓存
+    del lora_model
+    del base_model
+    del combined_model
+    gc.collect()
+    torch.cuda.empty_cache() # 清空 PyTorch 缓存占用的显存
+    return time_end - time_start
 def decision_agent():
     """
     测试决策智能体：用合并后的决策模型处理
     """
-    DIR = "/root/code/neuralcomputing/MAED_lora/"
-    with open(f"datasets/test.json", "r", encoding="utf-8") as f:
+    with open(DATASET_FILE, "r", encoding="utf-8") as f:
         emergency_situations = json.load(f)
     for emergency_situation in emergency_situations:
         emergency_situation["perception_functions"] = emergency_situation["functions"]
@@ -260,9 +285,21 @@ def decision_agent():
     return MAED_decision.decision_agent(DIR, decision_combined_models_path)
 
 if __name__ == "__main__":
+    # 感知智能体
     # lora_perception_agent()
-    perception_agent()
+    # perception_agent()
+    # 决策智能体loss调整
     # decision_loss_agent()
-    # lora_decision_agent()
-    print("决策智能体耗时: ", decision_agent())
-    # review_code.main("datasets/test.json", f"/root/code/neuralcomputing/MAED_lora/results")
+    nums = [60,70,80,90, 100,110,120,130]
+    for num in nums:
+        with open("/root/code/neuralcomputing/decision_loss_train_datas.json","r", encoding="utf-8") as f:
+            decision_loss_train_datas = json.load(f)[:num]
+        with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas.json","w", encoding="utf-8") as f:
+            json.dump(decision_loss_train_datas, f, ensure_ascii=False, indent=4)
+        # 决策智能体
+        time_lora = lora_decision_agent()
+        time_decision = decision_agent()
+        gc.collect()
+        torch.cuda.empty_cache()
+        accuracy = review_code.main(DIR + "results", DATASET_FILE)
+        logger.info(f"num: {num}, accuracy: {accuracy}, time_lora: {time_lora}, time_decision: {time_decision}")

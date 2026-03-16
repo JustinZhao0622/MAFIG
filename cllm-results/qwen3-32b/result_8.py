@@ -1,88 +1,59 @@
 import heapq
 import time
+import random 
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+def init_cranes(nums=5,start_time="8:00:00"):
+    vessels = []
     for i in range(nums):
-        if f"Aircraft_{i}" == "Aircraft_1":
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + (3 * 60 * i) + 15 * 60))
-        else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
-            "arrival_time": arrival_time,
-        })
-    return aircrafts
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(start_time, "%H:%M:%S")) + 3 * 60 * i))
+        if i == 2:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(vessel_time, "%H:%M:%S")) + 10 * 60))
+        vessels.append({"time": vessel_time, "id": i, "duration": 20 if i == 1 else 10, "location": (i,10)})
+    return vessels
 
-def init_fixed_resources(nums=4):
+def init_resources(nums=10):
     resources = []
     for i in range(nums):
-        if f"FixedRes_{i+1}" == "FixedRes_4":
-            continue
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
+        if i == 1:
+            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10)), "available": False})
+        else:
+            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10)), "available": True})
     return resources
-
-def init_mobile_resources(nums=3):
-    mobile_resources = []
-    for i in range(nums):
-        if f"Tractor_{i+1}" == "Tractor_2":
-            continue
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
-
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
-
+    
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
-    
-    faulty_points = {(5,6), (6,6), (5,7), (6,7), (7,9)}
-    adjusted_end_point = None
-    
-    if end_point in faulty_points:
-        if end_point == (7,9):
-            adjusted_end_point = (8,9)
-        else:
-            return None
+    faulty_points = {(5,4),(6,4),(5,5),(6,5),(9,8)}
+    if end_point == (9,8):
+        end_point = (10,8)
 
-    target_point = adjusted_end_point or end_point
-    
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
-
-        if current == target_point:
+        if current == end_point:
             return path
-
+        
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
-
-            if not (0 <= next_x < width and 0 <= next_y < height):
+            
+            if not (0 <= next_x < width and 0 <= next_y < height) or next_pos in faulty_points:
                 continue
-
-            if next_pos in faulty_points:
-                continue
-
+                
             if next_pos in visited:
                 continue
-
+                
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1  
-            f_score = g_score + heuristic(next_pos)  
-
+            g_score = len(new_path) - 1
+            f_score = g_score + heuristic(next_pos)
+            
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
@@ -146,27 +117,3 @@ def init_n():
 def init_o():
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

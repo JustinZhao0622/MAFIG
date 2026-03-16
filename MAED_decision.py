@@ -5,7 +5,7 @@ import os
 import json
 import time
 import textwrap
-import sys
+import shutil
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 import prompts as prompts_mod
@@ -16,10 +16,13 @@ def decision_agent(DIR, model_path):
     特情决策智能体
     通过判断突发事件，给出需要修改的函数名列表
     """
+    if os.path.exists(f"{DIR}/results"):
+        shutil.rmtree(f"{DIR}/results")
+    os.makedirs(f"{DIR}/results")
     with open(f"{DIR}/perception_events.json", "r", encoding="utf-8") as f:
         emergency_situations = json.load(f)
-    start_time = time.time()
 
+    start_time = time.time()
     # 决策智能体
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     llm = LLM(

@@ -22,8 +22,8 @@ def perception_agent(DIR, model_path):
     os.makedirs(DIR)
     with open("datasets/test.json", "r", encoding="utf-8") as f:
         emergency_situations = json.load(f)
-    start_time = time.time()
 
+    start_time = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     llm = LLM(
         model=model_path,
@@ -32,7 +32,7 @@ def perception_agent(DIR, model_path):
         trust_remote_code=True,
         gpu_memory_utilization=0.9,
     )
-    sampling_params = SamplingParams(temperature=0.9, top_p=0.95, max_tokens=2560)
+    sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=2560)
 
     inputs = []
     for _, emergency_situation in enumerate(emergency_situations):
@@ -50,7 +50,7 @@ def perception_agent(DIR, model_path):
             messages, tokenize=False, add_generation_prompt=True
         )
         inputs.append(text)
-    
+
     outputs = llm.generate(inputs, sampling_params)
 
     # 感知智能体结果的处理和存储

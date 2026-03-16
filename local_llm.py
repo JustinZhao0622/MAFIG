@@ -10,7 +10,9 @@ from transformers import AutoTokenizer
 import prompts as prompts_mod
 import review_code
 
-OUT_DIR = "local-llm-results/qwen2.5-coder-7b"
+# Qwen2.5-Coder-7B-Instruct  Meta-Llama-3.1-8B-Instruct  glm-4-9b-chat
+OUT_DIR = "local-llm-results/glm-4-9b-chat"
+MODEL_PATH = "/data/huggingface/glm-4-9b-chat"
 
 with open("datasets/test.json", "r", encoding="utf-8") as f:
     emergency_situation = json.load(f)
@@ -29,17 +31,16 @@ def call_local_model_batch(out_dir=OUT_DIR):
     global _local_llm, _local_tokenizer
 
     if _local_llm is None:
-        model_path = "/data/huggingface/Qwen2.5-Coder-7B-Instruct"
         _local_llm = LLM(
-            model=model_path,
+            model=MODEL_PATH,
             device="cuda",
             dtype="auto",
             trust_remote_code=True,
             gpu_memory_utilization=0.9,
         )
-        _local_tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+        _local_tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
 
-    sampling_params = SamplingParams(temperature=0.9, top_p=0.95, max_tokens=2560)
+    sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=2560)
 
     inputs = []
     for idx in range(len(emergency_situation)):
@@ -74,6 +75,5 @@ if __name__ == "__main__":
     start_time = time.time()
     call_local_model_batch()
     end_time = time.time()
-    review_code.main("datasets/test.json", OUT_DIR)
+    review_code.main(OUT_DIR, "datasets/test.json")
     print(f"Time taken: {end_time - start_time:.2f} seconds")
-    

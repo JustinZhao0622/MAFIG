@@ -1,26 +1,70 @@
 import heapq
 import time
-def init_stacking_zones(nums=4):
+import random 
+def route_planning(begin_point, end_point, grid_size=(100, 100)):
+    """从一个点到另一个点的路径规划 (使用A*算法)
+
+    参数:
+        begin_point: 起点坐标
+        end_point: 终点坐标
+        grid_size: 地图大小，默认 (100, 100)
+
+    返回:
+        包含路径点的列表，每个点为 元组，从起点到终点
+        如果没有路径则返回 None
     """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        zone_id = f"Zone_{i+1}"
-        capacity = 100
-        
-        if zone_id == "Zone_1":
-            capacity = 128
-        elif zone_id == "Zone_2":
-            capacity = 0
-            
-        zones.append({
-            "id": zone_id,
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": capacity,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+    width, height = grid_size
+
+    # 突发事件处理：定义故障点集合
+    broken_points = {(7, 7), (6, 5), (7, 5), (6, 6), (7, 6)}
+    
+    # 突发事件处理：终点调整逻辑
+    target_point = end_point
+    if end_point == (7, 7):
+        target_point = (8, 7)
+
+    # 曼哈顿距离启发式函数
+    def heuristic(pos):
+        return abs(pos[0] - target_point[0]) + abs(pos[1] - target_point[1])
+
+    # 四个方向：上、下、左、右
+    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
+    visited = {begin_point}
+
+    while heap:
+        f_score, _, current, path = heapq.heappop(heap)
+
+        # 到达终点 (修改为target_point)
+        if current == target_point:
+            return path
+
+        # 探索四个方向
+        for dx, dy in directions:
+            next_x = current[0] + dx
+            next_y = current[1] + dy
+            next_pos = (next_x, next_y)
+
+            # 检查是否在网格范围内
+            if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+
+            # 突发事件处理：检查是否为故障点
+            if next_pos in broken_points:
+                continue
+
+            # 检查是否已访问
+            if next_pos in visited:
+                continue
+
+            visited.add(next_pos)
+            new_path = path + [next_pos]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(next_pos)  # 总评估代价
+
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
+    return None
