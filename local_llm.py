@@ -12,6 +12,9 @@ import review_code
 
 # Qwen2.5-Coder-7B-Instruct  Meta-Llama-3.1-8B-Instruct  glm-4-9b-chat
 OUT_DIR = "local-llm-results/glm-4-9b-chat"
+if os.path.exists(OUT_DIR):
+    shutil.rmtree(OUT_DIR)
+os.makedirs(OUT_DIR)
 MODEL_PATH = "/data/huggingface/glm-4-9b-chat"
 
 with open("datasets/test.json", "r", encoding="utf-8") as f:
@@ -59,9 +62,6 @@ def call_local_model_batch(out_dir=OUT_DIR):
 
     outputs = _local_llm.generate(inputs, sampling_params)
     raw_texts = [out.outputs[0].text for out in outputs]
-    if os.path.exists(out_dir):
-        shutil.rmtree(out_dir)
-    os.makedirs(out_dir, exist_ok=True)
     for idx, raw in enumerate(raw_texts):
         code_only = clean_code_block(raw)
         file_path = os.path.join(out_dir, f"result_{idx+1}.py")
@@ -75,5 +75,5 @@ if __name__ == "__main__":
     start_time = time.time()
     call_local_model_batch()
     end_time = time.time()
-    review_code.main(OUT_DIR, "datasets/test.json")
+    review_code.main("datasets/test.json",OUT_DIR)
     print(f"Time taken: {end_time - start_time:.2f} seconds")

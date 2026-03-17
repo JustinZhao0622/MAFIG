@@ -2,6 +2,20 @@ import heapq
 import time
 import random
 
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i != 2:  # 确保Forklift_3不可用
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
+
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -32,8 +46,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     if end_point == (9, 9):
         end_point = (10, 9)
 
-    # 突发事件约束：站位(5,4)(6,4)(5,5)(6,5)四个点发生故障
-    blocked_points = {(5, 4), (6, 4), (5, 5), (6, 5)}
+    # 突发事件约束：站位(3,6)(4,6)(3,7)(4,7)四个点发生故障
+    blocked_points = {(3, 6), (4, 6), (3, 7), (4, 7)}
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
@@ -64,16 +78,4 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
-
-def init_cranes(nums=5, start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
-    for i in range(nums):
-        if i == 0:  # 修改第一艘船的到达时间，延迟10分钟
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * (i + 10)))
-        else:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
 

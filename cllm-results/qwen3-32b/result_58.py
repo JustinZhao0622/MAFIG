@@ -1,52 +1,85 @@
 import heapq
 import time
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    trucks = []
     for i in range(nums):
         arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
+        trucks.append({
+            "id": f"Truck_{i}",
             "arrival_time": arrival_time,
         })
-    # Aircraft_8延迟15分钟到达
-    if nums > 8:
-        aircrafts[8]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 15 * 60))
-    return aircrafts
+    return trucks
 
-def init_fixed_resources(nums=4):
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
-        })
-    # FixedRes_1固定资源损坏不可用
-    if nums > 0:
-        resources[0]["status"] = "损坏"
-    return resources
+        if i == 2:
+            # Zone_3 堆积区库存增加29
+            current_stock = 29
+        else:
+            current_stock = 0
+        
+        if i == 3:
+            # Zone_4 最大容量缩减至92
+            max_capacity = 92
+        else:
+            max_capacity = 100
+            
+        if i == 0:
+            # Zone_1 发生故障不可用
+            zone_data = {
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": current_stock,
+                "max_capacity": max_capacity,
+                "desc": f"货物堆积区域{i+1}",
+                "available": False
+            }
+        else:
+            zone_data = {
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": current_stock,
+                "max_capacity": max_capacity,
+                "desc": f"货物堆积区域{i+1}",
+                "available": True
+            }
+        
+        zones.append(zone_data)
+    return zones
 
-def init_mobile_resources(nums=3):
-    mobile_resources = []
+def init_forklifts(nums=3):
+    forklifts = []
     for i in range(nums):
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
-        })
-    return mobile_resources
+        if i == 0:
+            # Forklift_1 发生故障不可用
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+                "available": False
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+                "available": True
+            })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
+
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
     
-    # 定义故障站位点
-    faulty_points = [(3,4),(4,4),(3,5),(4,5)]
-    # 调整终点(8,7)为(9,7)
-    if end_point == (8,7):
-        end_point = (9,7)
-
+    # 定义发生故障的站位
+    faulty_positions = [(3,5), (4,5), (3,6), (4,6)]
+    
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
@@ -54,32 +87,27 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
-        # 到达终点
         if current == end_point:
             return path
 
-        # 探索四个方向
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
 
-            # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-
-            # 检查是否是故障点
-            if next_pos in faulty_points:
-                continue
-
-            # 检查是否已访问
+                
             if next_pos in visited:
                 continue
-
+                
+            if next_pos in faulty_positions:
+                continue  # 跳过故障位置
+                
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1  # 实际代价
-            f_score = g_score + heuristic(next_pos)  # 总评估代价
+            g_score = len(new_path) - 1  
+            f_score = g_score + heuristic(next_pos) 
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
@@ -144,27 +172,3 @@ def init_n():
 def init_o():
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

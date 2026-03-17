@@ -2,6 +2,30 @@ import heapq
 import time
 import random
 
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i == 0:
+            forklifts.append({
+                "id": "Forklift_1",
+                "location": (0, 25),
+            })
+        elif i == 1:
+            forklifts.append({
+                "id": "Forklift_2",
+                "location": (22, 46),
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
+
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -28,9 +52,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    # 突发事件约束：站位(8,9)发生故障,以该点为终点的调整为(9,9);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障
-    blocked_points = {(3, 4), (4, 4), (3, 5), (4, 5), (9, 9)}
-
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -48,8 +69,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问或是否为故障点
-            if next_pos in visited or next_pos in blocked_points:
+            # 检查是否已访问
+            if next_pos in visited:
                 continue
 
             visited.add(next_pos)
@@ -59,13 +80,19 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
-    return None
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
-    for i in range(nums):
-        if i != 8:
-            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        # 特殊情况处理：如果当前点为(7,7)，则尝试调整到(8,7)
+        if current == (7, 7):
+            adjusted_point = (8, 7)
+            if not (0 <= adjusted_point[0] < width and 0 <= adjusted_point[1] < height):
+                continue
+            if adjusted_point in visited:
+                continue
+            visited.add(adjusted_point)
+            new_path = path + [adjusted_point]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(adjusted_point)  # 总评估代价
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, adjusted_point, new_path))
+    return None
 

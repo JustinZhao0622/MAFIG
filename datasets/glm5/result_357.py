@@ -1,24 +1,19 @@
 import heapq
 import time
-import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
     参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
+        begin_point: 起点坐标
+        end_point: 终点坐标
+        grid_size: 地图大小，默认 (100, 100)
 
     返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        包含路径点的列表，每个点为 元组，从起点到终点
         如果没有路径则返回 None
     """
-    if end_point == (9, 8):
-        end_point = (10, 8)
-        
-    faulty_stations = {(9, 8), (4, 5), (5, 5), (4, 6), (5, 6)}
-    
     width, height = grid_size
+    faulty_points = {(4, 6), (5, 6), (4, 7), (5, 7)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -27,7 +22,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-    # 优先队列：, counter, begin_point, [begin_point])]
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
     while heap:
@@ -47,7 +44,8 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            if next_pos in faulty_stations:
+            # 检查是否为故障点
+            if next_pos in faulty_points:
                 continue
 
             # 检查是否已访问

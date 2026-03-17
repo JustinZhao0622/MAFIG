@@ -2,17 +2,24 @@ import heapq
 import time
 import random
 
-def init_cranes(nums=5, start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 0:  # 第1艘船舶延迟10分钟
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * (i + 1)))
-        else:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10 if i != 2 else 20, "location": (i, 10)})
-    return vessels
+        if i == 1:  # Zone_2 不可用
+            continue
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -41,7 +48,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     visited = {begin_point}
 
     # 突发事件约束：四个点发生故障
-    blocked_points = {(6, 5), (7, 5), (6, 6), (7, 6)}
+    blocked_points = {(5, 6), (6, 6), (5, 7), (6, 7)}
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
@@ -73,11 +80,40 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i != 5:  # 确保id为5的资源不可用
-            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        if i == 2:  # 修改Forklift_3的初始位置
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (29, 20),
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
+
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间改为6分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
+    for i in range(nums):
+        if i >= 4:  # 从第5辆货车开始
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 6 * 60 * (i - 4)))
+        else:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 

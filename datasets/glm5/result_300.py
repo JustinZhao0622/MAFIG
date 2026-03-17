@@ -1,11 +1,22 @@
 import heapq
 import time
-import random 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 5:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        zone = {
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        }
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 40
+            zone["available"] = False
+        zones.append(zone)
+    return zones

@@ -1,0 +1,47 @@
+import heapq
+import time
+import random
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i == 1:  # Forklift_2叉车发生故障不可用
+            continue
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (36, 15) if i == 0 else (0, 25),
+        })
+    return forklifts
+
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        if i == 2:  # Zone_3
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 79,  # 更新Zone_3的当前库存
+                "max_capacity": 51,  # 更新Zone_3的最大容量
+                "desc": f"货物堆积区域{i+1}",
+                "available": False  # 标记Zone_3不可用
+            })
+        else:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}",
+                "available": True
+            })
+    return zones
+

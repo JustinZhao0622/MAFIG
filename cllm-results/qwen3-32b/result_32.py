@@ -1,27 +1,48 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        if i == 0:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 10 * 60))
-        if i == 3:
-            vessels.append({"time": vessel_time, "id": i, "duration": 20, "location": (i,10)})
-        else:
-            vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
     for i in range(nums):
-        if i == 4:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        zone_info = {
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        }
+        
+        # 特别处理突发事件
+        if i + 1 == 2:
+            zone_info["current_stock"] += 39
+            
+        zones.append(zone_info)
+    
+    # Zone_4 发生故障不可用
+    if len(zones) > 3:
+        zones[3]["max_capacity"] = 0
+        
+    return zones
+
+def init_forklifts(nums=3):
+    forklifts = []
+    for i in range(nums):
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
@@ -35,6 +56,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
+    # 故障点集合
+    failed_points = {(3,4), (4,4), (3,5), (4,5)}
+    
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -48,20 +72,14 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-
-            if next_pos in visited:
-                continue
-
-            # 故障点检查
-            if next_pos in [(9,7), (5,6), (6,6), (5,7), (6,7)]:
-                if end_point == (9,7):
-                    end_point = (10,7)
+                
+            if next_pos in visited or next_pos in failed_points:
                 continue
 
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1
-            f_score = g_score + heuristic(next_pos)
+            g_score = len(new_path) - 1  
+            f_score = g_score + heuristic(next_pos)  
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))

@@ -2,15 +2,6 @@ import heapq
 import time
 import random
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
-    for i in range(nums):
-        if i == 4:
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
-
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -23,14 +14,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         包含路径点的列表，每个点为 元组，从起点到终点
         如果没有路径则返回 None
     """
-    # 突发事件处理：终点调整
-    if end_point == (7, 9):
-        end_point = (8, 9)
+    width, height = grid_size
 
     # 突发事件处理：故障点集合
-    blocked_points = {(5, 6), (6, 6), (5, 7), (6, 7), (7, 9)}
-
-    width, height = grid_size
+    broken_points = {(6, 6), (7, 6), (6, 7), (7, 7)}
 
     # 曼哈顿距离启发式函数
     def heuristic(pos):
@@ -62,7 +49,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
 
             # 检查是否为故障点
-            if next_pos in blocked_points:
+            if next_pos in broken_points:
                 continue
 
             # 检查是否已访问
@@ -77,4 +64,64 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
+
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        zone_id = f"Zone_{i+1}"
+        if zone_id == "Zone_4":
+            continue
+        zones.append({
+            "id": zone_id,
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        forklift_id = f"Forklift_{i+1}"
+        if forklift_id == "Forklift_2":
+            continue
+        location = (0, 25)
+        if forklift_id == "Forklift_3":
+            location = (10, 38)
+        forklifts.append({
+            "id": forklift_id,
+            "location": location,
+        })
+    return forklifts
+
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
+    for i in range(nums):
+        if i == 0:
+            offset = 0
+        elif i == 1:
+            offset = 3 * 60
+        else:
+            offset = 3 * 60 + 5 * 60 * (i - 1)
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + offset))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 

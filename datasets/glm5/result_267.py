@@ -1,23 +1,20 @@
 import heapq
 import time
-import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
     参数:
-        begin_point: 起点坐标
-        end_point: 终点坐标
-        grid_size: 地图大小，默认 (100, 100)
+        begin_point: 起点坐标 (x, y)
+        end_point: 终点坐标 (x, y)
+        grid_size: 地图大小 (width, height)，默认 (100, 100)
 
     返回:
-        包含路径点的列表，每个点为 元组，从起点到终点
+        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
         如果没有路径则返回 None
     """
-    if end_point == (9, 8):
-        end_point = (10, 8)
-    
-    broken_stations = {(9, 8), (5, 6), (6, 6), (5, 7), (6, 7)}
-    
+    if end_point == (7, 8):
+        end_point = (8, 8)
+
     width, height = grid_size
 
     # 曼哈顿距离启发式函数
@@ -47,9 +44,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
-                continue
-
-            if next_pos in broken_stations:
                 continue
 
             # 检查是否已访问

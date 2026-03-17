@@ -1,11 +1,24 @@
 import heapq
 import time
-import random 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i == 7:
+        forklift_id = f"Forklift_{i+1}"
+        
+        if forklift_id == "Forklift_2":
             continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+            
+        location = (0, 25)
+        
+        if forklift_id == "Forklift_3":
+            location = (22, 34)
+            
+        forklifts.append({
+            "id": forklift_id,
+            "location": location,
+        })
+    return forklifts

@@ -1,52 +1,57 @@
 import heapq
 import time
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    trucks = []
+    interval = 3
     for i in range(nums):
-        base_time = time.mktime(start_time) + 3 * 60 * i
-        if i == 2:
-            base_time += 5 * 60
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(base_time))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
+        if i >= 2:
+            interval = 5
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + interval * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
             "arrival_time": arrival_time,
         })
-    return aircrafts
+    return trucks
 
-def init_fixed_resources(nums=4):
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
+        current_stock = 0
+        if i == 3:
+            current_stock = 70
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": current_stock,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
         })
-    return resources
+    return zones
 
-def init_mobile_resources(nums=3):
-    mobile_resources = []
+def init_forklifts(nums=3):
+    forklifts = []
     for i in range(nums):
-        if i == 0:
-            continue
-        mobile_resources.append({
-            "id": f"Tractor_{i+1}",
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
         })
-    return mobile_resources
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
-    target_end_point = end_point
-    if end_point == (7, 8):
-        target_end_point = (8, 8)
+    if end_point == (9, 7):
+        end_point = (10, 7)
     def heuristic(pos):
-        return abs(pos[0] - target_end_point[0]) + abs(pos[1] - target_end_point[1])
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
-        if current == target_end_point:
+        if current == end_point:
             return path
         for dx, dy in directions:
             next_x = current[0] + dx
@@ -123,27 +128,3 @@ def init_n():
 def init_o():
     o = 15
     return o
-
-def init_p():
-    p = 16
-    return p
-
-def init_q():
-    q = 17
-    return q
-
-def init_r():
-    r = 18
-    return r
-
-def init_s():
-    s = 19
-    return s
-
-def init_t():
-    t = 20
-    return t
-
-def init_u():
-    u = 21
-    return u

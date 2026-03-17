@@ -2,26 +2,18 @@ import heapq
 import time
 import random
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i != 1:  # 确保id为1的资源不可用
-            resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
-
-def init_cranes(nums=5, start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
-    for i in range(nums):
-        if i == 2:  # 修改id为3的船舶任务时长
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-            vessels.append({"time": vessel_time, "id": i, "duration": 20, "location": (i,10)})
-        else:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-            vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (25, 10),
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -44,15 +36,14 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-    # 优先队列：(f值, 计数器, 当前点, 路径)
+    # 突发事件约束：站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)
+    blocked_points = {(6, 5), (7, 5), (6, 6), (7, 6)}
+    if end_point == (8, 8):
+        end_point = (9, 8)
+
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
-
-    # 突发事件约束：站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)
-    blocked_points = {(5, 4), (6, 4), (5, 5), (6, 5)}
-    if end_point == (7, 8):
-        end_point = (8, 8)
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
@@ -83,4 +74,21 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
+
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 78,  # 修改最大容量为78
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 

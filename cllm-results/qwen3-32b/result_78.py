@@ -1,50 +1,68 @@
 import heapq
 import time
 
-def init_aircraft_arrival(nums=10, start_time="8:00:00"):
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     """
-    初始化舰载机到达时间。每3分钟到达一架舰载机。
-    返回舰载机列表，每架包含id和到达时间
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
     """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    aircrafts = []
+    trucks = []
     for i in range(nums):
-        # 调整Aircraft_5延迟15分钟
-        if f"Aircraft_{i}" == "Aircraft_5":
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + (3 * 60 + 15) * 60 * i))
+        # 从第3辆货车开始（索引从2开始）将间隔改为6分钟
+        if i >= 2:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 6 * 60 * (i-2)))
         else:
             arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        aircrafts.append({
-            "id": f"Aircraft_{i}",
+        trucks.append({
+            "id": f"Truck_{i}",
             "arrival_time": arrival_time,
         })
-    return aircrafts
+    return trucks
 
-def init_fixed_resources(nums=4):
+def init_stacking_zones(nums=4):
     """
-    初始化甲板固定资源（弹射器、拦阻索、弹药升降机、油料补给站）。
-    返回可用固定资源列表，每个资源包含id、坐标、当前负载、最大负载、描述
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
     """
-    resources = []
+    zones = []
     for i in range(nums):
-        resources.append({
-            "id": f"FixedRes_{i+1}",
+        zone_info = {
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        }
+        
+        # Zone_1最大容量缩减至150
+        if i == 0:
+            zone_info["current_stock"] = 0
+            zone_info["max_capacity"] = 150
+        # Zone_2库存增加35    
+        elif i == 1:
+            zone_info["current_stock"] = 35
+            
+        zones.append(zone_info)
+    return zones
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        # Forklift_1叉车发生故障不可用
+        if i == 0:
+            continue
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
         })
-    return resources
-
-def init_mobile_resources(nums=3):
-    """
-    初始化甲板移动资源（牵引车）。
-    返回可用移动资源列表，每个资源包含id、坐标
-    """
-    mobile_resources = []
-    for i in range(nums):
-        # Tractor_1牵引车损坏不可用
-        if f"Tractor_{i+1}" != "Tractor_1":
-            mobile_resources.append({
-                "id": f"Tractor_{i+1}",
-            })
-    return mobile_resources
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -59,7 +77,11 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
         如果没有路径则返回 None
     """
     width, height = grid_size
-
+    
+    # 站位(9,8)发生故障,以该点为终点的调整为(10,8)
+    if end_point == (9, 8):
+        end_point = (10, 8)
+    
     # 曼哈顿距离启发式函数
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
@@ -67,9 +89,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-    # 站位(6,6)(7,6)(6,7)(7,7)四个点发生故障
-    forbidden_points = {(6, 6), (7, 6), (6, 7), (7, 7)}
-    
     # 优先队列：(f值, 计数器, 当前点, 路径)
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
@@ -92,14 +111,14 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否是故障点
-            if next_pos in forbidden_points:
-                continue
-                
             # 检查是否已访问
             if next_pos in visited:
                 continue
 
+            # 检查站位(9,8)是否被跳过
+            if next_pos == (9, 8):
+                continue
+                
             visited.add(next_pos)
             new_path = path + [next_pos]
             g_score = len(new_path) - 1  # 实际代价
@@ -183,33 +202,3 @@ def init_o():
     """初始化o"""
     o = 15
     return o
-
-def init_p():
-    """初始化p"""
-    p = 16
-    return p
-
-def init_q():
-    """初始化q"""
-    q = 17
-    return q
-
-def init_r():
-    """初始化r"""
-    r = 18
-    return r
-
-def init_s():
-    """初始化s"""
-    s = 19
-    return s
-
-def init_t():
-    """初始化t"""
-    t = 20
-    return t
-
-def init_u():
-    """初始化u"""
-    u = 21
-    return u
