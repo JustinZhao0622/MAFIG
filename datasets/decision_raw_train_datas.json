@@ -1,1262 +1,1734 @@
 [
     {
-        "emergency_situation": "站位(8,11)发生故障,以该点为终点的调整为(9,11)",
+        "emergency_situation": "Forklift_1叉车初始位置调整为(36,33)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Zone_1堆积区最大容量缩减至96;Zone_4堆积区当前库存增加60;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆消防车初始位置调整为(0,0)",
-        "functions": "init_fire_vehicle_resources"
+        "emergency_situation": "Zone_1堆积区最大容量缩减至119;Zone_3堆积区当前库存增加66",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆加氮车初始位置调整为(1,9)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(25,48)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第1辆液压车初始位置调整为(0,0)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第1辆供电车初始位置调整为(1,4)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "从第6架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(2,9)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(10,7)发生故障,以该点为终点的调整为(11,7)",
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第2个牵引任务目标站位调整为(3,0)",
-        "functions": "init_towing_tasks"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,44)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆加氮车初始位置调整为(1,4)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_1堆积区最大容量缩减至74",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆液压车初始位置调整为(1,7)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第4辆供电车初始位置调整为(1,1)",
-        "functions": "init_power_cart_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至68;Zone_2堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1个牵引任务目标站位调整为(0,7)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "从第3架舰载机开始到达间隔改为5分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆牵引车初始位置调整为(1,9)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "站位(12,10)发生故障,以该点为终点的调整为(13,10)",
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(37,25);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "从第4架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(3,6)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第4辆供电车初始位置调整为(1,9)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第4辆消防车初始位置调整为(3,7)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆供电车初始位置调整为(0,6)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "从第5架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆牵引车初始位置调整为(3,6)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第3辆加氮车初始位置调整为(2,6)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3辆牵引车初始位置调整为(3,2)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "从第4架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第3辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3辆液压车初始位置调整为(0,5)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第3辆供电车初始位置调整为(0,5)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第3个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第5辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Forklift_3叉车初始位置调整为(21,19)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "站位(6,7)(7,7)(6,8)(7,8)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第5个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至62;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第5辆供电车初始位置调整为(3,7)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第2辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第4个牵引任务目标站位调整为(2,8)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第2辆消防车初始位置调整为(3,0)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第2辆牵引车初始位置调整为(3,8)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第2辆加氮车初始位置调整为(3,5)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆液压车初始位置调整为(3,10)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第2个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(10,11)发生故障,以该点为终点的调整为(11,11);站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2个固定保障资源初始位置调整为(0,10)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第2个牵引任务目标站位调整为(2,7)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第5辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第5辆牵引车初始位置调整为(3,7)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第5辆加氮车初始位置调整为(2,6)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "从第6架舰载机开始到达间隔改为5分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第5辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第4个牵引任务目标站位调整为(1,6)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第5辆液压车初始位置调整为(0,10)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第5辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第5个牵引任务目标站位调整为(0,3)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "站位(8,3)(9,3)(8,4)(9,4)四个点发生故障;站位(10,8)发生故障,以该点为终点的调整为(11,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2辆供电车初始位置调整为(0,7)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第2辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆液压车初始位置调整为(2,2)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第5辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(8,8)(9,8)(8,9)(9,9)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3个牵引任务目标站位调整为(1,2)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第5辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第5个固定保障资源初始位置调整为(2,2)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第5辆牵引车初始位置调整为(0,2)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "站位(9,11)发生故障,以该点为终点的调整为(10,11);站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3辆消防车初始位置调整为(3,5)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第3辆牵引车初始位置调整为(2,6)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "从第4架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第3个牵引任务目标站位调整为(1,10)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第2辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第2辆液压车初始位置调整为(3,5)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第2辆牵引车初始位置调整为(2,10)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "站位(8,7)(9,7)(8,8)(9,8)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3辆液压车初始位置调整为(0,3)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第1个牵引任务目标站位调整为(1,2)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第3个固定保障资源初始位置调整为(1,1)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第3辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第3辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第3辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第3辆供电车初始位置调整为(2,3)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第1辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第1辆消防车初始位置调整为(1,10)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第1辆供电车初始位置调整为(1,5)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "从第6架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第1个固定保障资源初始位置调整为(3,6)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第1辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第6个牵引任务目标站位调整为(3,3)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "站位(8,11)发生故障,以该点为终点的调整为(9,11);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4辆供电车初始位置调整为(1,9)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第1个牵引任务目标站位调整为(0,0)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第4辆加氮车初始位置调整为(0,5)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第6个牵引任务目标站位调整为(0,9)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第1辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(8,11)发生故障,以该点为终点的调整为(9,11)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1个固定保障资源初始位置调整为(2,7)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "从第7架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "从第4架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(3,8)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(10,10)发生故障,以该点为终点的调整为(11,10)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4个牵引任务目标站位调整为(0,3)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第5辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "从第4架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第5个固定保障资源初始位置调整为(3,9)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第5辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆供电车初始位置调整为(1,7)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第5辆加氮车初始位置调整为(1,9)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "从第6架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第1个固定保障资源初始位置调整为(1,0)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第1辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第1辆消防车初始位置调整为(1,6)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第1个牵引任务目标站位调整为(0,3)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第1辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第1个固定保障资源初始位置调整为(2,3)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第1辆牵引车初始位置调整为(1,4)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第5辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第5辆加氮车初始位置调整为(2,1)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第5个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "从第5架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第2辆供电车初始位置调整为(0,1)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第2辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2个牵引任务目标站位调整为(2,3)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第2个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4个固定保障资源初始位置调整为(1,9)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第5个牵引任务目标站位调整为(2,2)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第4辆消防车初始位置调整为(1,3)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第5辆加氮车初始位置调整为(1,8)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第5个固定保障资源初始位置调整为(2,7)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第5辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆液压车初始位置调整为(3,10)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "站位(8,5)(9,5)(8,6)(9,6)四个点发生故障;站位(8,12)发生故障,以该点为终点的调整为(9,12)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第3辆液压车初始位置调整为(0,6)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第3辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3辆加氮车初始位置调整为(1,3)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第2辆供电车初始位置调整为(0,4)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(8,12)发生故障,以该点为终点的调整为(9,12);站位(5,7)(6,7)(5,8)(6,8)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第2辆牵引车初始位置调整为(0,6)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第2个固定保障资源初始位置调整为(3,2)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第4个固定保障资源初始位置调整为(3,8)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第4辆牵引车初始位置调整为(0,6)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第4辆加氮车初始位置调整为(2,6)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(3,6)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(6,8)(7,8)(6,9)(7,9)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第5个牵引任务目标站位调整为(2,8)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(1,4)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第5个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第5辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第1个牵引任务目标站位调整为(1,4)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "站位(7,5)(8,5)(7,6)(8,6)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第5辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4辆牵引车初始位置调整为(2,0)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "从第7架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(3,8)(4,8)(3,9)(4,9)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4辆供电车初始位置调整为(1,0)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第4辆消防车初始位置调整为(3,2)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第6个牵引任务目标站位调整为(0,2)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
-        "functions": "route_planning"
-    },
-    {
-        "emergency_situation": "第4辆供电车初始位置调整为(2,2)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第3个固定保障资源初始位置调整为(3,1)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第3辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第3辆加氮车初始位置调整为(3,8)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区最大容量缩减至88",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3辆消防车初始位置调整为(3,1)",
-        "functions": "init_fire_vehicle_resources"
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第3辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_2堆积区最大容量缩减至124",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3辆液压车初始位置调整为(1,0)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(13,46)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "Zone_4堆积区当前库存增加65;Zone_1堆积区最大容量缩减至99",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第2辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆液压车初始位置调整为(1,3)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第2辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第2辆加氮车初始位置调整为(1,3)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2个固定保障资源初始位置调整为(0,8)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(10,9)发生故障,以该点为终点的调整为(11,9);站位(7,5)(8,5)(7,6)(8,6)四个点发生故障",
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第1辆加氮车初始位置调整为(3,3)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_3堆积区当前库存增加20;Zone_4堆积区最大容量缩减至116",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第1辆供电车初始位置调整为(2,2)",
-        "functions": "init_power_cart_resources"
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "Zone_1堆积区当前库存增加34;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆消防车初始位置调整为(3,1)",
-        "functions": "init_fire_vehicle_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆牵引车初始位置调整为(0,0)",
-        "functions": "init_tractor_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第4个固定保障资源初始位置调整为(1,8)",
-        "functions": "init_fixed_resources"
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第3辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(13,20)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第3辆加氮车初始位置调整为(2,0)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_2堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3辆供电车初始位置调整为(3,3)",
-        "functions": "init_power_cart_resources"
+        "emergency_situation": "Zone_3堆积区当前库存增加69;Zone_4堆积区最大容量缩减至51",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3个固定保障资源初始位置调整为(0,3)",
-        "functions": "init_fixed_resources"
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第3辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障;站位(7,8)发生故障,以该点为终点的调整为(8,8)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第3辆液压车初始位置调整为(1,5)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "Zone_2堆积区当前库存增加58;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3辆牵引车初始位置调整为(2,0)",
-        "functions": "init_tractor_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第3辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第3辆加氮车初始位置调整为(2,0)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_2堆积区当前库存增加40;Zone_3堆积区最大容量缩减至78",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "从第5架舰载机开始到达间隔改为6分钟",
-        "functions": "init_planes"
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_2堆积区最大容量缩减至78",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第2个牵引任务目标站位调整为(0,2)",
-        "functions": "init_towing_tasks"
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_1叉车初始位置调整为(18,25)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第6个牵引任务目标站位调整为(3,2)",
-        "functions": "init_towing_tasks"
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第3辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至62",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3辆液压车初始位置调整为(0,8)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第3辆加氮车初始位置调整为(1,8)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至119",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第3辆牵引车初始位置调整为(3,10)",
-        "functions": "init_tractor_resources"
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7);站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆牵引车初始位置调整为(0,5)",
-        "functions": "init_tractor_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第4个固定保障资源初始位置调整为(0,3)",
-        "functions": "init_fixed_resources"
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第6个牵引任务目标站位调整为(1,0)",
-        "functions": "init_towing_tasks"
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
+        "emergency_situation": "Zone_3堆积区当前库存增加44",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(31,36)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆消防车初始位置调整为(0,7)",
-        "functions": "init_fire_vehicle_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(40,19);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆加氮车初始位置调整为(3,1)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_3堆积区当前库存增加61",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆消防车初始位置调整为(1,6)",
-        "functions": "init_fire_vehicle_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至95",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆液压车初始位置调整为(1,4)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "从第7辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至141;Zone_4堆积区当前库存增加61",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(48,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加55;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加49;Zone_4堆积区最大容量缩减至70",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,10);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加44;Zone_1堆积区最大容量缩减至64;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(29,35)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加72;Zone_4堆积区最大容量缩减至126",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加50;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加65;Zone_1堆积区最大容量缩减至124;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(39,26)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至145",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加44",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(32,28)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至91",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加28;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(42,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(13,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至128",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至93",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8);站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加21",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(40,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加59",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至61",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(45,27)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(23,35)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加71;Zone_3堆积区最大容量缩减至127",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(23,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加25",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(31,12)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(25,26)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_4堆积区当前库存增加55",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_2叉车初始位置调整为(18,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_3堆积区最大容量缩减至89",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至115;Zone_3堆积区发生故障不可用;Zone_1堆积区当前库存增加67",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_2叉车初始位置调整为(35,49)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至94",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(20,40)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_3叉车初始位置调整为(14,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_3堆积区当前库存增加34",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至82;Zone_1堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(28,25)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(35,28);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至86;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_2叉车初始位置调整为(33,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_2堆积区当前库存增加49;Zone_2堆积区最大容量缩减至85",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(16,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(43,36)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至135;Zone_1堆积区当前库存增加48;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(26,44)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_3叉车初始位置调整为(29,14)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,4)(5,4)(4,5)(5,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加76;Zone_4堆积区最大容量缩减至60",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(29,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至115",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加55;Zone_2堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(14,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至114;Zone_3堆积区当前库存增加51",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(17,33)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加56;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区当前库存增加65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(38,47)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区最大容量缩减至56;Zone_2堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_1叉车初始位置调整为(22,46)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至107;Zone_3堆积区当前库存增加80",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(21,16);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(21,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加35",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(29,43)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至105",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(27,34);Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至121;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至112",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,36);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_1叉车初始位置调整为(24,48)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(33,20)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至138;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_1堆积区最大容量缩减至131;Zone_1堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(43,14);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至90",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(28,40)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(34,49)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至77;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加58;Zone_2堆积区最大容量缩减至105",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至95",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(25,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(12,16)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_4堆积区最大容量缩减至76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用;Zone_4堆积区当前库存增加51",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(35,49);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(17,23)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,9)发生故障,以该点为终点的调整为(8,9);站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(14,25);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加25;Zone_2堆积区最大容量缩减至113",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(44,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至128;Zone_1堆积区当前库存增加63;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(7,8)发生故障,以该点为终点的调整为(8,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至79",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区当前库存增加63;Zone_2堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
     },
     {
         "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第1辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第1辆消防车初始位置调整为(0,9)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "站位(12,12)发生故障,以该点为终点的调整为(13,12)",
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆加氮车初始位置调整为(1,3)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_2堆积区最大容量缩减至122;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆供电车初始位置调整为(1,9)",
-        "functions": "init_power_cart_resources"
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆消防车初始位置调整为(3,2)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第4辆加氮车初始位置调整为(2,4)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第6个牵引任务目标站位调整为(1,9)",
-        "functions": "init_towing_tasks"
-    },
-    {
-        "emergency_situation": "第4辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第4辆液压车初始位置调整为(0,10)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第2个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "站位(7,6)(8,6)(7,7)(8,7)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第2辆加氮车初始位置调整为(3,4)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第2辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第2辆消防车初始位置调整为(3,5)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "站位(7,5)(8,5)(7,6)(8,6)四个点发生故障",
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障;站位(9,8)发生故障,以该点为终点的调整为(10,8)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Zone_2堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1辆加氮车初始位置调整为(1,5)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第1辆液压车初始位置调整为(3,0)",
-        "functions": "init_hydraulic_cart_resources"
-    },
-    {
-        "emergency_situation": "第1辆消防车初始位置调整为(2,7)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第5辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "第5辆加氮车初始位置调整为(0,3)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第5辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第5辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第5个固定保障资源初始位置调整为(2,5)",
-        "functions": "init_fixed_resources"
-    },
-    {
-        "emergency_situation": "第2辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
-    },
-    {
-        "emergency_situation": "从第5架舰载机开始到达间隔改为8分钟",
-        "functions": "init_planes"
-    },
-    {
-        "emergency_situation": "第2辆充氧车发生故障不可用",
-        "functions": "init_oxygen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆加氮车初始位置调整为(1,10)",
-        "functions": "init_nitrogen_truck_resources"
-    },
-    {
-        "emergency_situation": "第2辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
-    },
-    {
-        "emergency_situation": "第2辆供电车初始位置调整为(0,5)",
-        "functions": "init_power_cart_resources"
-    },
-    {
-        "emergency_situation": "站位(6,8)(7,8)(6,9)(7,9)四个点发生故障",
+        "emergency_situation": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第4个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至144;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆加氮车初始位置调整为(3,2)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "Zone_4堆积区当前库存增加69",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆牵引车初始位置调整为(0,8)",
-        "functions": "init_tractor_resources"
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第4个固定保障资源初始位置调整为(2,0)",
-        "functions": "init_fixed_resources"
+        "emergency_situation": "Forklift_1叉车初始位置调整为(13,25)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第4辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "Zone_3堆积区最大容量缩减至55",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第4辆液压车初始位置调整为(3,3)",
-        "functions": "init_hydraulic_cart_resources"
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第1辆维修车发生故障不可用",
-        "functions": "init_maintenance_vehicle_resources"
+        "emergency_situation": "从第6辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
     },
     {
-        "emergency_situation": "第1辆加油车发生故障不可用",
-        "functions": "init_fuel_truck_resources"
+        "emergency_situation": "Zone_2堆积区当前库存增加27;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
     },
     {
-        "emergency_situation": "第1个通用移动资源发生故障不可用",
-        "functions": "init_mobile_resources"
-    },
-    {
-        "emergency_situation": "第1辆牵引车初始位置调整为(0,10)",
-        "functions": "init_tractor_resources"
-    },
-    {
-        "emergency_situation": "第1辆消防车初始位置调整为(3,7)",
-        "functions": "init_fire_vehicle_resources"
-    },
-    {
-        "emergency_situation": "站位(7,10)发生故障,以该点为终点的调整为(8,10)",
+        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(7,9)发生故障,以该点为终点的调整为(8,9)",
         "functions": "route_planning"
     },
     {
-        "emergency_situation": "第1辆气源车发生故障不可用",
-        "functions": "init_air_source_car_resources"
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,25)",
+        "functions": "init_forklifts"
     },
     {
-        "emergency_situation": "第1辆加氮车初始位置调整为(2,3)",
-        "functions": "init_nitrogen_truck_resources"
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至54",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加40;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障;站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(37,41);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加47",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(46,32);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至128;Zone_4堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区最大容量缩减至84;Zone_1堆积区当前库存增加21",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(30,46)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加24",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_1堆积区最大容量缩减至128",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,7)发生故障,以该点为终点的调整为(9,7);站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车初始位置调整为(43,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障;站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用;Zone_2堆积区最大容量缩减至142",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障;站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(39,16)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至149;Zone_1堆积区当前库存增加31",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_1堆积区当前库存增加58",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至139;Zone_3堆积区当前库存增加37",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,4)(6,4)(5,5)(6,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至112;Zone_4堆积区当前库存增加26;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(49,18)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加21;Zone_2堆积区最大容量缩减至123",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(22,34)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为5分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_3堆积区最大容量缩减至76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用;Forklift_3叉车初始位置调整为(30,31)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加30;Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(34,18)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至62;Zone_3堆积区当前库存增加76",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至125;Zone_1堆积区当前库存增加64;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至57;Zone_1堆积区当前库存增加26;Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第4辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加74;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加78;Zone_4堆积区最大容量缩减至54",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至93;Zone_3堆积区当前库存增加25",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加45",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(33,16);Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(3,3)(4,3)(3,4)(4,4)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至65",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(22,19)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(3,6)(4,6)(3,7)(4,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(7,7)发生故障,以该点为终点的调整为(8,7);站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(41,21)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "从第3辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(15,12)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加68",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区当前库存增加66;Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用;Forklift_3叉车初始位置调整为(20,38)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区最大容量缩减至91",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加36;Zone_3堆积区发生故障不可用;Zone_2堆积区最大容量缩减至102",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(30,29)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至109;Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "站位(5,5)(6,5)(5,6)(6,6)四个点发生故障;站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区当前库存增加62",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车初始位置调整为(23,37);Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第7辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区最大容量缩减至138",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用;Zone_4堆积区当前库存增加22",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_1叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障;站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_1堆积区最大容量缩减至82",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9);站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第5辆货车开始间隔改为6分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车初始位置调整为(36,37)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加38",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用;Zone_4堆积区当前库存增加72",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用;Forklift_1叉车初始位置调整为(18,35)",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Zone_2堆积区当前库存增加27;Zone_1堆积区发生故障不可用;Zone_2堆积区最大容量缩减至122",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Zone_3堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "Forklift_3叉车发生故障不可用",
+        "functions": "init_forklifts"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "从第6辆货车开始间隔改为8分钟",
+        "functions": "init_truck_arrival_time"
+    },
+    {
+        "emergency_situation": "Zone_4堆积区发生故障不可用",
+        "functions": "init_stacking_zones"
+    },
+    {
+        "emergency_situation": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障;站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+        "functions": "route_planning"
+    },
+    {
+        "emergency_situation": "Forklift_2叉车发生故障不可用",
+        "functions": "init_forklifts"
     }
 ]

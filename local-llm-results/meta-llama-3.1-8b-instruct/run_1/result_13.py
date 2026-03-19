@@ -1,63 +1,115 @@
-基于突发事件的描述，第3辆气源车发生故障不可用，第3辆加氮车初始位置调整为(0,6)，第3辆消防车初始位置调整为(1,3)，第3辆液压车初始位置调整为(3,8)，第3辆供电车初始位置调整为(2,8)。我们需要修改相关函数以反映这些变化。
-
-
 import heapq
 import time
-import random
 
-def init_air_source_car_resources(nums=10):
-    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
-    air_source_car_resources = []
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
     for i in range(nums):
-        if i == 2:  # 第3辆气源车故障不可用
-            air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
-        else:
-            air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return air_source_car_resources
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_nitrogen_truck_resources(nums=10):
-    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
-    nitrogen_truck_resources = []
+# 货车到达时间（修改为8分钟间隔）
+def init_truck_arrival_time_modified(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是8分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
     for i in range(nums):
-        if i == 2:  # 第3辆加氮车初始位置调整为(0,6)
-            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (0, 6)})
-        else:
-            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return nitrogen_truck_resources
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_fire_vehicle_resources(nums=10):
-    """初始化消防车资源，返回资源列表，每个资源包含id、类型"""
-    fire_vehicle_resources = []
+# Forklift_1叉车初始位置调整为(47,47)
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i == 2:  # 第3辆消防车初始位置调整为(1,3)
-            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (1, 3)})
+        if i == 0:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (47, 47),
+            })
         else:
-            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fire_vehicle_resources
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
 
+# 站位(6,5)(7,5)(6,6)(7,6)四个点发生故障
+def route_planning_modified(begin_point, end_point, grid_size=(100, 100)):
+    """从一个点到另一个点的路径规划 (使用A*算法)
 
-def init_hydraulic_cart_resources(nums=10):
-    """初始化液压车资源，返回资源列表，每个资源包含id、类型"""
-    hydraulic_cart_resources = []
-    for i in range(nums):
-        if i == 2:  # 第3辆液压车初始位置调整为(3,8)
-            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (3, 8)})
-        else:
-            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return hydraulic_cart_resources
+    参数:
+        begin_point: 起点坐标 (x, y)
+        end_point: 终点坐标 (x, y)
+        grid_size: 地图大小 (width, height)，默认 (100, 100)
 
+    返回:
+        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        如果没有路径则返回 None
+    """
+    width, height = grid_size
 
-def init_power_cart_resources(nums=10):
-    """初始化供电车资源，返回资源列表，每个资源包含id、类型"""
-    power_cart_resources = []
-    for i in range(nums):
-        if i == 2:  # 第3辆供电车初始位置调整为(2,8)
-            power_cart_resources.append({"id": i, "type": "power_cart", "location": (2, 8)})
-        else:
-            power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return power_cart_resources
+    # 曼哈顿距离启发式函数
+    def heuristic(pos):
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
+    # 四个方向：上、下、左、右
+    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-以上修改仅在相关函数中调整了初始位置或状态，其他函数保持不变。
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
+    visited = {begin_point}
+
+    while heap:
+        f_score, _, current, path = heapq.heappop(heap)
+
+        # 到达终点
+        if current == end_point:
+            return path
+
+        # 探索四个方向
+        for dx, dy in directions:
+            next_x = current[0] + dx
+            next_y = current[1] + dy
+            next_pos = (next_x, next_y)
+
+            # 检查是否在网格范围内
+            if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+
+            # 检查是否已访问
+            if next_pos in visited:
+                continue
+
+            # 检查是否在故障点
+            if (next_x, next_y) in [(6, 5), (7, 5), (6, 6), (7, 6)]:
+                continue
+
+            visited.add(next_pos)
+            new_path = path + [next_pos]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(next_pos)  # 总评估代价
+
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
+    return None

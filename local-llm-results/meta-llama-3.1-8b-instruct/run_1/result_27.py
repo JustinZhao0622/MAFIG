@@ -1,58 +1,26 @@
-基于突发事件的描述，需要对代码进行以下修改：
+import heapq
+import time
 
-1. 第 4 个牵引任务目标站位调整为 (1, 4)。
-2. 站位 (9, 8) 发生故障，调整为终点 (10, 8)。
-3. 第 4 辆充氧车发生故障不可用。
-4. 第 4 辆加氮车初始位置调整为 (0, 8)。
-5. 站位 (7, 7)、(8, 7)、(7, 8)、(8, 8) 四个点发生故障。
-6. 第 4 个固定保障资源初始位置调整为 (0, 10)。
-
-以下是修改后的代码：
-
-
-def init_towing_tasks(nums=6):
-    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
-    towing_tasks = []
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
     for i in range(nums):
-        if i == 4:
-            towing_tasks.append({"id": i, "type": "towing", "location": (1, 4)})
+        if i >= 4:  # 从第5辆货车开始间隔改为5分钟
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * i))
         else:
-            towing_tasks.append({"id": i, "type": "towing", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return towing_tasks
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_oxygen_truck_resources(nums=10):
-    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
-    oxygen_truck_resources = []
-    for i in range(nums):
-        if i == 4:
-            oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": None})
-        else:
-            oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return oxygen_truck_resources
-
-
-def init_nitrogen_truck_resources(nums=10):
-    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
-    nitrogen_truck_resources = []
-    for i in range(nums):
-        if i == 4:
-            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (0, 8)})
-        else:
-            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return nitrogen_truck_resources
-
-
-def init_fixed_resources(nums=10):
-    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
-    fixed_resources = []
-    for i in range(nums):
-        if i == 4:
-            fixed_resources.append({"id": i, "type": "crane", "location": (0, 10)})
-        else:
-            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fixed_resources
-
+# ...
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -80,9 +48,9 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    # 站位 (9, 8) 发生故障，调整为终点 (10, 8)
-    if begin_point == (9, 8):
-        end_point = (10, 8)
+    # 站位(7,9)发生故障,以该点为终点的调整为(8,9)
+    if end_point == (7, 9):
+        end_point = (8, 9)
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
@@ -105,10 +73,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if next_pos in visited:
                 continue
 
-            # 站位 (7, 7)、(8, 7)、(7, 8)、(8, 8) 四个点发生故障
-            if next_pos in [(7, 7), (8, 7), (7, 8), (8, 8)]:
-                continue
-
             visited.add(next_pos)
             new_path = path + [next_pos]
             g_score = len(new_path) - 1  # 实际代价
@@ -118,5 +82,4 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-
-以上修改仅在 `init_towing_tasks`、`init_oxygen_truck_resources`、`init_nitrogen_truck_resources`、`init_fixed_resources` 和 `route_planning` 函数中进行了修改，以满足突发事件的要求。
+# ...

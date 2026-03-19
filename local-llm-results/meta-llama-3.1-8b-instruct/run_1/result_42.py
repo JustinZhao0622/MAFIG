@@ -1,54 +1,61 @@
-基于突发事件的描述，需要对代码进行以下修改：
+import heapq
+import time
 
-1. 第 4 辆维修车发生故障不可用：修改 `init_maintenance_vehicle_resources` 函数，设置第 4 辆维修车的状态为不可用。
-2. 从第 5 架舰载机开始到达间隔改为 8 分钟：修改 `init_planes` 函数，设置到达间隔为 8 分钟。
-3. 第 4 个固定保障资源初始位置调整为 (0, 3)：修改 `init_fixed_resources` 函数，设置第 4 个固定保障资源的初始位置为 (0, 3)。
-4. 站位 (8, 8) (9, 8) (8, 9) (9, 9) 四个点发生故障：修改 `route_planning` 函数，设置这些点为障碍物。
-5. 第 4 个通用移动资源发生故障不可用：修改 `init_mobile_resources` 函数，设置第 4 个通用移动资源的状态为不可用。
-
-以下是修改后的代码：
-
-
-def init_maintenance_vehicle_resources(nums=10):
-    """初始化维修车资源，返回资源列表，每个资源包含id、类型"""
-    maintenance_vehicle_resources = []
-    for i in range(nums):
-        if i == 3:  # 第 4 辆维修车不可用
-            maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10)), "status": "unavailable"})
-        else:
-            maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return maintenance_vehicle_resources
-
-
-def init_planes(nums=5, start_time="8:00:00"):
-    """初始化舰载机，每隔 8 分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为 10 分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    planes = []
+    trucks = []
     for i in range(nums):
-        plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * i))
-        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i, 10)})
-    return planes
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_fixed_resources(nums=10):
-    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
-    fixed_resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 3:  # 第 4 个固定保障资源初始位置调整为 (0, 3)
-            fixed_resources.append({"id": i, "type": "crane", "location": (0, 3)})
-        else:
-            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fixed_resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 72,  # 突发事件：Zone_3堆积区当前库存增加72
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i == 2:  # 突发事件：Forklift_3叉车发生故障不可用
+            continue
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
-def route_planning(begin_point, end_point, grid_size=(100, 100), obstacles=None):
+def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
     参数:
         begin_point: 起点坐标 (x, y)
         end_point: 终点坐标 (x, y)
         grid_size: 地图大小 (width, height)，默认 (100, 100)
-        obstacles:障碍物列表，每个障碍物为 (x, y) 元组
 
     返回:
         包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
@@ -68,9 +75,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100), obstacles=None)
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    if obstacles:
-        visited.update(obstacles)
-
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -88,7 +92,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100), obstacles=None)
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问或是障碍物
+            # 检查是否已访问
             if next_pos in visited:
                 continue
 
@@ -102,15 +106,166 @@ def route_planning(begin_point, end_point, grid_size=(100, 100), obstacles=None)
     return None
 
 
-def init_mobile_resources(nums=10):
-    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
-    mobile_resources = []
+def init_loading_docks(nums=4):
+    """
+    初始化装货月台。
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
     for i in range(nums):
-        if i == 3:  # 第 4 个通用移动资源不可用
-            mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10)), "status": "unavailable"})
-        else:
-            mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return mobile_resources
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
+            "status": "idle",
+        })
+    return docks
 
 
-以上修改后的代码仅对 `init_maintenance_vehicle_resources`、`init_planes`、`init_fixed_resources`、`route_planning` 和 `init_mobile_resources` 函数进行了修改，以满足突发事件的要求。
+def init_unloading_docks(nums=4):
+    """
+    初始化卸货月台。
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
+    for i in range(nums):
+        docks.append({
+            "id": f"UnloadDock_{i+1}",
+            "location": (i * 5, 5),
+            "status": "idle",
+        })
+    return docks
+
+
+def init_shelves(nums=10):
+    """
+    初始化货架。
+    返回货架列表，每个货架包含id、位置、容量
+    """
+    shelves = []
+    for i in range(nums):
+        shelves.append({
+            "id": f"Shelf_{i+1}",
+            "location": (i % 5, i // 5),
+            "capacity": 50,
+        })
+    return shelves
+
+
+def init_sorting_stations(nums=3):
+    """
+    初始化分拣台。
+    返回分拣台列表，每个分拣台包含id、位置、状态
+    """
+    stations = []
+    for i in range(nums):
+        stations.append({
+            "id": f"SortStation_{i+1}",
+            "location": (10, i * 3),
+            "status": "idle",
+        })
+    return stations
+
+
+def init_workers(nums=6):
+    """
+    初始化仓储作业人员。
+    返回人员列表，每个人员包含id、岗位、状态
+    """
+    workers = []
+    for i in range(nums):
+        workers.append({
+            "id": f"Worker_{i+1}",
+            "role": "operator",
+            "status": "available",
+        })
+    return workers
+
+
+def init_pallets(nums=20):
+    """
+    初始化托盘。
+    返回托盘列表，每个托盘包含id、位置、载重
+    """
+    pallets = []
+    for i in range(nums):
+        pallets.append({
+            "id": f"Pallet_{i+1}",
+            "location": (i % 5, i // 5),
+            "max_weight": 1000,
+        })
+    return pallets
+
+
+def init_orders(nums=8):
+    """
+    初始化订单。
+    返回订单列表，每个订单包含id、货物数量、状态
+    """
+    orders = []
+    for i in range(nums):
+        orders.append({
+            "id": f"Order_{i+1}",
+            "item_count": 10,
+            "status": "pending",
+        })
+    return orders
+
+
+def init_inventory_records(nums=10):
+    """
+    初始化库存记录。
+    返回库存记录列表，每条记录包含id、sku、数量
+    """
+    records = []
+    for i in range(nums):
+        records.append({
+            "id": f"Inventory_{i+1}",
+            "sku": f"SKU_{i+1}",
+            "quantity": 100,
+        })
+    return records
+
+
+def init_conveyors(nums=2):
+    """
+    初始化传送带。
+    返回传送带列表，每条传送带包含id、长度、状态
+    """
+    conveyors = []
+    for i in range(nums):
+        conveyors.append({
+            "id": f"Conveyor_{i+1}",
+            "length": 20,
+            "status": "running",
+        })
+    return conveyors
+
+
+def init_picking_tasks(nums=6):
+    """
+    初始化拣货任务。
+    返回任务列表，每个任务包含id、目标货架、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"PickTask_{i+1}",
+            "target_shelf": f"Shelf_{(i % 5) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+
+def init_shipping_tasks(nums=6):
+    """
+    初始化发货任务。
+    返回任务列表，每个任务包含id、目标月台、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"ShipTask_{i+1}",
+            "target_dock": f"Dock_{(i % 4) + 1}",
+            "status": "waiting",
+        })
+    return tasks

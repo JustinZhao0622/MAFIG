@@ -18,26 +18,22 @@ from difflib import SequenceMatcher
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import prompts as prompts_mod
 import generate_suitiations
-from review_code import verify_file_with_timeout
+from review_code import run_verify_case
 import add_tokenizers
 
 from zai import ZhipuAiClient
 
-MODEL_NAME = "glm-4.7"
+MODEL_NAME = "glm-5"
 MAX_RETRIES = 5
 RETRY_DELAY = 1
-OUT_DIR = "datasets/glm4.7"
+OUT_DIR = "datasets/glm5"
 
 BASE_KEYS = [
-    "a2751098f4ea4114a411860eeae6b8d8.3Hde3xtEWfPm9BCW",
-    "0934c41d73ca4466ac275247b59f43ea.a0qXhTM84boG5NXT",
-    "dc14be00604846329ab684128ad5af3f.SuYT32up0vDr91TL",
-    "0d412435f4f748a1bfc24f0340e2e678.5njc8BCqRle6rsZg",
-    "1c7b6776bd294a7c8fc87b84d4858b74.uhJnKdzQNBfPdmwL",
-    "7d767b2a5ddc4d428c714a3462285805.S4lBGuUTLchLeJbZ",
-    "7ef9c807602c4408b4091e6bd155497e.PePeRElMbqosmngf"
+    "c1cfb551142947f9bbc72d9b30482f5a.UAA2t3R9PmX1uziH",
+    "35da9a35c1f149d6905d9accb5218caf.ynVDb5rZfz6RXRsp",
+    "90bab6b6ce984d46897b139da16fa8df.k3X9o8wUFVCRAamq",
 ]
-API_KEYS = [key for key in BASE_KEYS for _ in range(1)]
+API_KEYS = [key for key in BASE_KEYS for _ in range(4)]
 
 def clean_code_block(text):
     return text.replace("```python", "").replace("```", "").strip()
@@ -130,6 +126,10 @@ async def key_worker(key_id, client, indices, emergency_situations, index_offset
 
 
 async def generate_solutions(emergency_situations, index_offset=0):
+    # if os.path.exists(OUT_DIR):
+    #     shutil.rmtree(OUT_DIR)
+    # os.makedirs(OUT_DIR, exist_ok=True)
+
     clients = [ZhipuAiClient(api_key=k) for k in API_KEYS]
     buckets = [[] for _ in API_KEYS]
     for i in range(len(emergency_situations)):
@@ -149,11 +149,19 @@ VERIFY_TIMEOUT = 5
 
 def _verify_file(file_path, events):
     """验证单个结果文件是否完全解决了所有特情，返回 True/False"""
-    result = verify_file_with_timeout(file_path, events, VERIFY_TIMEOUT)
-    if result.get("timeout") or "error" in result:
+    manager = multiprocessing.Manager()
+    return_dict = manager.dict()
+    p = multiprocessing.Process(target=run_verify_case, args=(file_path, events, return_dict))
+    p.start()
+    p.join(VERIFY_TIMEOUT)
+    if p.is_alive():
+        p.terminate()
+        p.join()
         return False
-    verify_result = result.get("result", {})
-    return verify_result.get("solved", 0) == verify_result.get("total", 0)
+    if 'error' in return_dict:
+        return False
+    result = return_dict.get('result', {})
+    return result.get('solved', 0) == result.get('total', 0)
 
 def merge_and_format(
     emergency_situations,
@@ -199,11 +207,11 @@ def merge_and_format(
 if __name__ == "__main__":
     raw_path = "datasets/decision_raw_train_datas.json"
     index_offset = 1
-    if os.path.exists(OUT_DIR):
-        shutil.rmtree(OUT_DIR)
-    os.makedirs(OUT_DIR)
+    # if os.path.exists(OUT_DIR):
+    #     shutil.rmtree(OUT_DIR)
+    # os.makedirs(OUT_DIR)
 
-    events = generate_grouped_events(num_samples=50, save_path=raw_path)
+    events = generate_grouped_events(num_samples=150, save_path=raw_path)
     asyncio.run(generate_solutions(events, index_offset=index_offset))
     
     # review code验证glm后，构建训练集
@@ -212,3 +220,4 @@ if __name__ == "__main__":
 
     merge_and_format(events, index_offset=index_offset)
     add_tokenizers.main()
+

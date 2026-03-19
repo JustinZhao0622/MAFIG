@@ -1,214 +1,55 @@
-基于突发事件的描述，需要对代码进行以下修改：
-
-1. 第 4 辆维修车发生故障不可用：修改 `init_maintenance_vehicle_resources` 函数，确保第 4 辆维修车的 ID 为 3（因为列表从 0 开始）。
-2. 第 4 个通用移动资源发生故障不可用：修改 `init_mobile_resources` 函数，确保第 4 个通用移动资源的 ID 为 3。
-3. 第 4 辆加油车发生故障不可用：修改 `init_fuel_truck_resources` 函数，确保第 4 辆加油车的 ID 为 3。
-4. 站位 (7,6)(8,6)(7,7)(8,7) 四个点发生故障：修改 `route_planning` 函数，确保这些点不可到达。
-5. 第 4 辆液压车初始位置调整为 (0,4)：修改 `init_hydraulic_cart_resources` 函数，确保第 4 辆液压车的初始位置为 (0,4)。
-6. 第 4 辆加氮车初始位置调整为 (3,0)：修改 `init_nitrogen_truck_resources` 函数，确保第 4 辆加氮车的初始位置为 (3,0)。
-7. 从第 7 架舰载机开始到达间隔改为 6 分钟：修改 `init_planes` 函数，确保第 7 架舰载机的到达间隔为 6 分钟。
-8. 第 4 辆气源车发生故障不可用：修改 `init_air_source_car_resources` 函数，确保第 4 辆气源车的 ID 为 3。
-
-以下是修改后的代码：
-
-
 import heapq
 import time
-import random
 
-
-def init_planes(nums=5, start_time="8:00:00"):
-    """初始化舰载机，每隔六分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    planes = []
+    trucks = []
     for i in range(nums):
-        plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 6 * 60 * i))
-        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i,10)})
-    return planes
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_fixed_resources(nums=10):
-    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
-    fixed_resources = []
+# 初始化货物堆积区域 (A, B, C, D 区)。
+def init_stacking_zones(nums=4):
+    """
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fixed_resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 41,  # 突发事件：Zone_3堆积区当前库存增加41
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
-def init_mobile_resources(nums=10):
-    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
-    mobile_resources = []
+# 初始化叉车队。
+def init_forklifts(nums=3):
+    """
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i != 3:  # 第 4 个通用移动资源发生故障不可用
-            mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return mobile_resources
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
-
-def init_tractor_resources(nums=10):
-    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
-    tractor_resources = []
-    for i in range(nums):
-        tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return tractor_resources
-
-
-def init_fuel_truck_resources(nums=10):
-    """初始化加油车资源，返回资源列表，每个资源包含id、类型"""
-    fuel_truck_resources = []
-    for i in range(nums):
-        if i != 3:  # 第 4 辆加油车发生故障不可用
-            fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fuel_truck_resources
-
-
-def init_nitrogen_truck_resources(nums=10):
-    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
-    nitrogen_truck_resources = []
-    for i in range(nums):
-        if i != 3:  # 第 4 辆加氮车初始位置调整为 (3,0)
-            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return nitrogen_truck_resources
-
-
-def init_oxygen_truck_resources(nums=10):
-    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
-    oxygen_truck_resources = []
-    for i in range(nums):
-        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return oxygen_truck_resources
-
-
-def init_power_cart_resources(nums=10):
-    """初始化供电车资源，返回资源列表，每个资源包含id、类型"""
-    power_cart_resources = []
-    for i in range(nums):
-        power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return power_cart_resources
-
-
-def init_air_source_car_resources(nums=10):
-    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
-    air_source_car_resources = []
-    for i in range(nums):
-        if i != 3:  # 第 4 辆气源车发生故障不可用
-            air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return air_source_car_resources
-
-
-def init_hydraulic_cart_resources(nums=10):
-    """初始化液压车资源，返回资源列表，每个资源包含id、类型"""
-    hydraulic_cart_resources = []
-    for i in range(nums):
-        if i != 3:  # 第 4 辆液压车初始位置调整为 (0,4)
-            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return hydraulic_cart_resources
-
-
-def init_maintenance_vehicle_resources(nums=10):
-    """初始化维修车资源，返回资源列表，每个资源包含id、类型"""
-    maintenance_vehicle_resources = []
-    for i in range(nums):
-        if i != 3:  # 第 4 辆维修车发生故障不可用
-            maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return maintenance_vehicle_resources
-
-
-def init_fire_vehicle_resources(nums=10):
-    """初始化消防车资源，返回资源列表，每个资源包含id、类型"""
-    fire_vehicle_resources = []
-    for i in range(nums):
-        fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fire_vehicle_resources
-
-
-def init_towing_tasks(nums=6):
-    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
-    towing_tasks = []
-    for i in range(nums):
-        towing_tasks.append({"id": i, "type": "towing", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return towing_tasks
-
-
-def init_refueling_tasks(nums=6):
-    """初始化加油任务，返回任务列表，每个任务包含id、类型"""
-    refueling_tasks = []
-    for i in range(nums):
-        refueling_tasks.append({"id": i, "type": "refueling", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return refueling_tasks
-
-
-def init_nitrogen_filling_tasks(nums=6):
-    """初始化加氮任务，返回任务列表，每个任务包含id、类型"""
-    nitrogen_filling_tasks = []
-    for i in range(nums):
-        nitrogen_filling_tasks.append({"id": i, "type": "nitrogen_filling", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return nitrogen_filling_tasks
-
-
-def init_oxygen_filling_tasks(nums=6):
-    """初始化充氧任务，返回任务列表，每个任务包含id、类型"""
-    oxygen_filling_tasks = []
-    for i in range(nums):
-        oxygen_filling_tasks.append({"id": i, "type": "oxygen_filling", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return oxygen_filling_tasks
-
-
-def init_power_supply_tasks(nums=6):
-    """初始化供电任务，返回任务列表，每个任务包含id、类型"""
-    power_supply_tasks = []
-    for i in range(nums):
-        power_supply_tasks.append({"id": i, "type": "power_supply", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return power_supply_tasks
-
-
-def init_air_supply_tasks(nums=6):
-    """初始化供气任务，返回任务列表，每个任务包含id、类型"""
-    air_supply_tasks = []
-    for i in range(nums):
-        air_supply_tasks.append({"id": i, "type": "air_supply", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return air_supply_tasks
-
-
-def init_hydraulic_support_tasks(nums=6):
-    """初始化液压保障任务，返回任务列表，每个任务包含id、类型"""
-    hydraulic_support_tasks = []
-    for i in range(nums):
-        hydraulic_support_tasks.append({"id": i, "type": "hydraulic_support", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return hydraulic_support_tasks
-
-
-def init_maintenance_tasks(nums=6):
-    """初始化维修保障任务，返回任务列表，每个任务包含id、类型"""
-    maintenance_tasks = []
-    for i in range(nums):
-        maintenance_tasks.append({"id": i, "type": "maintenance", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return maintenance_tasks
-
-
-def init_inspection_tasks(nums=6):
-    """初始化检查任务，返回任务列表，每个任务包含id、类型"""
-    inspection_tasks = []
-    for i in range(nums):
-        inspection_tasks.append({"id": i, "type": "inspection", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return inspection_tasks
-
-
-def init_fire_watch_tasks(nums=6):
-    """初始化消防监护任务，返回任务列表，每个任务包含id、类型"""
-    fire_watch_tasks = []
-    for i in range(nums):
-        fire_watch_tasks.append({"id": i, "type": "fire_watch", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fire_watch_tasks
-
-def init_tasks(nums=6):
-    """初始化挂载弹药任务，返回任务列表，每个任务包含id、类型"""
-    ammo_tasks = []
-    for i in range(nums):
-        ammo_tasks.append({"id": i, "type": "ammo", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return ammo_tasks
-
+# 从一个点到另一个点的路径规划 (使用A*算法)
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
+    """ 
     参数:
         begin_point: 起点坐标 (x, y)
         end_point: 终点坐标 (x, y)
@@ -232,9 +73,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    # 不允许到达 (7,6)(8,6)(7,7)(8,7) 四个点
-    forbidden_points = [(7,6), (8,6), (7,7), (8,7)]
-
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -253,7 +91,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
                 continue
 
             # 检查是否已访问
-            if next_pos in visited or next_pos in forbidden_points:
+            if next_pos in visited:
                 continue
 
             visited.add(next_pos)
@@ -264,3 +102,456 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
+
+# 初始化装货月台。
+def init_loading_docks(nums=4):
+    """
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
+    for i in range(nums):
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
+            "status": "idle",
+        })
+    return docks
+
+# 初始化卸货月台。
+def init_unloading_docks(nums=4):
+    """
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
+    for i in range(nums):
+        docks.append({
+            "id": f"UnloadDock_{i+1}",
+            "location": (i * 5, 5),
+            "status": "idle",
+        })
+    return docks
+
+# 初始化货架。
+def init_shelves(nums=10):
+    """
+    返回货架列表，每个货架包含id、位置、容量
+    """
+    shelves = []
+    for i in range(nums):
+        shelves.append({
+            "id": f"Shelf_{i+1}",
+            "location": (i % 5, i // 5),
+            "capacity": 50,
+        })
+    return shelves
+
+# 初始化分拣台。
+def init_sorting_stations(nums=3):
+    """
+    返回分拣台列表，每个分拣台包含id、位置、状态
+    """
+    stations = []
+    for i in range(nums):
+        stations.append({
+            "id": f"SortStation_{i+1}",
+            "location": (10, i * 3),
+            "status": "idle",
+        })
+    return stations
+
+# 初始化仓储作业人员。
+def init_workers(nums=6):
+    """
+    返回人员列表，每个人员包含id、岗位、状态
+    """
+    workers = []
+    for i in range(nums):
+        workers.append({
+            "id": f"Worker_{i+1}",
+            "role": "operator",
+            "status": "available",
+        })
+    return workers
+
+# 初始化托盘。
+def init_pallets(nums=20):
+    """
+    返回托盘列表，每个托盘包含id、位置、载重
+    """
+    pallets = []
+    for i in range(nums):
+        pallets.append({
+            "id": f"Pallet_{i+1}",
+            "location": (i % 5, i // 5),
+            "max_weight": 1000,
+        })
+    return pallets
+
+# 初始化订单。
+def init_orders(nums=8):
+    """
+    返回订单列表，每个订单包含id、货物数量、状态
+    """
+    orders = []
+    for i in range(nums):
+        orders.append({
+            "id": f"Order_{i+1}",
+            "item_count": 10,
+            "status": "pending",
+        })
+    return orders
+
+# 初始化库存记录。
+def init_inventory_records(nums=10):
+    """
+    返回库存记录列表，每条记录包含id、sku、数量
+    """
+    records = []
+    for i in range(nums):
+        records.append({
+            "id": f"Inventory_{i+1}",
+            "sku": f"SKU_{i+1}",
+            "quantity": 100,
+        })
+    return records
+
+# 初始化传送带。
+def init_conveyors(nums=2):
+    """
+    返回传送带列表，每条传送带包含id、长度、状态
+    """
+    conveyors = []
+    for i in range(nums):
+        conveyors.append({
+            "id": f"Conveyor_{i+1}",
+            "length": 20,
+            "status": "running",
+        })
+    return conveyors
+
+# 初始化拣货任务。
+def init_picking_tasks(nums=6):
+    """
+    返回任务列表，每个任务包含id、目标货架、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"PickTask_{i+1}",
+            "target_shelf": f"Shelf_{(i % 5) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 初始化发货任务。
+def init_shipping_tasks(nums=6):
+    """
+    返回任务列表，每个任务包含id、目标月台、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"ShipTask_{i+1}",
+            "target_dock": f"Dock_{(i % 4) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def route_planning_station_failure(begin_point, end_point, grid_size=(100, 100)):
+    if end_point == (8, 8):
+        return None
+    return route_planning(begin_point, end_point, grid_size)
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure(forklift_id, new_location):
+    forklifts = init_forklifts()
+    for forklift in forklifts:
+        if forklift["id"] == f"Forklift_2":
+            forklift["location"] = new_location
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_2(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_2(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_3(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_2(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_4(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_3(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_5(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_3(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_6(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_4(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_7(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_4(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_8(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_5(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_9(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_5(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_10(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_6(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_11(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_6(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_12(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_7(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_13(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_7(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_14(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_8(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_15(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_8(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_16(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_9(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_17(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_9(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_18(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,25)
+def init_forklifts_failure_10(forklifts):
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_2":
+            forklift["location"] = (45, 25)
+    return forklifts
+
+# 突发事件：Zone_3堆积区发生故障不可用
+def init_stacking_zones_failure_19(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] = 0
+            zone["max_capacity"] = 0
+    return zones
+
+# 突发事件：Zone_3堆积区当前库存增加41
+def init_stacking_zones_increase_10(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["current_stock"] += 41
+    return zones
+
+# 突发事件：站位(7,8)发生故障,以该点为终点的调整为(8,8)
+def init_stacking_zones_failure_20(zones):
+    for zone in zones:
+        if zone["id"] == "Zone_3":
+            zone["location"] = (8, 8)
+    return zones
+
+# 突发事件：Forklift_2叉车初始位置调整为(45,

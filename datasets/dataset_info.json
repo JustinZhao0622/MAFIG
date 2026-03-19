@@ -9,7 +9,7 @@
         }
     },
     "Decision_Train_data": {
-        "file_name": "/root/code/neuralcomputing/datasets/decision_loss_train_datas_1.json",
+        "file_name": "/root/code/neuralcomputing/datasets/decision_loss_train_datas.json",
         "columns": {
             "system":"system",
             "prompt":"instruction",

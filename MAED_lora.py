@@ -10,8 +10,6 @@ import shutil
 import subprocess
 import logging
 import json
-import random
-import re
 import torch
 import gc
 from vllm import LLM, SamplingParams
@@ -28,89 +26,23 @@ logging.basicConfig(level=logging.INFO,
                     filemode='a'
                     )
 logger = logging.getLogger(__name__)
-
 DIR = "/root/code/neuralcomputing/MAED_lora/"
 DATASET_FILE = "datasets/test.json"
-scenario = "jiaban"
+scenario = "cangchu"
 raw_model_path = "/data/huggingface/Qwen2.5-Coder-7B-Instruct"
 perception_models_path = f"/root/code/neuralcomputing-models/{scenario}/perception"
 perception_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_perception"
 decision_models_path = f"/root/code/neuralcomputing-models/{scenario}/decision"
 decision_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_decision"
-
-
-def _extract_emergency_text(sample):
-    """从决策训练样本中提取突发事件文本。"""
-    instruction = sample.get("instruction", "")
-    match = re.search(r"EMERGENCY_SITUATIONS:\n(.*?)\n\nCODE:", instruction, re.S)
-    return match.group(1) if match else None
-
-
-def _classify_emergency_type(event_text):
-    """按突发事件文本归类，不按函数名归类。"""
-    if event_text is None:
-        return None
-    rules = [
-        ("planes_interval", r"架舰载机开始到达间隔改为"),
-        ("fixed_resource_location", r"固定保障资源初始位置调整为"),
-        ("mobile_resource_unavailable", r"通用移动资源发生故障不可用"),
-        ("tractor_resource_location", r"牵引车初始位置调整为"),
-        ("fuel_truck_unavailable", r"加油车发生故障不可用"),
-        ("nitrogen_truck_location", r"加氮车初始位置调整为"),
-        ("oxygen_truck_unavailable", r"充氧车发生故障不可用"),
-        ("power_cart_location", r"供电车初始位置调整为"),
-        ("air_source_car_unavailable", r"气源车发生故障不可用"),
-        ("hydraulic_cart_location", r"液压车初始位置调整为"),
-        ("maintenance_vehicle_unavailable", r"维修车发生故障不可用"),
-        ("fire_vehicle_location", r"消防车初始位置调整为"),
-        ("towing_task_location", r"牵引任务目标站位调整为"),
-        ("route_block_fault", r"四个点发生故障"),
-        ("route_endpoint_change", r"以该点为终点的调整为"),
-    ]
-    for event_type, pattern in rules:
-        if re.search(pattern, event_text):
-            return event_type
-    return None
-
-
-def build_balanced_decision_subset(all_samples, target_num, seed=42):
-    """
-    按突发事件类别均衡抽样。
-    target_num 表示总目标数量，先换算为每类平均抽取数量。
-    如果某一类样本数量不足平均值，则该类样本全部保留。
-    """
-    grouped = {}
-    for sample in all_samples:
-        event_text = _extract_emergency_text(sample)
-        event_type = _classify_emergency_type(event_text)
-        if event_type is None:
-            continue
-        grouped.setdefault(event_type, []).append(sample)
-
-    if not grouped:
-        return [], {}, 0
-
-    per_type_num = target_num // len(grouped)
-    if per_type_num <= 0:
-        return [], {fn: len(items) for fn, items in grouped.items()}, 0
-
-    rng = random.Random(seed)
-    selected = []
-    skipped = {}
-    for event_type in sorted(grouped.keys()):
-        items = grouped[event_type][:]
-        rng.shuffle(items)
-        if len(items) < per_type_num:
-            skipped[event_type] = len(items)
-            selected.extend(items)
-        else:
-            selected.extend(items[:per_type_num])
-
-    rng.shuffle(selected)
-    return selected, skipped, per_type_num
-
-
 def lora_perception_agent():
+    """
+    微调并合并感知智能体
+    """
+    with open("perception_train_datas.json", "r", encoding="utf-8") as f:
+        perception_train_datas = json.load(f)[:30]
+    with open("datasets/perception_train_datas.json", "w", encoding="utf-8") as f:
+        json.dump(perception_train_datas, f, ensure_ascii=False, indent=4)
+        
     learning_rate = 5e-5
     num_train_epochs = 3
     per_device_train_batch_size = 2
@@ -171,7 +103,6 @@ def lora_perception_agent():
     combined_model = lora_model.merge_and_unload()
     combined_model.save_pretrained(perception_combined_models_path)
     base_tokenizer.save_pretrained(perception_combined_models_path)
-   
 def perception_agent():
     """
     测试感知智能体
@@ -202,13 +133,7 @@ def perception_agent():
     for i, output in enumerate(outputs):
         text = eval(output.outputs[0].text.replace("```python", "").replace("```", "").strip())
         if text == emergency_situations[i]["functions"]:
-            emergency_situations[i]["perception_functions"] = text
             correct += 1
-        else:
-            emergency_situations[i]["perception_functions"] = emergency_situations[i]["functions"]
-            print(f"第{i+1}条数据错误，正确答案: {emergency_situations[i]['functions']}, 感知智能体答案: {text}")
-    with open(f"{DIR}/perception_events.json", "w+", encoding="utf-8") as f:
-        json.dump(emergency_situations, f, ensure_ascii=False, indent=4)
     print(f"准确率: {correct}/{len(outputs)} ({correct/len(outputs)*100:.1f}%)")
     print(f"感知智能体耗时: {time.time() - time_start:.2f}秒")
 def decision_loss_agent():
@@ -274,8 +199,8 @@ def lora_decision_agent():
     """
     微调并合并决策智能体（基于添加了EDIT tokens的模型）
     """
-    edit_model_path = raw_model_path + "-edit-init"
-    # edit_model_path = raw_model_path
+    # edit_model_path = raw_model_path + "-edit-init"
+    edit_model_path = raw_model_path
     
     learning_rate = 5e-5
     num_train_epochs = 3
@@ -350,33 +275,31 @@ def decision_agent():
     """
     测试决策智能体：用合并后的决策模型处理
     """
+    with open(DATASET_FILE, "r", encoding="utf-8") as f:
+        emergency_situations = json.load(f)
+    for emergency_situation in emergency_situations:
+        emergency_situation["perception_functions"] = emergency_situation["functions"]
+    with open(f"{DIR}/perception_events.json", "w+", encoding="utf-8") as f:
+        json.dump(emergency_situations, f, ensure_ascii=False, indent=4)
     return MAED_decision.decision_agent(DIR, decision_combined_models_path)
 
 if __name__ == "__main__":
     # 感知智能体
     # lora_perception_agent()
-    perception_agent()
+    # perception_agent()
     # 决策智能体loss调整
     # decision_loss_agent()
-    # nums = [75,90,120,150,180]
-    # logger.info("=======================================================")
-    # for num in nums:
-    #     with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas.json","r", encoding="utf-8") as f:
-    #         all_decision_loss_train_datas = json.load(f)
-    #     decision_loss_train_datas, skipped_types, per_type_num = build_balanced_decision_subset(
-    #         all_decision_loss_train_datas,
-    #         num,
-    #     )
-    #     with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas_1.json","w+", encoding="utf-8") as f:
-    #         json.dump(decision_loss_train_datas, f, ensure_ascii=False, indent=4)
-    #     # 决策智能体
-    #     time_lora = lora_decision_agent()
-    #     time_decision = decision_agent()
-    #     gc.collect()
-    #     torch.cuda.empty_cache()
-    #     accuracy = review_code.main(DATASET_FILE,DIR + "results")
-    #     logger.info(
-    #         f"num: {num}, actual_num: {len(decision_loss_train_datas)}, per_type_num: {per_type_num}, "
-    #         f"skipped_types: {skipped_types}, accuracy: {accuracy}, "
-    #         f"time_lora: {time_lora}, time_decision: {time_decision}"
-    #     )
+    nums = [80,130,170]
+    logger.info("=======================================================")
+    for num in nums:
+        with open("/root/code/neuralcomputing/decision_loss_train_datas.json","r", encoding="utf-8") as f:
+            decision_loss_train_datas = json.load(f)[:num]
+        with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas.json","w", encoding="utf-8") as f:
+            json.dump(decision_loss_train_datas, f, ensure_ascii=False, indent=4)
+        # 决策智能体
+        time_lora = lora_decision_agent()
+        time_decision = decision_agent()
+        gc.collect()
+        torch.cuda.empty_cache()
+        accuracy = review_code.main(DATASET_FILE,DIR + "results")
+        logger.info(f"num: {num}, accuracy: {accuracy}, time_lora: {time_lora}, time_decision: {time_decision}")

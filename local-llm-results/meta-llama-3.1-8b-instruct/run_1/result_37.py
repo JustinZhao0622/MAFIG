@@ -1,81 +1,55 @@
-基于突发事件的描述，第3辆气源车发生故障不可用，第3辆供电车初始位置调整为(0,9)，第3个通用移动资源发生故障不可用，第3辆加油车发生故障不可用，第1个牵引任务目标站位调整为(1,8)。我们需要修改相关函数以反映这些变化。
-
-
 import heapq
 import time
-import random
 
-def init_planes(nums=5,start_time="8:00:00"):
-    """初始化舰载机，每隔三分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    planes = []
+    trucks = []
     for i in range(nums):
-        plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i,10)})
-    return planes
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-
-def init_fixed_resources(nums=10):
-    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
-    fixed_resources = []
+# 货物堆积区域
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 2:  # 第3辆供电车初始位置调整为(0,9)
-            fixed_resources.append({"id": i, "type": "crane", "location": (0, 9)})
-        else:
-            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fixed_resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
-def init_mobile_resources(nums=10):
-    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
-    mobile_resources = []
+# 叉车队
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        if i == 2:  # 第3个通用移动资源发生故障不可用
-            mobile_resources.append({"id": i, "type": "crane", "location": (0, 0), "status": "故障"})  # 设定为故障状态
-        else:
-            mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return mobile_resources
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (48, 15),  # Forklift_3叉车初始位置调整为(48,15)
+        })
+    return forklifts
 
-
-def init_tractor_resources(nums=10):
-    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
-    tractor_resources = []
-    for i in range(nums):
-        if i == 0:  # 第1个牵引任务目标站位调整为(1,8)
-            tractor_resources.append({"id": i, "type": "tractor", "location": (1, 8)})
-        else:
-            tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return tractor_resources
-
-
-def init_fuel_truck_resources(nums=10):
-    """初始化加油车资源，返回资源列表，每个资源包含id、类型"""
-    fuel_truck_resources = []
-    for i in range(nums):
-        if i == 2:  # 第3辆加油车发生故障不可用
-            fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (0, 0), "status": "故障"})  # 设定为故障状态
-        else:
-            fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fuel_truck_resources
-
-
-def init_air_source_car_resources(nums=10):
-    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
-    air_source_car_resources = []
-    for i in range(nums):
-        if i == 2:  # 第3辆气源车发生故障不可用
-            air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (0, 0), "status": "故障"})  # 设定为故障状态
-        else:
-            air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return air_source_car_resources
-
-
-def init_tasks(nums=6):
-    """初始化挂载弹药任务，返回任务列表，每个任务包含id、类型"""
-    ammo_tasks = []
-    for i in range(nums):
-        ammo_tasks.append({"id": i, "type": "ammo", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return ammo_tasks
-
+# 路径规划
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -132,5 +106,236 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
+# 装货月台
+def init_loading_docks(nums=4):
+    """
+    初始化装货月台。
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
+    for i in range(nums):
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
+            "status": "idle",
+        })
+    return docks
 
-以上修改仅在相关函数中修改了资源的初始位置或状态，其他函数保持不变。
+# 卸货月台
+def init_unloading_docks(nums=4):
+    """
+    初始化卸货月台。
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
+    for i in range(nums):
+        docks.append({
+            "id": f"UnloadDock_{i+1}",
+            "location": (i * 5, 5),
+            "status": "idle",
+        })
+    return docks
+
+# 货架
+def init_shelves(nums=10):
+    """
+    初始化货架。
+    返回货架列表，每个货架包含id、位置、容量
+    """
+    shelves = []
+    for i in range(nums):
+        shelves.append({
+            "id": f"Shelf_{i+1}",
+            "location": (i % 5, i // 5),
+            "capacity": 50,
+        })
+    return shelves
+
+# 分拣台
+def init_sorting_stations(nums=3):
+    """
+    初始化分拣台。
+    返回分拣台列表，每个分拣台包含id、位置、状态
+    """
+    stations = []
+    for i in range(nums):
+        stations.append({
+            "id": f"SortStation_{i+1}",
+            "location": (10, i * 3),
+            "status": "idle",
+        })
+    return stations
+
+# 仓储作业人员
+def init_workers(nums=6):
+    """
+    初始化仓储作业人员。
+    返回人员列表，每个人员包含id、岗位、状态
+    """
+    workers = []
+    for i in range(nums):
+        workers.append({
+            "id": f"Worker_{i+1}",
+            "role": "operator",
+            "status": "available",
+        })
+    return workers
+
+# 托盘
+def init_pallets(nums=20):
+    """
+    初始化托盘。
+    返回托盘列表，每个托盘包含id、位置、载重
+    """
+    pallets = []
+    for i in range(nums):
+        pallets.append({
+            "id": f"Pallet_{i+1}",
+            "location": (i % 5, i // 5),
+            "max_weight": 1000,
+        })
+    return pallets
+
+# 订单
+def init_orders(nums=8):
+    """
+    初始化订单。
+    返回订单列表，每个订单包含id、货物数量、状态
+    """
+    orders = []
+    for i in range(nums):
+        orders.append({
+            "id": f"Order_{i+1}",
+            "item_count": 10,
+            "status": "pending",
+        })
+    return orders
+
+# 库存记录
+def init_inventory_records(nums=10):
+    """
+    初始化库存记录。
+    返回库存记录列表，每条记录包含id、sku、数量
+    """
+    records = []
+    for i in range(nums):
+        records.append({
+            "id": f"Inventory_{i+1}",
+            "sku": f"SKU_{i+1}",
+            "quantity": 100,
+        })
+    return records
+
+# 传送带
+def init_conveyors(nums=2):
+    """
+    初始化传送带。
+    返回传送带列表，每条传送带包含id、长度、状态
+    """
+    conveyors = []
+    for i in range(nums):
+        conveyors.append({
+            "id": f"Conveyor_{i+1}",
+            "length": 20,
+            "status": "running",
+        })
+    return conveyors
+
+# 拣货任务
+def init_picking_tasks(nums=6):
+    """
+    初始化拣货任务。
+    返回任务列表，每个任务包含id、目标货架、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"PickTask_{i+1}",
+            "target_shelf": f"Shelf_{(i % 5) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 发货任务
+def init_shipping_tasks(nums=6):
+    """
+    初始化发货任务。
+    返回任务列表，每个任务包含id、目标月台、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"ShipTask_{i+1}",
+            "target_dock": f"Dock_{(i % 4) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 站位点发生故障
+def init_station_failure(stations):
+    """
+    初始化站位点故障。
+    返回站位点列表，每个站位点包含id、位置、状态
+    """
+    for station in stations:
+        station["status"] = "failed"
+    return stations
+
+# Forklift_3叉车发生故障不可用
+def init_forklift_failure(forklifts):
+    """
+    初始化叉车故障。
+    返回叉车列表，每个叉车包含id、坐标、状态
+    """
+    for forklift in forklifts:
+        if forklift["id"] == "Forklift_3":
+            forklift["status"] = "failed"
+    return forklifts
+
+# 站位点故障列表
+stations = [
+    {"id": "Station_1", "location": (6, 3), "status": "failed"},
+    {"id": "Station_2", "location": (7, 3), "status": "failed"},
+    {"id": "Station_3", "location": (6, 4), "status": "failed"},
+    {"id": "Station_4", "location": (7, 4), "status": "failed"},
+]
+
+# 叉车故障列表
+forklifts = init_forklifts(3)
+forklifts = init_forklift_failure(forklifts)
+
+# 站位点故障列表
+stations = init_station_failure(stations)
+
+# 初始化系统
+trucks = init_truck_arrival_time(10, "8:00:00")
+zones = init_stacking_zones(4)
+forklifts = init_forklifts(3)
+loading_docks = init_loading_docks(4)
+unloading_docks = init_unloading_docks(4)
+shelves = init_shelves(10)
+sorting_stations = init_sorting_stations(3)
+workers = init_workers(6)
+pallets = init_pallets(20)
+orders = init_orders(8)
+inventory_records = init_inventory_records(10)
+conveyors = init_conveyors(2)
+picking_tasks = init_picking_tasks(6)
+shipping_tasks = init_shipping_tasks(6)
+
+# 打印系统信息
+print("系统信息:")
+print("货车:", trucks)
+print("货物堆积区域:", zones)
+print("叉车:", forklifts)
+print("装货月台:", loading_docks)
+print("卸货月台:", unloading_docks)
+print("货架:", shelves)
+print("分拣台:", sorting_stations)
+print("仓储作业人员:", workers)
+print("托盘:", pallets)
+print("订单:", orders)
+print("库存记录:", inventory_records)
+print("传送带:", conveyors)
+print("拣货任务:", picking_tasks)
+print("发货任务:", shipping_tasks)

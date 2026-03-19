@@ -1,66 +1,54 @@
 import heapq
 import time
-import random
 
-def init_planes(nums=5, start_time="8:00:00"):
-    """初始化舰载机，每隔三分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    planes = []
+    trucks = []
     for i in range(nums):
-        if i >= 4:
-            plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * (i - 4)))
-        else:
-            plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i, 10)})
-    return planes
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i >= 2:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * (i - 2)))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_tractor_resources(nums=10):
-    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
-    tractor_resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        if i == 0:
-            tractor_resources.append({"id": i, "type": "tractor", "location": (0, 2)})
-        else:
-            tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return tractor_resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 37 if i == 2 else 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
 
-def init_maintenance_vehicle_resources(nums=10):
-    """初始化维修车资源，返回资源列表，每个资源包含id、类型"""
-    maintenance_vehicle_resources = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return maintenance_vehicle_resources
+        if i == 2:
+            continue  # Forklift_2叉车发生故障不可用
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
-def init_fuel_truck_resources(nums=10):
-    """初始化加油车资源，返回资源列表，每个资源包含id、类型"""
-    fuel_truck_resources = []
-    for i in range(nums):
-        fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fuel_truck_resources
-
-def init_nitrogen_truck_resources(nums=10):
-    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
-    nitrogen_truck_resources = []
-    for i in range(nums):
-        nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return nitrogen_truck_resources
-
-def init_hydraulic_cart_resources(nums=10):
-    """初始化液压车资源，返回资源列表，每个资源包含id、类型"""
-    hydraulic_cart_resources = []
-    for i in range(nums):
-        if i == 0:
-            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (3, 3)})
-        else:
-            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return hydraulic_cart_resources
-
-def init_fire_vehicle_resources(nums=10):
-    """初始化消防车资源，返回资源列表，每个资源包含id、类型"""
-    fire_vehicle_resources = []
-    for i in range(nums):
-        if i == 0:
-            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (0, 8)})
-        else:
-            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return fire_vehicle_resources
+# 其他函数保持不变

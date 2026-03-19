@@ -1,484 +1,264 @@
 """
-验证代码是否真正解决相应突发事件
+验证代码是否解决相应突发事件
 """
 
-import importlib.util
-import json
-import multiprocessing
 import os
+import json
 import re
 import time
+import importlib.util
+import multiprocessing
+import pandas as pd
+from tqdm import tqdm
 
-try:
-    from tqdm import tqdm
-except Exception:
-    def tqdm(iterable):
-        return iterable
+# --- 配置 ---
+TIMEOUT = 5  # 单个文件运行超时时间
 
-TIMEOUT = 5
-
-
+# --- 验证逻辑核心 ---
 class DynamicVerifier:
-    """按事件类型对生成代码做动态行为验证。"""
-
+    """验证器"""
     def __init__(self, module):
         self.module = module
 
-    def _call(self, func_name, *args, **kwargs):
-        func = getattr(self.module, func_name, None)
-        if not callable(func):
-            raise AttributeError(f"missing function: {func_name}")
-        return func(*args, **kwargs)
-
-    def _find_by_index(self, items, target_idx):
-        if not isinstance(items, list):
-            return None
-        if 0 <= target_idx < len(items):
-            return items[target_idx]
-        return None
-
-    def _is_unavailable(self, item):
-        if item is None:
-            return True
-        status = str(item.get("status", "")).lower()
-        available = item.get("available")
-        if available is False:
-            return True
-        return status in {"unavailable", "disabled", "offline", "closed", "blocked", "fault", "broken"}
-
-    def _tuple_path(self, path):
-        normalized = []
-        for point in path or []:
-            if isinstance(point, (list, tuple)) and len(point) == 2:
-                normalized.append((int(point[0]), int(point[1])))
-        return normalized
-
-    def _parse_location(self, text):
-        match = re.search(r"\((\d+),(\d+)\)", text)
-        if not match:
-            return None
-        return (int(match.group(1)), int(match.group(2)))
-
-    def _check_resource_location(self, text, pattern, func_name):
-        match = re.search(pattern, text)
+    def check_truck_interval(self, text):
+        """验证: 从第X辆货车开始间隔改为Y分钟"""
+        match = re.search(r"从第(\d+)辆货车开始间隔改为(\d+)分钟", text)
         if not match:
             return False
-        target_idx = int(match.group(1)) - 1
-        new_loc = (int(match.group(2)), int(match.group(3)))
+        start_idx = int(match.group(1))-1 if int(match.group(1)) > 0 else 0
+        new_interval = int(match.group(2))
         try:
-            items = self._call(func_name)
-            target = self._find_by_index(items, target_idx)
-            return target is not None and tuple(target.get("location", ())) == new_loc
-        except Exception:
-            return False
-
-    def _check_resource_unavailable(self, text, pattern, func_name):
-        match = re.search(pattern, text)
-        if not match:
-            return False
-        target_idx = int(match.group(1)) - 1
-        try:
-            items = self._call(func_name)
-            target = self._find_by_index(items, target_idx)
-            return self._is_unavailable(target)
-        except Exception:
-            return False
-
-    def _check_task_location(self, text, pattern, func_name):
-        match = re.search(pattern, text)
-        if not match:
-            return False
-        target_idx = int(match.group(1)) - 1
-        new_loc = (int(match.group(2)), int(match.group(3)))
-        try:
-            items = self._call(func_name)
-            target = self._find_by_index(items, target_idx)
-            return target is not None and tuple(target.get("location", ())) == new_loc
-        except Exception:
-            return False
-
-    def _check_task_priority(self, text, pattern, func_name):
-        match = re.search(pattern, text)
-        if not match:
-            return False
-        target_idx = int(match.group(1)) - 1
-        try:
-            items = self._call(func_name)
-            target = self._find_by_index(items, target_idx)
-            if target is None:
+            trucks = self.module.init_truck_arrival_time(15)
+            if start_idx + 1 >= len(trucks):
                 return False
-            if int(target.get("priority", -1)) == 1:
-                return True
-            return str(target.get("status", "")).lower() in {"priority", "urgent", "high", "high_priority"}
-        except Exception:
+            t1 = time.mktime(time.strptime(trucks[start_idx]['arrival_time'], "%H:%M:%S"))
+            t2 = time.mktime(time.strptime(trucks[start_idx + 1]['arrival_time'], "%H:%M:%S"))
+            return abs((t2 - t1) - new_interval * 60) < 1
+        except:
             return False
 
-    def check_planes_interval(self, text):
-        match = re.search(r"从第(\d+)架舰载机开始到达间隔改为(\d+)分钟", text)
+    def check_zone_stock_increase(self, text):
+        """验证: Zone_X堆积区当前库存增加Y"""
+        match = re.search(r"(Zone_\d+)堆积区当前库存增加(\d+)", text)
         if not match:
             return False
-        start_idx = int(match.group(1)) - 1
-        interval = int(match.group(2))
+        target_id = match.group(1)
+        increase = int(match.group(2))
         try:
-            planes = self._call("init_planes", 10)
-            if start_idx <= 0 or start_idx >= len(planes):
+            zones = self.module.init_stacking_zones()
+            target = next((z for z in zones if z.get('id') == target_id), None)
+            if not target:
                 return False
-            prev_time = time.strptime(planes[start_idx - 1]["time"], "%H:%M:%S")
-            curr_time = time.strptime(planes[start_idx]["time"], "%H:%M:%S")
-            prev_ts = time.mktime(prev_time)
-            curr_ts = time.mktime(curr_time)
-            return int((curr_ts - prev_ts) / 60) == interval
-        except Exception:
+            return target.get('current_stock', 0) == increase
+        except:
             return False
 
-    def check_fixed_resource_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)个固定保障资源初始位置调整为\((\d+),(\d+)\)",
-            "init_fixed_resources",
-        )
+    def check_zone_capacity_reduce(self, text):
+        """验证: Zone_X堆积区最大容量缩减至Y"""
+        match = re.search(r"(Zone_\d+)堆积区最大容量缩减至(\d+)", text)
+        if not match:
+            return False
+        target_id = match.group(1)
+        new_cap = int(match.group(2))
+        try:
+            zones = self.module.init_stacking_zones()
+            target = next((z for z in zones if z.get('id') == target_id), None)
+            if not target:
+                return False
+            return target.get('max_capacity') == new_cap
+        except:
+            return False
 
-    def check_mobile_resource_unavailable(self, text):
-        return self._check_resource_unavailable(
-            text,
-            r"第(\d+)个通用移动资源发生故障不可用",
-            "init_mobile_resources",
-        )
+    def check_zone_unavailable(self, text):
+        """验证: Zone_X堆积区发生故障不可用"""
+        match = re.search(r"(Zone_\d+)堆积区发生故障不可用", text)
+        if not match:
+            return False
+        target_id = match.group(1)
+        try:
+            zones = self.module.init_stacking_zones()
+            ids = [z.get('id') for z in zones]
+            return target_id not in ids
+        except:
+            return False
 
-    def check_tractor_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)辆牵引车初始位置调整为\((\d+),(\d+)\)",
-            "init_tractor_resources",
-        )
+    def check_forklift_unavailable(self, text):
+        """验证: Forklift_X叉车发生故障不可用"""
+        match = re.search(r"(Forklift_\d+)叉车发生故障不可用", text)
+        if not match:
+            return False
+        target_id = match.group(1)
+        try:
+            forklifts = self.module.init_forklifts()
+            ids = [f.get('id') for f in forklifts]
+            return target_id not in ids
+        except:
+            return False
 
-    def check_fuel_truck_unavailable(self, text):
-        return self._check_resource_unavailable(
-            text,
-            r"第(\d+)辆加油车发生故障不可用",
-            "init_fuel_truck_resources",
-        )
+    def check_forklift_location(self, text):
+        """验证: Forklift_X叉车初始位置调整为(a,b)"""
+        match = re.search(r"(Forklift_\d+)叉车初始位置调整为\((\d+),(\d+)\)", text)
+        if not match:
+            return False
+        target_id = match.group(1)
+        new_x, new_y = int(match.group(2)), int(match.group(3))
+        try:
+            forklifts = self.module.init_forklifts()
+            target = next((f for f in forklifts if f.get('id') == target_id), None)
+            if not target:
+                return False
+            loc = target.get('location')
+            return loc == (new_x, new_y) or loc == [new_x, new_y]
+        except:
+            return False
 
-    def check_nitrogen_truck_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)辆加氮车初始位置调整为\((\d+),(\d+)\)",
-            "init_nitrogen_truck_resources",
-        )
-
-    def check_oxygen_truck_unavailable(self, text):
-        return self._check_resource_unavailable(
-            text,
-            r"第(\d+)辆充氧车发生故障不可用",
-            "init_oxygen_truck_resources",
-        )
-
-    def check_power_cart_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)辆供电车初始位置调整为\((\d+),(\d+)\)",
-            "init_power_cart_resources",
-        )
-
-    def check_air_source_car_unavailable(self, text):
-        return self._check_resource_unavailable(
-            text,
-            r"第(\d+)辆气源车发生故障不可用",
-            "init_air_source_car_resources",
-        )
-
-    def check_hydraulic_cart_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)辆液压车初始位置调整为\((\d+),(\d+)\)",
-            "init_hydraulic_cart_resources",
-        )
-
-    def check_maintenance_vehicle_unavailable(self, text):
-        return self._check_resource_unavailable(
-            text,
-            r"第(\d+)辆维修车发生故障不可用",
-            "init_maintenance_vehicle_resources",
-        )
-
-    def check_fire_vehicle_location(self, text):
-        return self._check_resource_location(
-            text,
-            r"第(\d+)辆消防车初始位置调整为\((\d+),(\d+)\)",
-            "init_fire_vehicle_resources",
-        )
-
-    def check_towing_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个牵引任务目标站位调整为\((\d+),(\d+)\)",
-            "init_towing_tasks",
-        )
-
-    def check_refueling_task_priority(self, text):
-        return self._check_task_priority(
-            text,
-            r"第(\d+)个加油任务改为优先执行",
-            "init_refueling_tasks",
-        )
-
-    def check_nitrogen_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个加氮任务目标站位调整为\((\d+),(\d+)\)",
-            "init_nitrogen_filling_tasks",
-        )
-
-    def check_oxygen_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个充氧任务改派至站位\((\d+),(\d+)\)",
-            "init_oxygen_filling_tasks",
-        )
-
-    def check_power_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个供电任务目标站位调整为\((\d+),(\d+)\)",
-            "init_power_supply_tasks",
-        )
-
-    def check_air_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个供气任务改派至站位\((\d+),(\d+)\)",
-            "init_air_supply_tasks",
-        )
-
-    def check_hydraulic_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个液压保障任务目标站位调整为\((\d+),(\d+)\)",
-            "init_hydraulic_support_tasks",
-        )
-
-    def check_maintenance_task_priority(self, text):
-        return self._check_task_priority(
-            text,
-            r"第(\d+)个维修保障任务改为优先执行",
-            "init_maintenance_tasks",
-        )
-
-    def check_inspection_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个检查任务目标站位调整为\((\d+),(\d+)\)",
-            "init_inspection_tasks",
-        )
-
-    def check_fire_watch_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个消防监护任务改派至站位\((\d+),(\d+)\)",
-            "init_fire_watch_tasks",
-        )
-
-    def check_ammo_task_location(self, text):
-        return self._check_task_location(
-            text,
-            r"第(\d+)个挂载弹药任务目标站位调整为\((\d+),(\d+)\)",
-            "init_tasks",
-        )
-
-    def check_route_reroute(self, text):
+    def check_route_fault(self, text):
+        """验证: 站位(x,y)...四个点发生故障"""
         matches = re.findall(r"\((\d+),(\d+)\)", text)
         if len(matches) < 4:
             return False
-        blocked = {tuple(map(int, item)) for item in matches[:4]}
+        fault_points = [(int(x), int(y)) for x, y in matches[:4]]
         try:
-            path = self._tuple_path(self._call("route_planning", (0, 0), (10, 10)))
-            if not path:
-                return False
-            return blocked.isdisjoint(set(path))
-        except Exception:
+            path = self.module.route_planning((0, 0), fault_points[0])
+            return path is None
+        except:
             return False
 
-    def check_route_endpoint_change(self, text):
-        match = re.search(r"站位\((\d+),(\d+)\)发生故障,以该点为终点的调整为\((\d+),(\d+)\)", text)
+    def check_endpoint_change(self, text):
+        """验证: 终点调整"""
+        match = re.search(r"调整为\((\d+),(\d+)\)", text)
         if not match:
             return False
-        old_end = (int(match.group(1)), int(match.group(2)))
-        new_end = (int(match.group(3)), int(match.group(4)))
+        new_end_x, new_end_y = int(match.group(1)), int(match.group(2))
         try:
-            path = self._tuple_path(self._call("route_planning", (0, 0), old_end))
-            return bool(path) and path[-1] == new_end
-        except Exception:
+            path = self.module.route_planning((0, 0), (new_end_x - 1, new_end_y))
+            if path and list(path[-1]) == [new_end_x, new_end_y]:
+                return True
+            return False
+        except:
             return False
 
-
-def verify_single_event(verifier, event):
-    """返回 (是否解决, 事件类型名)。"""
-    if "架舰载机开始到达间隔改为" in event:
-        return verifier.check_planes_interval(event), "init_planes"
-    if "固定保障资源初始位置调整为" in event:
-        return verifier.check_fixed_resource_location(event), "init_fixed_resources"
-    if "通用移动资源发生故障不可用" in event:
-        return verifier.check_mobile_resource_unavailable(event), "init_mobile_resources"
-    if "牵引车初始位置调整为" in event:
-        return verifier.check_tractor_location(event), "init_tractor_resources"
-    if "加油车发生故障不可用" in event:
-        return verifier.check_fuel_truck_unavailable(event), "init_fuel_truck_resources"
-    if "加氮车初始位置调整为" in event:
-        return verifier.check_nitrogen_truck_location(event), "init_nitrogen_truck_resources"
-    if "充氧车发生故障不可用" in event:
-        return verifier.check_oxygen_truck_unavailable(event), "init_oxygen_truck_resources"
-    if "供电车初始位置调整为" in event:
-        return verifier.check_power_cart_location(event), "init_power_cart_resources"
-    if "气源车发生故障不可用" in event:
-        return verifier.check_air_source_car_unavailable(event), "init_air_source_car_resources"
-    if "液压车初始位置调整为" in event:
-        return verifier.check_hydraulic_cart_location(event), "init_hydraulic_cart_resources"
-    if "维修车发生故障不可用" in event:
-        return verifier.check_maintenance_vehicle_unavailable(event), "init_maintenance_vehicle_resources"
-    if "消防车初始位置调整为" in event:
-        return verifier.check_fire_vehicle_location(event), "init_fire_vehicle_resources"
-    if "牵引任务目标站位调整为" in event:
-        return verifier.check_towing_task_location(event), "init_towing_tasks"
-    if "加油任务改为优先执行" in event:
-        return verifier.check_refueling_task_priority(event), "init_refueling_tasks"
-    if "加氮任务目标站位调整为" in event:
-        return verifier.check_nitrogen_task_location(event), "init_nitrogen_filling_tasks"
-    if "充氧任务改派至站位" in event:
-        return verifier.check_oxygen_task_location(event), "init_oxygen_filling_tasks"
-    if "供电任务目标站位调整为" in event:
-        return verifier.check_power_task_location(event), "init_power_supply_tasks"
-    if "供气任务改派至站位" in event:
-        return verifier.check_air_task_location(event), "init_air_supply_tasks"
-    if "液压保障任务目标站位调整为" in event:
-        return verifier.check_hydraulic_task_location(event), "init_hydraulic_support_tasks"
-    if "维修保障任务改为优先执行" in event:
-        return verifier.check_maintenance_task_priority(event), "init_maintenance_tasks"
-    if "检查任务目标站位调整为" in event:
-        return verifier.check_inspection_task_location(event), "init_inspection_tasks"
-    if "消防监护任务改派至站位" in event:
-        return verifier.check_fire_watch_task_location(event), "init_fire_watch_tasks"
-    if "挂载弹药任务目标站位调整为" in event:
-        return verifier.check_ammo_task_location(event), "init_tasks"
-    if "四个点发生故障" in event:
-        return verifier.check_route_reroute(event), "route_planning"
-    if "以该点为终点的调整为" in event:
-        return verifier.check_route_endpoint_change(event), "route_planning"
-    return False, "unknown"
-
-
 def run_verify_case(file_path, emergency_list, return_dict):
-    """单个进程运行：加载模块并验证该文件对应的特情列表"""
+    """
+    单个进程运行：加载模块并验证该文件对应的特情列表
+    """
     try:
+        # 动态加载模块
         spec = importlib.util.spec_from_file_location("test_module", file_path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-
+        
         verifier = DynamicVerifier(module)
+        
         solved_count = 0
         unsolved = []
 
         for event in emergency_list:
-            is_solved, function_name = verify_single_event(verifier, event)
+            is_solved = False
+
+            if "间隔改为" in event:
+                is_solved = verifier.check_truck_interval(event)
+            elif "库存增加" in event:
+                is_solved = verifier.check_zone_stock_increase(event)
+            elif "容量缩减" in event:
+                is_solved = verifier.check_zone_capacity_reduce(event)
+            elif "堆积区发生故障不可用" in event:
+                is_solved = verifier.check_zone_unavailable(event)
+            elif "叉车发生故障不可用" in event:
+                is_solved = verifier.check_forklift_unavailable(event)
+            elif "叉车初始位置调整" in event:
+                is_solved = verifier.check_forklift_location(event)
+            elif "四个点发生故障" in event:
+                is_solved = verifier.check_route_fault(event)
+            elif "终点" in event:
+                is_solved = verifier.check_endpoint_change(event)
+            
             if is_solved:
                 solved_count += 1
             else:
-                unsolved.append({
-                    "event": event,
-                    "function": function_name,
-                })
+                unsolved.append(event)
 
-        return_dict["result"] = {
-            "total": len(emergency_list),
-            "solved": solved_count,
-            "unsolved": unsolved,
+        return_dict['result'] = {
+            'total': len(emergency_list),
+            'solved': solved_count,
+            'unsolved': unsolved,
         }
-    except Exception as exc:
-        return_dict["error"] = str(exc)
-
-
-def _verify_worker(file_path, events, queue):
-    result = {}
-    run_verify_case(file_path, events, result)
-    queue.put(result)
-
-
-def verify_file_with_timeout(file_path, events, timeout=TIMEOUT):
-    """带超时的文件验证，返回与 run_verify_case 相同结构。"""
-    queue = multiprocessing.Queue()
-    process = multiprocessing.Process(target=_verify_worker, args=(file_path, events, queue))
-    process.start()
-    process.join(timeout)
-
-    if process.is_alive():
-        process.terminate()
-        process.join()
-        return {"timeout": True, "result": {"total": len(events), "solved": 0, "unsolved": []}}
-
-    if queue.empty():
-        return {"error": "子进程未返回结果"}
-
-    return queue.get()
-
+        
+    except Exception as e:
+        return_dict['error'] = str(e)
 
 def main(DATASET_FILE, RESULT_DIR):
-    with open(DATASET_FILE, "r", encoding="utf-8") as f:
+    # 1. 读取生成的特情数据
+    with open(DATASET_FILE, 'r', encoding='utf-8') as f:
         dataset = json.load(f)
 
-    files = sorted(
-        [name for name in os.listdir(RESULT_DIR) if name.startswith("result_") and name.endswith(".py")],
-        key=lambda x: int(x.split("_")[1].split(".")[0]),
-    )
+    # 2. 准备文件列表
+    files = sorted([f for f in os.listdir(RESULT_DIR) if f.startswith('result_') and f.endswith('.py')],
+                   key=lambda x: int(x.split('_')[1].split('.')[0]))
 
     total_emergencies_all = 0
     total_solved_all = 0
+    
     file_stats = []
 
     print(f"开始测试 {len(files)} 个文件，对照 {len(dataset)} 条生成的特情数据...")
     print("-" * 60)
 
     for filename in tqdm(files):
-        dataset_idx = int(filename.split("_")[1].split(".")[0]) - 1
-        if dataset_idx < 0 or dataset_idx >= len(dataset):
+        dataset_idx = int(filename.split('_')[1].split('.')[0]) - 1
+        if dataset_idx >= len(dataset) or dataset_idx < 0:
             continue
 
         situation_str = dataset[dataset_idx].get("emergency_situation", "")
-        events = [event.strip() for event in situation_str.split(";") if event.strip()]
+        # 分割成独立的事件列表
+        events = [e.strip() for e in situation_str.split(';') if e.strip()]
+        
         file_path = os.path.join(RESULT_DIR, filename)
-
-        return_dict = verify_file_with_timeout(file_path, events, TIMEOUT)
-
-        if return_dict.get("timeout"):
-            res = {"total": len(events), "solved": 0, "status": "超时"}
+        manager = multiprocessing.Manager()
+        return_dict = manager.dict()
+        
+        # 启动进程运行测试
+        p = multiprocessing.Process(target=run_verify_case, args=(file_path, events, return_dict))
+        p.start()
+        p.join(TIMEOUT)
+        
+        if p.is_alive():
+            p.terminate()
+            p.join()
+            res = {'total': len(events), 'solved': 0, 'status': '超时'}
             print(f"[超时] {filename}")
-        elif "error" in return_dict:
-            res = {"total": len(events), "solved": 0, "status": "报错"}
+        elif 'error' in return_dict:
+            res = {'total': len(events), 'solved': 0, 'status': '报错'}
             print(f"[报错] {filename}: {return_dict['error']}")
         else:
-            data = return_dict.get("result", {"total": 0, "solved": 0, "unsolved": []})
-            res = {"total": data["total"], "solved": data["solved"], "status": "正常"}
-            if data["unsolved"]:
+            data = return_dict.get('result', {'total': 0, 'solved': 0, 'unsolved': []})
+            res = {'total': data['total'], 'solved': data['solved'], 'status': '正常'}
+            if data['unsolved']:
                 print(f"[未完全解决] {filename}: {data['solved']}/{data['total']}")
-                for item in data["unsolved"]:
-                    print(f"  未解决({item['function']}): {item['event']}")
+                for ev in data['unsolved']:
+                    print(f"  未解决: {ev}")
 
-        total_emergencies_all += res["total"]
-        total_solved_all += res["solved"]
+        total_emergencies_all += res['total']
+        total_solved_all += res['solved']
+        
         file_stats.append({
             "文件名": filename,
-            "特情总数": res["total"],
-            "解决数量": res["solved"],
-            "状态": res["status"],
+            "特情总数": res['total'],
+            "解决数量": res['solved'],
+            "状态": res['status']
         })
 
-    print("\n" + "=" * 30 + " 最终统计结果 " + "=" * 30)
-    print(f"测试文件数量: {len(file_stats)}")
+    # --- 输出报告 ---
+    df = pd.DataFrame(file_stats)
+    
+    print("\n" + "="*30 + " 最终统计结果 " + "="*30)
+    print(f"测试文件数量: {len(df)}")
     print(f"一共生成的特情总数: {total_emergencies_all}")
     print(f"一共解决的特情总数: {total_solved_all}")
     if total_emergencies_all > 0:
         print(f"整体解决率: {total_solved_all / total_emergencies_all:.2%}")
-        print("=" * 76)
-        return total_solved_all / total_emergencies_all
+    else:
+        print("整体解决率: 0%")
+    print("="*76)
+    return total_solved_all / total_emergencies_all
 
-    print("整体解决率: 0%")
-    print("=" * 76)
-    return 0

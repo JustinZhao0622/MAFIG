@@ -12,10 +12,10 @@ logging.basicConfig(level=logging.INFO,
                     )
 logger = logging.getLogger(__name__)
 MODELS = [
-    # {
-    #     "name": "Qwen2.5-Coder-7B-Instruct",
-    #     "path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
-    # },
+    {
+        "name": "Qwen2.5-Coder-7B-Instruct",
+        "path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+    },
     {
         "name": "Meta-Llama-3.1-8B-Instruct",
         "path": "/data/huggingface/Meta-Llama-3.1-8B-Instruct",

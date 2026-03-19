@@ -1,36 +1,76 @@
 import heapq
 import time
-import random
 
-def init_planes(nums=5, start_time="8:00:00"):
-    """初始化舰载机，每隔三分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    planes = []
+    trucks = []
     for i in range(nums):
-        plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i, 10)})
-    # 修改牵引任务目标站位
-    planes[3]["location"] = (0, 0)
-    planes[5]["location"] = (13, 12)
-    return planes
+        if i >= 2:  # 从第3辆货车开始间隔改为5分钟
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * (i - 2)))
+        else:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_mobile_resources(nums=10):
-    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
-    mobile_resources = []
+# Zone_3堆积区当前库存增加43
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    # 修改第2辆维修车、加氮车、充氧车、加油车的初始位置
-    mobile_resources[1]["location"] = (1, 5)
-    return mobile_resources
+        if i == 2:  # Zone_3堆积区当前库存增加43
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 43,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+        else:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+    return zones
 
-def init_maintenance_tasks(nums=6):
-    """初始化维修保障任务，返回任务列表，每个任务包含id、类型"""
-    maintenance_tasks = []
+# Zone_1堆积区发生故障不可用
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        maintenance_tasks.append({"id": i, "type": "maintenance", "location": (random.randint(0, 3), random.randint(0, 10))})
-    # 修改维修任务目标站位
-    maintenance_tasks[1]["location"] = (0, 0)
-    maintenance_tasks[5]["location"] = (13, 12)
-    return maintenance_tasks
-
-# 其他函数保持不变
+        if i == 0:  # Zone_1堆积区发生故障不可用
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}",
+                "status": "unavailable"
+            })
+        else:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+    return zones
