@@ -1,68 +1,81 @@
 import heapq
 import time
+import random 
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    vessels = []
     for i in range(nums):
-        if i >= 2:  # 从第3辆货车开始间隔改为6分钟
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 6 * 60 * (i - 2)))
-        else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 1:  # 第2艘船舶延迟10分钟
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10 * 60))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
     for i in range(nums):
-        if i == 2:  # Zone_2堆积区最大容量缩减至133
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 133,
-                "desc": f"货物堆积区域{i+1}"
-            })
-        else:
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}"
-            })
-    return zones
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    # 禁用id为3的资源
+    resources[3]["status"] = "unavailable"
+    return resources
 
-def init_inventory_records(nums=10):
+def route_planning(begin_point, end_point, grid_size=(100, 100)):
+    """从一个点到另一个点的路径规划 (使用A*算法)
+
+    参数:
+        begin_point: 起点坐标 (x, y)
+        end_point: 终点坐标 (x, y)
+        grid_size: 地图大小 (width, height)，默认 (100, 100)
+
+    返回:
+        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        如果没有路径则返回 None
     """
-    初始化库存记录。
-    返回库存记录列表，每条记录包含id、sku、数量
-    """
-    records = []
-    for i in range(nums):
-        if i == 2:  # Zone_2堆积区当前库存增加75
-            records.append({
-                "id": f"Inventory_{i+1}",
-                "sku": f"SKU_{i+1}",
-                "quantity": 175,
-            })
-        else:
-            records.append({
-                "id": f"Inventory_{i+1}",
-                "sku": f"SKU_{i+1}",
-                "quantity": 100,
-            })
-    return records
+    width, height = grid_size
+
+    # 曼哈顿距离启发式函数
+    def heuristic(pos):
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
+
+    # 四个方向：上、下、左、右
+    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
+    visited = {begin_point}
+
+    while heap:
+        f_score, _, current, path = heapq.heappop(heap)
+
+        # 到达终点
+        if current == end_point:
+            return path
+
+        # 探索四个方向
+        for dx, dy in directions:
+            next_x = current[0] + dx
+            next_y = current[1] + dy
+            next_pos = (next_x, next_y)
+
+            # 检查是否在网格范围内
+            if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+
+            # 检查是否已访问
+            if next_pos in visited:
+                continue
+
+            visited.add(next_pos)
+            new_path = path + [next_pos]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(next_pos)  # 总评估代价
+
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
+    return None
+
+# 其他函数保持不变

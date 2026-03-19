@@ -26,14 +26,15 @@ logging.basicConfig(level=logging.INFO,
                     filemode='a'
                     )
 logger = logging.getLogger(__name__)
-DIR = "/root/code/neuralcomputing/MAED_lora/"
-DATASET_FILE = "datasets/test.json"
-scenario = "cangchu"
+
+scenario = "gangkou"
 raw_model_path = "/data/huggingface/Qwen2.5-Coder-7B-Instruct"
 perception_models_path = f"/root/code/neuralcomputing-models/{scenario}/perception"
 perception_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_perception"
 decision_models_path = f"/root/code/neuralcomputing-models/{scenario}/decision"
 decision_combined_models_path = f"/root/code/neuralcomputing-models/{scenario}/combined_decision"
+DIR = "/root/code/neuralcomputing/MAED_lora/"
+DATASET_FILE = "datasets/test.json"
 def lora_perception_agent():
     """
     微调并合并感知智能体
@@ -47,15 +48,15 @@ def lora_perception_agent():
     num_train_epochs = 3
     per_device_train_batch_size = 2
     gradient_accumulation_steps = 2
-
+    
     if os.path.exists(perception_models_path):
         shutil.rmtree(perception_models_path)
     os.makedirs(perception_models_path)
-
+    
     if os.path.exists(perception_combined_models_path):
         shutil.rmtree(perception_combined_models_path)
     os.makedirs(perception_combined_models_path)
-
+    
     train_args = [
         "--stage", "sft",
         "--do_train", "True",
@@ -93,7 +94,7 @@ def lora_perception_agent():
     ]
     subprocess.run(
         ["conda", "run", "-n", "llama_new", "--no-capture-output",
-            "llamafactory-cli", "train"] + train_args,
+         "llamafactory-cli", "train"] + train_args,
         check=True, env={**os.environ, "CUDA_VISIBLE_DEVICES": "0"},
     )
     # 合并模型
@@ -199,8 +200,8 @@ def lora_decision_agent():
     """
     微调并合并决策智能体（基于添加了EDIT tokens的模型）
     """
-    # edit_model_path = raw_model_path + "-edit-init"
-    edit_model_path = raw_model_path
+    edit_model_path = raw_model_path + "-edit-init"
+    # edit_model_path = raw_model_path
     
     learning_rate = 5e-5
     num_train_epochs = 3
@@ -289,8 +290,7 @@ if __name__ == "__main__":
     # perception_agent()
     # 决策智能体loss调整
     # decision_loss_agent()
-    nums = [80,130,170]
-    logger.info("=======================================================")
+    nums = [60,70,80,90, 100,110,120,130]
     for num in nums:
         with open("/root/code/neuralcomputing/decision_loss_train_datas.json","r", encoding="utf-8") as f:
             decision_loss_train_datas = json.load(f)[:num]
@@ -301,5 +301,5 @@ if __name__ == "__main__":
         time_decision = decision_agent()
         gc.collect()
         torch.cuda.empty_cache()
-        accuracy = review_code.main(DATASET_FILE,DIR + "results")
+        accuracy = review_code.main(DIR + "results", DATASET_FILE)
         logger.info(f"num: {num}, accuracy: {accuracy}, time_lora: {time_lora}, time_decision: {time_decision}")

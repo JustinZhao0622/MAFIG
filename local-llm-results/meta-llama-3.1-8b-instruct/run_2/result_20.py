@@ -1,57 +1,26 @@
 import heapq
 import time
+import random 
 
-# 货车到达时间
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    vessels = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+        if i == 1:  # 第2艘船舶延迟10分钟
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 13 * 60))
+        else:
+            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        vessels.append({"time": vessel_time, "id": i, "duration": 10 if i != 1 else 20, "location": (i,10)})
+    return vessels
 
-# 货物堆积区域
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
     for i in range(nums):
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    # 根据突发事件，Zone_1堆积区当前库存增加24
-    zones[0]["current_stock"] += 24
-    return zones
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return resources
 
-# 叉车队
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
-    for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
-        })
-    return forklifts
-
-# 路径规划
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -108,372 +77,59 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-# 装货月台
-def init_loading_docks(nums=4):
-    """
-    初始化装货月台。
-    返回月台列表，每个月台包含id、位置、状态
-    """
-    docks = []
+def init_trucks(nums=8):
+    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
+    trucks = []
     for i in range(nums):
-        docks.append({
-            "id": f"Dock_{i+1}",
-            "location": (i * 5, 0),
+        trucks.append({
+            "id": f"Truck_{i+1}",
+            "location": (random.randint(0, 20), random.randint(0, 20)),
             "status": "idle",
         })
-    return docks
+    return trucks
 
-# 卸货月台
-def init_unloading_docks(nums=4):
-    """
-    初始化卸货月台。
-    返回月台列表，每个月台包含id、位置、状态
-    """
-    docks = []
+def init_yard_blocks(nums=6):
+    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
+    yard_blocks = []
     for i in range(nums):
-        docks.append({
-            "id": f"UnloadDock_{i+1}",
-            "location": (i * 5, 5),
-            "status": "idle",
+        yard_blocks.append({
+            "id": f"Block_{i+1}",
+            "capacity": 100,
+            "occupied": random.randint(0, 60),
         })
-    return docks
+    return yard_blocks
 
-# 货架
-def init_shelves(nums=10):
-    """
-    初始化货架。
-    返回货架列表，每个货架包含id、位置、容量
-    """
-    shelves = []
+def init_berths(nums=4):
+    """初始化泊位，返回泊位列表，每个泊位包含id、位置、状态"""
+    berths = []
     for i in range(nums):
-        shelves.append({
-            "id": f"Shelf_{i+1}",
-            "location": (i % 5, i // 5),
-            "capacity": 50,
-        })
-    return shelves
-
-# 分拣台
-def init_sorting_stations(nums=3):
-    """
-    初始化分拣台。
-    返回分拣台列表，每个分拣台包含id、位置、状态
-    """
-    stations = []
-    for i in range(nums):
-        stations.append({
-            "id": f"SortStation_{i+1}",
-            "location": (10, i * 3),
-            "status": "idle",
-        })
-    return stations
-
-# 仓储作业人员
-def init_workers(nums=6):
-    """
-    初始化仓储作业人员。
-    返回人员列表，每个人员包含id、岗位、状态
-    """
-    workers = []
-    for i in range(nums):
-        workers.append({
-            "id": f"Worker_{i+1}",
-            "role": "operator",
+        if (i, 0) in [(5,4),(6,4),(5,5),(6,5)]:  # 站位故障
+            continue
+        berths.append({
+            "id": f"Berth_{i+1}",
+            "location": (i * 10, 0),
             "status": "available",
         })
-    return workers
+    return berths
 
-# 托盘
-def init_pallets(nums=20):
-    """
-    初始化托盘。
-    返回托盘列表，每个托盘包含id、位置、载重
-    """
-    pallets = []
+def init_containers(nums=12):
+    """初始化集装箱，返回集装箱列表，每个集装箱包含id、位置、类型"""
+    containers = []
     for i in range(nums):
-        pallets.append({
-            "id": f"Pallet_{i+1}",
-            "location": (i % 5, i // 5),
-            "max_weight": 1000,
+        containers.append({
+            "id": f"Container_{i+1}",
+            "location": (random.randint(0, 10), random.randint(0, 10)),
+            "type": "general",
         })
-    return pallets
+    return containers
 
-# 订单
-def init_orders(nums=8):
-    """
-    初始化订单。
-    返回订单列表，每个订单包含id、货物数量、状态
-    """
-    orders = []
+def init_loading_tasks(nums=10):
+    """初始化装卸任务，返回任务列表，每个任务包含id、目标资源、状态"""
+    loading_tasks = []
     for i in range(nums):
-        orders.append({
-            "id": f"Order_{i+1}",
-            "item_count": 10,
-            "status": "pending",
-        })
-    return orders
-
-# 库存记录
-def init_inventory_records(nums=10):
-    """
-    初始化库存记录。
-    返回库存记录列表，每条记录包含id、sku、数量
-    """
-    records = []
-    for i in range(nums):
-        records.append({
-            "id": f"Inventory_{i+1}",
-            "sku": f"SKU_{i+1}",
-            "quantity": 100,
-        })
-    return records
-
-# 传送带
-def init_conveyors(nums=2):
-    """
-    初始化传送带。
-    返回传送带列表，每条传送带包含id、长度、状态
-    """
-    conveyors = []
-    for i in range(nums):
-        conveyors.append({
-            "id": f"Conveyor_{i+1}",
-            "length": 20,
-            "status": "running",
-        })
-    return conveyors
-
-# 拣货任务
-def init_picking_tasks(nums=6):
-    """
-    初始化拣货任务。
-    返回任务列表，每个任务包含id、目标货架、状态
-    """
-    tasks = []
-    for i in range(nums):
-        tasks.append({
-            "id": f"PickTask_{i+1}",
-            "target_shelf": f"Shelf_{(i % 5) + 1}",
+        loading_tasks.append({
+            "id": f"Task_{i+1}",
+            "target": f"Container_{(i % 12) + 1}",
             "status": "waiting",
         })
-    return tasks
-
-# 发货任务
-def init_shipping_tasks(nums=6):
-    """
-    初始化发货任务。
-    返回任务列表，每个任务包含id、目标月台、状态
-    """
-    tasks = []
-    for i in range(nums):
-        tasks.append({
-            "id": f"ShipTask_{i+1}",
-            "target_dock": f"Dock_{(i % 4) + 1}",
-            "status": "waiting",
-        })
-    return tasks
-
-# 根据突发事件，站位(8,7)发生故障，调整为(9,7)
-def adjust_station_location(stations):
-    for station in stations:
-        if station["location"] == (8, 7):
-            station["location"] = (9, 7)
-    return stations
-
-# 根据突发事件，站位(5,4)(6,4)(5,5)(6,5)四个点发生故障
-def adjust_faulty_stations(stations):
-    faulty_stations = [(5, 4), (6, 4), (5, 5), (6, 5)]
-    for station in stations:
-        if station["location"] in faulty_stations:
-            station["status"] = "faulty"
-    return stations
-
-# 根据突发事件，从第5辆货车开始间隔改为5分钟
-def adjust_truck_interval(trucks):
-    trucks[4]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[4]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_2(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_3(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_4(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_5(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_6(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_7(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_8(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_9(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_10(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_11(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_12(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_13(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_14(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_15(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_16(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_17(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_18(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_19(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_20(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_21(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_22(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_23(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_24(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_25(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_26(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_27(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_28(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(time.strptime(trucks[i]["arrival_time"], "%H:%M:%S")) + 5 * 60))
-    return trucks
-
-# 根据突发事件，调整货车到达时间
-def adjust_truck_arrival_time_interval_5_29(trucks):
-    for i in range(1, len(trucks)):
-        trucks[i]["arrival_time"] = time.strftime("%H:%M:%S", time
+    return loading_tasks

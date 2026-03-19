@@ -1,22 +1,17 @@
 import heapq
 import time
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
+import random 
+def init_cranes(nums=5,start_time="8:00:00"):
+    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
-    current_time = time.mktime(start_time)
+    vessels = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(current_time))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-        if i < nums - 1:
-            if i >= 1:
-                current_time += 8 * 60
-            else:
-                current_time += 3 * 60
-    return trucks
+        current_time_offset = 3 * 60 * i
+        if i == 0:
+            current_time_offset += 10 * 60
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + current_time_offset))
+        duration = 10
+        if i == 1:
+            duration = 20
+        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
+    return vessels
