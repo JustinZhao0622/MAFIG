@@ -2,62 +2,53 @@ import heapq
 import time
 import random
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间改为8分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+def init_fixed_resources(nums=10):
+    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
+    fixed_resources = []
     for i in range(nums):
-        if i >= 6:  # 从第7辆货车开始
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * (i - 6)))
+        if i == 4:
+            fixed_resources.append({"id": i, "type": "crane", "location": (2, 7)})
         else:
-            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fixed_resources
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_towing_tasks(nums=6):
+    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
+    towing_tasks = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (46, 48) if i == 0 else (0, 25),
-        })
-    return forklifts
-
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        if i == 2:  # Zone_3
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 24,  # 突发事件：Zone_3堆积区当前库存增加24
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}",
-                "available": False  # 突发事件：Zone_3堆积区发生故障不可用
-            })
+        # 根据突发事件描述，将第3个牵引任务目标站位调整为(2,8)
+        if i == 2:
+            location = (2, 8)
         else:
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}",
-                "available": True
-            })
-    return zones
+            location = (random.randint(0, 3), random.randint(0, 10))
+        towing_tasks.append({"id": i, "type": "towing", "location": location})
+    return towing_tasks
+
+def init_tractor_resources(nums=10):
+    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
+    tractor_resources = []
+    for i in range(nums):
+        # 修改初始位置为(0,3)
+        location = (0, 3) if i == 4 else (random.randint(0, 3), random.randint(0, 10))
+        tractor_resources.append({"id": i, "type": "tractor", "location": location})
+    return tractor_resources
+
+def init_power_cart_resources(nums=10):
+    """初始化供电车资源，返回资源列表，每个资源包含id、类型"""
+    power_cart_resources = []
+    for i in range(nums):
+        if i == 4:
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (1, 7)})
+        else:
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return power_cart_resources
+
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
+    for i in range(nums):
+        if i == 4:  # 突发事件：第5辆充氧车发生故障不可用
+            continue  # 跳过第5辆充氧车的初始化
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
 

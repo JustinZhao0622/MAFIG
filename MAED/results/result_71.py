@@ -2,39 +2,67 @@ import heapq
 import time
 import random
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_mobile_resources(nums=10):
+    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
+    mobile_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (35, 49) if i == 0 else (0, 25),
-        })
-    return forklifts
-
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        if i == 1:  # Zone_2故障不可用
+        if i == 0:  # 假设第1个通用移动资源发生故障不可用
             continue
-        if i == 2:  # Zone_3库存增加52
-            current_stock = 52
+        mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return mobile_resources
+
+def init_fire_vehicle_resources(nums=10):
+    """初始化消防车资源，返回资源列表，每个资源包含id、类型"""
+    fire_vehicle_resources = []
+    for i in range(nums):
+        fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (0, 6) if i == 0 else (random.randint(0, 3), random.randint(0, 10))})
+    return fire_vehicle_resources
+
+def init_towing_tasks(nums=6):
+    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
+    towing_tasks = []
+    for i in range(nums):
+        if i == 5:
+            location = (2, 2)
         else:
-            current_stock = 0
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": current_stock,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+            location = (random.randint(0, 3), random.randint(0, 10))
+        towing_tasks.append({"id": i, "type": "towing", "location": location})
+    return towing_tasks
+
+def init_fixed_resources(nums=10):
+    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
+    fixed_resources = []
+    for i in range(nums):
+        fixed_resources.append({"id": i, "type": "crane", "location": (0, 0)})  # 修改初始位置为(0,0)
+    return fixed_resources
+
+def init_planes(nums=5, start_time="8:00:00"):
+    """初始化舰载机，每隔三分钟到达一架舰载机，返回舰载机列表，每个舰载机包含时间、id，任务时长都为10分钟"""
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    planes = []
+    for i in range(nums):
+        if i >= 2:  # 从第3架舰载机开始
+            plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 6 * 60 * (i - 2)))
+        else:
+            plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i, 10)})
+    return planes
+
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
+    for i in range(nums):
+        if i == 0:  # 假设第1辆充氧车发生故障不可用
+            continue
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
+
+def init_maintenance_vehicle_resources(nums=10):
+    """初始化维修车资源，返回资源列表，每个资源包含id、类型"""
+    maintenance_vehicle_resources = []
+    for i in range(nums):
+        if i == 0:  # 假设第1辆维修车发生故障不可用
+            continue
+        maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return maintenance_vehicle_resources
 

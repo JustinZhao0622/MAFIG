@@ -2,42 +2,42 @@ import heapq
 import time
 import random
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_nitrogen_truck_resources(nums=10):
+    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
+    nitrogen_truck_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (44, 42) if i == 0 else (0, 25),
-        })
-    return forklifts
-
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
-    for i in range(nums):
-        if i == 3:  # 修改 Zone_4 的最大容量
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 70,  # 增加Zone_4的当前库存
-                "max_capacity": 147,  # 缩减Zone_4的最大容量
-                "desc": f"货物堆积区域{i+1}"
-            })
+        if i == 1:
+            location = (1, 10)
         else:
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}"
-            })
-    return zones
+            location = (random.randint(0, 3), random.randint(0, 10))
+        nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": location})
+    return nitrogen_truck_resources
+
+def init_maintenance_vehicle_resources(nums=10):
+    """初始化维修车资源，返回资源列表，每个资源包含id、类型"""
+    maintenance_vehicle_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第2辆维修车的id是1
+            continue  # 忽略第2辆维修车的初始化
+        maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return maintenance_vehicle_resources
+
+def init_fixed_resources(nums=10):
+    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
+    fixed_resources = []
+    for i in range(nums):
+        if i == 1:
+            fixed_resources.append({"id": i, "type": "crane", "location": (1, 4)})
+        else:
+            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fixed_resources
+
+def init_mobile_resources(nums=10):
+    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
+    mobile_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第二个资源发生故障
+            continue
+        mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return mobile_resources
 

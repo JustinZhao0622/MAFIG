@@ -2,48 +2,30 @@ import heapq
 import time
 import random
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_mobile_resources(nums=10):
+    """初始化移动资源，返回移动资源列表，每个资源包含id、类型"""
+    mobile_resources = []
     for i in range(nums):
-        if i == 0:
-            forklifts.append({
-                "id": "Forklift_2",
-                "location": (37, 21),
-            })
-        else:
-            forklifts.append({
-                "id": f"Forklift_{i+1}",
-                "location": (0, 25),
-            })
-    return forklifts
+        if i != 4:  # 确保第5个资源不添加
+            mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return mobile_resources
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
     for i in range(nums):
-        if i == 1:  # 修改 Zone_2 的最大容量为 93
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 93,  # 修改最大容量
-                "desc": f"货物堆积区域{i+1}"
-            })
-        else:  # 其他区域保持不变
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}"
-            })
-    return zones
+        if i == 4:  # 突发事件：第5辆充氧车发生故障不可用
+            continue  # 跳过第5辆充氧车的初始化
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
+
+def init_fire_vehicle_resources(nums=10):
+    """初始化消防车资源，返回资源列表，每个资源包含id、类型"""
+    fire_vehicle_resources = []
+    for i in range(nums):
+        if i == 4:
+            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (1, 1)})
+        else:
+            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fire_vehicle_resources
 

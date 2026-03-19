@@ -1,0 +1,8 @@
+2026-03-19 14:07:03 - INFO - =======================================================
+2026-03-19 14:07:03 - INFO - start local llm benchmark: models=3, runs=2
+2026-03-19 14:11:18 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=1, time=251.54, accuracy=0.17133956386292834, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_1
+2026-03-19 14:15:32 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=2, time=251.07, accuracy=0.17289719626168223, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_2
+2026-03-19 14:23:22 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=1, time=466.15, accuracy=0.010903426791277258, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_1
+2026-03-19 14:30:54 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=2, time=449.40, accuracy=0.010903426791277258, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_2
+2026-03-19 14:36:26 - INFO - model=glm-4-9b-chat, run=1, time=328.78, accuracy=0.24454828660436137, out_dir=local-llm-results/glm-4-9b-chat/run_1
+2026-03-19 14:40:43 - INFO - model=glm-4-9b-chat, run=2, time=253.64, accuracy=0.24610591900311526, out_dir=local-llm-results/glm-4-9b-chat/run_2

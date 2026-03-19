@@ -1,0 +1,6 @@
+2026-03-19 14:47:06 - INFO - model=Qwen2.5-Coder-7B-Instruct, run_idx=1, perception_time=31.84s, decision_time=73.03s, accuracy=0.4891
+2026-03-19 14:48:54 - INFO - model=Qwen2.5-Coder-7B-Instruct, run_idx=2, perception_time=30.96s, decision_time=73.92s, accuracy=0.4891
+2026-03-19 15:13:43 - INFO - model=Meta-Llama-3.1-8B-Instruct, run_idx=1, perception_time=43.86s, decision_time=78.82s, accuracy=0.3115
+2026-03-19 15:15:50 - INFO - model=Meta-Llama-3.1-8B-Instruct, run_idx=2, perception_time=44.47s, decision_time=79.66s, accuracy=0.3115
+2026-03-19 15:19:00 - INFO - model=glm-4-9b-chat, run_idx=1, perception_time=51.15s, decision_time=125.02s, accuracy=0.4237
+2026-03-19 15:22:09 - INFO - model=glm-4-9b-chat, run_idx=2, perception_time=50.94s, decision_time=125.01s, accuracy=0.4237

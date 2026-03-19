@@ -2,97 +2,96 @@ import heapq
 import time
 import random
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_air_source_car_resources(nums=10):
+    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
+    air_source_car_resources = []
     for i in range(nums):
-        if i == 1:  # 修改 Zone_2 的当前库存
-            current_stock = 57
-        elif i == 2:  # 修改 Zone_3 的最大容量
-            max_capacity = 113
-        else:
-            current_stock = 0
-            max_capacity = 100
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0, 25),
-            "current_stock": current_stock,
-            "max_capacity": max_capacity,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+        if i == 0:  # 假设第1辆气源车发生故障不可用
+            continue
+        air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return air_source_car_resources
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
-    参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
-
-    返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
-        如果没有路径则返回 None
-    """
+    """从一个点到另一个点的路径规划 (使用A*算法)"""
     width, height = grid_size
 
-    # 曼哈顿距离启发式函数
     def heuristic(pos):
         return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
-    # 四个方向：上、下、左、右
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-
-    # 优先队列：(f值, 计数器, 当前点, 路径)
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
-
-        # 到达终点
         if current == end_point:
             return path
 
-        # 探索四个方向
         for dx, dy in directions:
             next_x = current[0] + dx
             next_y = current[1] + dy
             next_pos = (next_x, next_y)
 
-            # 检查是否在网格范围内
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
 
-            # 检查是否已访问
             if next_pos in visited:
                 continue
 
+            if next_pos == (11, 12):
+                # 突发事件约束：站位(11,12)发生故障，以该点为终点的调整为(12,12)
+                next_pos = (12, 12)
+
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1  # 实际代价
-            f_score = g_score + heuristic(next_pos)  # 总评估代价
+            g_score = len(new_path) - 1
+            f_score = g_score + heuristic(next_pos)
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
-
-        # 特殊情况处理：如果当前点为(7,7)，则尝试调整到(8,7)
-        if current == (7, 7):
-            adjusted_point = (8, 7)
-            if not (0 <= adjusted_point[0] < width and 0 <= adjusted_point[1] < height):
-                continue
-            if adjusted_point in visited:
-                continue
-            visited.add(adjusted_point)
-            new_path = path + [adjusted_point]
-            g_score = len(new_path) - 1  # 实际代价
-            f_score = g_score + heuristic(adjusted_point)  # 总评估代价
-            counter += 1
-            heapq.heappush(heap, (f_score, counter, adjusted_point, new_path))
     return None
+
+def init_tractor_resources(nums=10):
+    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
+    tractor_resources = []
+    for i in range(nums):
+        # 根据突发事件描述，将第1辆牵引车初始位置调整为(3,1)
+        if i == 0:
+            tractor_resources.append({"id": i, "type": "tractor", "location": (3, 1)})
+        else:
+            tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return tractor_resources
+
+def init_power_cart_resources(nums=10):
+    """初始化供电车资源，返回资源列表，每个资源包含id、类型"""
+    power_cart_resources = []
+    for i in range(nums):
+        # 根据突发事件描述，将第1辆供电车的初始位置调整为(3,4)
+        if i == 0:
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (3, 4)})
+        else:
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return power_cart_resources
+
+def init_fixed_resources(nums=10):
+    """初始化固定资源，返回固定资源列表，每个资源包含id、类型"""
+    fixed_resources = []
+    for i in range(nums):
+        if i == 0:  # 确保第1个固定资源初始位置调整为(3,8)
+            fixed_resources.append({"id": i, "type": "crane", "location": (3, 8)})
+        else:
+            fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fixed_resources
+
+def init_nitrogen_truck_resources(nums=10):
+    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
+    nitrogen_truck_resources = []
+    for i in range(nums):
+        # 根据突发事件描述，将第1辆加氮车的初始位置调整为(1,5)
+        if i == 0:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (1, 5)})
+        else:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_truck_resources
 

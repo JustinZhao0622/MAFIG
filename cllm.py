@@ -12,9 +12,9 @@ import shutil
 import review_code
 
 # 模型 Qwen/Qwen3-32B deepseek-ai/DeepSeek-V3.2 Qwen/Qwen3-Coder-480B-A35B-Instruct
-RESULT_DIR = "cllm-results/qwen3-32b"
+RESULT_DIR = "cllm-results/qwen3-coder-480b-a35b-instruct"
 DATASET_FILE = "datasets/test.json"
-MODEL_NAME = "Qwen/Qwen3-32B"
+MODEL_NAME = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
 BASE_URL = "https://api-inference.modelscope.cn/v1"
 PER_THREAD_NUMS = 1
 
@@ -68,7 +68,7 @@ async def call_model(index: int, client: AsyncOpenAI):
 
 async def key_worker(
     key_id: int, client: AsyncOpenAI, indices: list[int], per_key_concurrency: int = 1
-) -> float:
+) -> float: 
     """
     一个 key 的 worker：启动时立刻跑起来
     per_key_concurrency=1 => 每个key同一时间只跑1个请求

@@ -1,48 +1,175 @@
 import heapq
 import time
+import random
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+
+def init_planes(nums=5,start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+    planes = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+        plane_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        planes.append({"time": plane_time, "id": i, "duration": 10, "location": (i,10)})
+    return planes
 
-def init_stacking_zones(nums=4):
-    zones = []
-    for i in range(nums):
-        zone_info = {
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        }
-        
-        # 特别处理突发事件
-        if i + 1 == 2:
-            zone_info["current_stock"] += 39
-            
-        zones.append(zone_info)
-    
-    # Zone_4 发生故障不可用
-    if len(zones) > 3:
-        zones[3]["max_capacity"] = 0
-        
-    return zones
 
-def init_forklifts(nums=3):
-    forklifts = []
+def init_fixed_resources(nums=10):
+    fixed_resources = []
     for i in range(nums):
-        forklifts.append({
-            "id": f"Forklift_{i+1}",
-            "location": (0, 25),
-        })
-    return forklifts
+        fixed_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fixed_resources
+
+def init_mobile_resources(nums=10):
+    mobile_resources = []
+    for i in range(nums):
+        mobile_resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return mobile_resources
+
+
+def init_tractor_resources(nums=10):
+    tractor_resources = []
+    for i in range(nums):
+        tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return tractor_resources
+
+
+def init_fuel_truck_resources(nums=10):
+    fuel_truck_resources = []
+    for i in range(nums):
+        fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fuel_truck_resources
+
+
+def init_nitrogen_truck_resources(nums=10):
+    nitrogen_truck_resources = []
+    for i in range(nums):
+        nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_truck_resources
+
+
+def init_oxygen_truck_resources(nums=10):
+    oxygen_truck_resources = []
+    for i in range(nums):
+        if i == 2:
+            continue  # 第3辆充氧车发生故障不可用（索引从0开始）
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
+
+
+def init_power_cart_resources(nums=10):
+    power_cart_resources = []
+    for i in range(nums):
+        power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return power_cart_resources
+
+
+def init_air_source_car_resources(nums=10):
+    air_source_car_resources = []
+    for i in range(nums):
+        air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return air_source_car_resources
+
+
+def init_hydraulic_cart_resources(nums=10):
+    hydraulic_cart_resources = []
+    for i in range(nums):
+        if i == 2:
+            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (0, 10)})  # 第3辆液压车初始位置调整为(0,10)
+        else:
+            hydraulic_cart_resources.append({"id": i, "type": "hydraulic_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return hydraulic_cart_resources
+
+
+def init_maintenance_vehicle_resources(nums=10):
+    maintenance_vehicle_resources = []
+    for i in range(nums):
+        maintenance_vehicle_resources.append({"id": i, "type": "maintenance_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return maintenance_vehicle_resources
+
+
+def init_fire_vehicle_resources(nums=10):
+    fire_vehicle_resources = []
+    for i in range(nums):
+        if i == 2:
+            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (2, 10)})  # 第3辆消防车初始位置调整为(2,10)
+        else:
+            fire_vehicle_resources.append({"id": i, "type": "fire_vehicle", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fire_vehicle_resources
+
+
+def init_towing_tasks(nums=6):
+    towing_tasks = []
+    for i in range(nums):
+        towing_tasks.append({"id": i, "type": "towing", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return towing_tasks
+
+
+def init_refueling_tasks(nums=6):
+    refueling_tasks = []
+    for i in range(nums):
+        refueling_tasks.append({"id": i, "type": "refueling", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return refueling_tasks
+
+
+def init_nitrogen_filling_tasks(nums=6):
+    nitrogen_filling_tasks = []
+    for i in range(nums):
+        nitrogen_filling_tasks.append({"id": i, "type": "nitrogen_filling", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_filling_tasks
+
+
+def init_oxygen_filling_tasks(nums=6):
+    oxygen_filling_tasks = []
+    for i in range(nums):
+        oxygen_filling_tasks.append({"id": i, "type": "oxygen_filling", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_filling_tasks
+
+
+def init_power_supply_tasks(nums=6):
+    power_supply_tasks = []
+    for i in range(nums):
+        power_supply_tasks.append({"id": i, "type": "power_supply", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return power_supply_tasks
+
+
+def init_air_supply_tasks(nums=6):
+    air_supply_tasks = []
+    for i in range(nums):
+        air_supply_tasks.append({"id": i, "type": "air_supply", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return air_supply_tasks
+
+
+def init_hydraulic_support_tasks(nums=6):
+    hydraulic_support_tasks = []
+    for i in range(nums):
+        hydraulic_support_tasks.append({"id": i, "type": "hydraulic_support", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return hydraulic_support_tasks
+
+
+def init_maintenance_tasks(nums=6):
+    maintenance_tasks = []
+    for i in range(nums):
+        maintenance_tasks.append({"id": i, "type": "maintenance", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return maintenance_tasks
+
+
+def init_inspection_tasks(nums=6):
+    inspection_tasks = []
+    for i in range(nums):
+        inspection_tasks.append({"id": i, "type": "inspection", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return inspection_tasks
+
+
+def init_fire_watch_tasks(nums=6):
+    fire_watch_tasks = []
+    for i in range(nums):
+        fire_watch_tasks.append({"id": i, "type": "fire_watch", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fire_watch_tasks
+
+def init_tasks(nums=6):
+    ammo_tasks = []
+    for i in range(nums):
+        ammo_tasks.append({"id": i, "type": "ammo", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return ammo_tasks
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     width, height = grid_size
@@ -56,9 +183,6 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
     visited = {begin_point}
 
-    # 故障点集合
-    failed_points = {(3,4), (4,4), (3,5), (4,5)}
-    
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
@@ -72,75 +196,15 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
 
             if not (0 <= next_x < width and 0 <= next_y < height):
                 continue
-                
-            if next_pos in visited or next_pos in failed_points:
+
+            if next_pos in visited:
                 continue
 
             visited.add(next_pos)
             new_path = path + [next_pos]
-            g_score = len(new_path) - 1  
-            f_score = g_score + heuristic(next_pos)  
+            g_score = len(new_path) - 1
+            f_score = g_score + heuristic(next_pos)
 
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
-
-def init_a():
-    a = 1
-    return a
-
-def init_b():
-    b = 2
-    return b
-
-def init_c():
-    c = 3
-    return c    
-
-def init_d():
-    d = 4
-    return d
-    
-def init_e():
-    e = 5
-    return e
-
-def init_f():
-    f = 6
-    return f
-    
-def init_g():
-    g = 7
-    return g
-
-def init_h():
-    h = 8
-    return h
-    
-def init_i():
-    i = 9
-    return i
-
-def init_j():
-    j = 10
-    return j
-    
-def init_k():
-    k = 11
-    return k
-
-def init_l():
-    l = 12
-    return l
-    
-def init_m():
-    m = 13
-    return m
-
-def init_n():
-    n = 14
-    return n
-    
-def init_o():
-    o = 15
-    return o

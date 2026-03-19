@@ -3,6 +3,7 @@
 """
 
 import os
+import ast
 import json
 import shutil
 import time
@@ -10,6 +11,44 @@ import sys
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 import prompts as prompts_mod
+
+
+def _parse_function_list(raw_text):
+    """安全解析模型输出的函数名列表。"""
+    cleaned = raw_text.replace("```python", "").replace("```", "").strip()
+    try:
+        parsed = ast.literal_eval(cleaned)
+        if isinstance(parsed, list):
+            return [str(item).strip() for item in parsed]
+    except Exception:
+        pass
+
+    if cleaned.startswith("[") and cleaned.endswith("]"):
+        body = cleaned[1:-1].strip()
+        if not body:
+            return []
+        items = []
+        for part in body.split(","):
+            value = part.strip().strip("'").strip('"')
+            items.append(value)
+        return items
+    return []
+
+
+def _normalize_function_list(functions, expected_len):
+    """把感知结果修正到与事件数量一致。"""
+    valid_names = set(prompts_mod.functions_mapping.keys()) | {"None", "none", ""}
+    normalized = []
+    for item in functions[:expected_len]:
+        value = str(item).strip()
+        if value not in valid_names:
+            value = "None"
+        if value.lower() == "none" or value == "":
+            value = "None"
+        normalized.append(value)
+    while len(normalized) < expected_len:
+        normalized.append("None")
+    return normalized
 
 
 def perception_agent(DIR, model_path):
@@ -55,13 +94,13 @@ def perception_agent(DIR, model_path):
 
     # 感知智能体结果的处理和存储
     for i, output in enumerate(outputs):
-        text = eval(
-            output.outputs[0].text.replace("```python", "").replace("```", "").strip()
-        )
-        # 把str转化为list
-        if len(text) != len(emergency_situations[i]["functions"]):
-            print("!!警告，感知智能体输出的函数名列表长度与突发事件数量不一致!!")
-            sys.exit(1)
+        expected_len = len(emergency_situations[i]["functions"])
+        raw_text = output.outputs[0].text
+        text = _parse_function_list(raw_text)
+        if len(text) != expected_len:
+            print("!!警告，感知智能体输出的函数名列表长度与突发事件数量不一致，已自动补齐/截断!!")
+        text = _normalize_function_list(text, expected_len)
+        emergency_situations[i]["perception_raw_output"] = raw_text
         emergency_situations[i]["perception_functions"] = text
     with open(f"{DIR}/perception_events.json", "w", encoding="utf-8") as f:
         json.dump(emergency_situations, f, ensure_ascii=False, indent=4)

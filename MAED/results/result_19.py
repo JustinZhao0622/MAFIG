@@ -2,53 +2,40 @@ import heapq
 import time
 import random
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间改为5分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+def init_towing_tasks(nums=6):
+    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
+    towing_tasks = []
     for i in range(nums):
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * i))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+        # 修改任务目标站位为(0,0)
+        towing_tasks.append({"id": i, "type": "towing", "location": (0, 0)})
+    return towing_tasks
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_nitrogen_truck_resources(nums=10):
+    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
+    nitrogen_truck_resources = []
     for i in range(nums):
-        if i == 2:  # Zone_3
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 43,  # 更新Zone_3的当前库存
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}"
-            })
-        elif i == 0:  # Zone_1
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}",
-                "status": "faulty"  # 添加状态标记表示Zone_1发生故障
-            })
+        # 根据突发事件描述，将第2辆加氮车的初始位置调整为(1,5)
+        if i == 1:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (1, 5)})
         else:
-            zones.append({
-                "id": f"Zone_{i+1}",
-                "location": (0, 25),
-                "current_stock": 0,
-                "max_capacity": 100,
-                "desc": f"货物堆积区域{i+1}"
-            })
-    return zones
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_truck_resources
+
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第2辆充氧车发生故障，不添加到资源列表中
+            continue
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
+
+def init_fuel_truck_resources(nums=10):
+    """初始化加油车资源，返回资源列表，每个资源包含id、类型"""
+    fuel_truck_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第2辆加油车发生故障不可用
+            continue
+        fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return fuel_truck_resources
 

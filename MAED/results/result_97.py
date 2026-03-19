@@ -2,85 +2,44 @@ import heapq
 import time
 import random
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_nitrogen_truck_resources(nums=10):
+    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
+    nitrogen_truck_resources = []
     for i in range(nums):
-        if i == 1:  # Zone_2 不可用
+        # 根据突发事件描述，将第2辆加氮车的初始位置调整为(3,1)
+        if i == 1:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (3, 1)})
+        else:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_truck_resources
+
+def init_towing_tasks(nums=6):
+    """初始化牵引任务，返回任务列表，每个任务包含id、类型"""
+    towing_tasks = []
+    for i in range(nums):
+        # 根据突发事件描述，将第3个牵引任务目标站位调整为(1,8)
+        if i == 2:
+            location = (1, 8)
+        else:
+            location = (random.randint(0, 3), random.randint(0, 10))
+        towing_tasks.append({"id": i, "type": "towing", "location": location})
+    return towing_tasks
+
+def init_air_source_car_resources(nums=10):
+    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
+    air_source_car_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第2辆气源车发生故障不可用
             continue
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0, 25),
-            "current_stock": 0,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+        air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return air_source_car_resources
 
-def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
-    参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
-
-    返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
-        如果没有路径则返回 None
-    """
-    width, height = grid_size
-
-    # 曼哈顿距离启发式函数
-    def heuristic(pos):
-        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
-
-    # 四个方向：上、下、左、右
-    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-
-    # 优先队列：(f值, 计数器, 当前点, 路径)
-    counter = 0
-    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
-    visited = {begin_point}
-
-    # 突发事件约束：站位(8,8)发生故障,以该点为终点的调整为(9,8)
-    if end_point == (8, 8):
-        end_point = (9, 8)
-
-    # 突发事件约束：站位(5,5)(6,5)(5,6)(6,6)四个点发生故障
-    blocked_points = {(5, 5), (6, 5), (5, 6), (6, 6)}
-
-    while heap:
-        f_score, _, current, path = heapq.heappop(heap)
-
-        # 到达终点
-        if current == end_point:
-            return path
-
-        # 探索四个方向
-        for dx, dy in directions:
-            next_x = current[0] + dx
-            next_y = current[1] + dy
-            next_pos = (next_x, next_y)
-
-            # 检查是否在网格范围内
-            if not (0 <= next_x < width and 0 <= next_y < height):
-                continue
-
-            # 检查是否已访问或是否为故障点
-            if next_pos in visited or next_pos in blocked_points:
-                continue
-
-            visited.add(next_pos)
-            new_path = path + [next_pos]
-            g_score = len(new_path) - 1  # 实际代价
-            f_score = g_score + heuristic(next_pos)  # 总评估代价
-
-            counter += 1
-            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
-    return None
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
+    for i in range(nums):
+        if i == 1:  # 假设第2辆充氧车发生故障，不添加到资源列表中
+            continue
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return oxygen_truck_resources
 

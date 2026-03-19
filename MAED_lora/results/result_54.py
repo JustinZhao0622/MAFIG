@@ -2,58 +2,60 @@ import heapq
 import time
 import random
 
-def init_truck_arrival_time(nums=10, start_time="8:00:00"):
-    """
-    初始化货车到达时间。货车到达的间隔时间是3分钟
-    返回货车列表，每个货车包含id和到达时间
-    """
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    trucks = []
+def init_power_cart_resources(nums=10):
+    """初始化供电车资源，返回资源列表，每个资源包含id、类型"""
+    power_cart_resources = []
     for i in range(nums):
-        if i < 6:
-            offset = 3 * 60 * i
+        if i == 3:  # 第4辆供电车
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (2, 4)})
         else:
-            offset = 3 * 60 * 5 + 5 * 60 * (i - 5)
-        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + offset))
-        trucks.append({
-            "id": f"Truck_{i}",
-            "arrival_time": arrival_time,
-        })
-    return trucks
+            power_cart_resources.append({"id": i, "type": "power_cart", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return power_cart_resources
 
-def init_stacking_zones(nums=4):
-    """
-    初始化货物堆积区域 (A, B, C, D 区)。
-    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
-    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
-    """
-    zones = []
+def init_fuel_truck_resources(nums=10):
+    """初始化加油车资源，返回资源列表，每个资源包含id、类型"""
+    fuel_truck_resources = []
     for i in range(nums):
-        current_stock = 0
-        if i == 2:
-            current_stock = 53
-        zones.append({
-            "id": f"Zone_{i+1}",
-            "location": (0,25),
-            "current_stock": current_stock,
-            "max_capacity": 100,
-            "desc": f"货物堆积区域{i+1}"
-        })
-    return zones
+        fuel_truck_resources.append({"id": i, "type": "fuel_truck", "location": (random.randint(0, 3), random.randint(0, 10)), "available": True})
+    # 标记第4辆加油车（id为3）为不可用
+    fuel_truck_resources[3]["available"] = False
+    return fuel_truck_resources
 
-def init_forklifts(nums=3):
-    """
-    初始化叉车队。
-    返回可用叉车列表，每个叉车包含id、坐标
-    """
-    forklifts = []
+def init_oxygen_truck_resources(nums=10):
+    """初始化充氧车资源，返回资源列表，每个资源包含id、类型"""
+    oxygen_truck_resources = []
     for i in range(nums):
-        forklift_id = f"Forklift_{i+1}"
-        if forklift_id == "Forklift_1":
-            continue
-        forklifts.append({
-            "id": forklift_id,
-            "location": (0, 25),
-        })
-    return forklifts
+        oxygen_truck_resources.append({"id": i, "type": "oxygen_truck", "location": (random.randint(0, 3), random.randint(0, 10)), "available": True})
+    # 标记第4辆充氧车（id为3）为不可用
+    oxygen_truck_resources[3]["available"] = False
+    return oxygen_truck_resources
+
+def init_air_source_car_resources(nums=10):
+    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
+    air_source_car_resources = []
+    for i in range(nums):
+        air_source_car_resources.append({"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10)), "available": True})
+    # 标记第4辆气源车（id为3）为不可用
+    air_source_car_resources[3]["available"] = False
+    return air_source_car_resources
+
+def init_nitrogen_truck_resources(nums=10):
+    """初始化加氮车资源，返回资源列表，每个资源包含id、类型"""
+    nitrogen_truck_resources = []
+    for i in range(nums):
+        if i == 3:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (1, 10)})
+        else:
+            nitrogen_truck_resources.append({"id": i, "type": "nitrogen_truck", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return nitrogen_truck_resources
+
+def init_tractor_resources(nums=10):
+    """初始化牵引车资源，返回资源列表，每个资源包含id、类型"""
+    tractor_resources = []
+    for i in range(nums):
+        if i == 3:  # 第4辆牵引车
+            tractor_resources.append({"id": i, "type": "tractor", "location": (2, 2)})
+        else:
+            tractor_resources.append({"id": i, "type": "tractor", "location": (random.randint(0, 3), random.randint(0, 10))})
+    return tractor_resources
 
