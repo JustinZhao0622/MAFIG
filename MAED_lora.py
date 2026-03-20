@@ -290,16 +290,16 @@ if __name__ == "__main__":
     # perception_agent()
     # 决策智能体loss调整
     # decision_loss_agent()
-    nums = [60,70,80,90, 100,110,120,130]
+    nums = [50]
     for num in nums:
-        with open("/root/code/neuralcomputing/decision_loss_train_datas.json","r", encoding="utf-8") as f:
-            decision_loss_train_datas = json.load(f)[:num]
-        with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas.json","w", encoding="utf-8") as f:
-            json.dump(decision_loss_train_datas, f, ensure_ascii=False, indent=4)
-        # 决策智能体
-        time_lora = lora_decision_agent()
-        time_decision = decision_agent()
-        gc.collect()
-        torch.cuda.empty_cache()
-        accuracy = review_code.main(DIR + "results", DATASET_FILE)
-        logger.info(f"num: {num}, accuracy: {accuracy}, time_lora: {time_lora}, time_decision: {time_decision}")
+        # with open("/root/code/neuralcomputing/decision_loss_train_datas.json","r", encoding="utf-8") as f:
+        #     decision_loss_train_datas = json.load(f)[:num]
+        # with open("/root/code/neuralcomputing/datasets/decision_loss_train_datas.json","w", encoding="utf-8") as f:
+        #     json.dump(decision_loss_train_datas, f, ensure_ascii=False, indent=4)
+        # # 决策智能体
+        # time_lora = lora_decision_agent()
+        # time_decision = decision_agent()
+        # gc.collect()
+        # torch.cuda.empty_cache()
+        accuracy = review_code.main(DATASET_FILE, DIR + "results")
+        # logger.info(f"num: {num}, accuracy: {accuracy}, time_lora: {time_lora}, time_decision: {time_decision}")
