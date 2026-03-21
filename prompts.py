@@ -54,36 +54,66 @@ CODE:
 """
 
 # 初始的函数
-init_cranes =  '''
+init_truck_arrival_time = '''
 import heapq
 import time
-import random 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 '''
 
-init_resources = '''
+init_stacking_zones = '''
 import heapq
 import time
-import random 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+'''
+
+init_forklifts = '''
+import heapq
+import time
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 '''
 
 route_planning = '''
 import heapq
 import time
-import random 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
@@ -140,10 +170,12 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 '''
+
 functions_mapping = {
-    "init_cranes": init_cranes,
-    "init_resources": init_resources,
-    "route_planning": route_planning
+    "init_truck_arrival_time": init_truck_arrival_time,
+    "init_stacking_zones": init_stacking_zones,
+    "init_forklifts": init_forklifts,
+    "route_planning": route_planning,
 }
 
 # 感知智能体
@@ -151,26 +183,31 @@ perception_system_prompt = """
 你是一名资深的信息处理与系统诊断专家。你的任务是分析“突发事件描述”，并根据给定的“原子函数库”定义，判断该事件需要修改哪个函数来应对。
 
 ### 1. 原子函数库定义
-你拥有以下三个核心函数的逻辑权限：
+你拥有以下四个核心函数的逻辑权限：
 
-1.  **`init_cranes`**: 
-    * **职责**: 负责船舶（vessels）的初始化生成。
-    * **管理属性**: 船舶到达时间（time）、船舶ID、任务时长（duration）、船舶列表生成。
-    * **相关关键词**: 船舶、到达、延迟、任务时长、vessel。
+1.  **`init_truck_arrival_time`**: 
+    * **职责**: 负责货车到达时间的初始化生成。
+    * **管理属性**: 货车到达时间（arrival_time）、货车ID、到达间隔、货车列表生成。
+    * **相关关键词**: 货车、到达、延迟、间隔、Truck。
 
-2.  **`init_resources`**: 
-    * **职责**: 负责岸桥/场桥等资源（resources）的初始化。
-    * **管理属性**: 资源ID、资源类型、资源可用性、资源初始位置。
-    * **相关关键词**: 资源、不可用、损坏、resource、id。
+2.  **`init_stacking_zones`**: 
+    * **职责**: 负责货物堆积区域的初始化。
+    * **管理属性**: 区域ID、坐标、当前库存（current_stock）、最大容量（max_capacity）、区域可用性。
+    * **相关关键词**: Zone、堆积区、库存、容量、缩减、故障不可用。
 
-3.  **`route_planning`**: 
+3.  **`init_forklifts`**: 
+    * **职责**: 负责叉车队的初始化。
+    * **管理属性**: 叉车ID、叉车位置（location）、叉车可用性。
+    * **相关关键词**: Forklift、叉车、故障、位置调整、不可用。
+
+4.  **`route_planning`**: 
     * **职责**: 负责路径规划与地图逻辑。
     * **管理属性**: 起点、终点、障碍物（故障点）、网格地图（Grid）、A*算法逻辑。
     * **相关关键词**: 站位、故障点、坐标、路径、终点调整、不可达、route。
 
 ### 2. 输出格式（必须严格遵守）
 突发事件按分号(;)分隔，有N个独立事件。你必须按事件顺序输出一个Python列表，第i个元素对应第i个事件需要修改的函数名。
-如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_resources", "None", "init_cranes"]
+如果第i个突发事件无需更改，你直接在列表中添加None，例如输入有3个事件，输出示例：["init_stacking_zones", "None", "init_truck_arrival_time"]
 只输出列表，禁止Markdown、解释或其他任何废话。
 """
 

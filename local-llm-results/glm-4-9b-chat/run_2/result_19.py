@@ -1,117 +1,76 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
-    for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    # 修改：第1艘船舶延迟10分钟到达
-    vessels[0]["time"] = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + 10))
-    return vessels
-
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
-    for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    # 修改：站位(3,5)(4,5)(3,6)(4,6)四个点发生故障
-    for resource in resources:
-        if resource["location"] in [(3,5), (4,5), (3,6), (4,6)]:
-            resource["location"] = (random.randint(0, 3), random.randint(0, 10))
-    # 修改：id为3的资源不可用
-    for resource in resources:
-        if resource["id"] == 3:
-            resource["available"] = False
-    return resources
-
-def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
-    参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
-
-    返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
-        如果没有路径则返回 None
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     """
-    width, height = grid_size
-
-    # 曼哈顿距离启发式函数
-    def heuristic(pos):
-        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
-
-    # 四个方向：上、下、左、右
-    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
-
-    # 优先队列：(f值, 计数器, 当前点, 路径)
-    counter = 0
-    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
-    visited = {begin_point}
-
-    while heap:
-        f_score, _, current, path = heapq.heappop(heap)
-
-        # 到达终点
-        if current == end_point:
-            return path
-
-        # 探索四个方向
-        for dx, dy in directions:
-            next_x = current[0] + dx
-            next_y = current[1] + dy
-            next_pos = (next_x, next_y)
-
-            # 检查是否在网格范围内
-            if not (0 <= next_x < width and 0 <= next_y < height):
-                continue
-
-            # 检查是否已访问
-            if next_pos in visited:
-                continue
-
-            visited.add(next_pos)
-            new_path = path + [next_pos]
-            g_score = len(new_path) - 1  # 实际代价
-            f_score = g_score + heuristic(next_pos)  # 总评估代价
-
-            counter += 1
-            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
-    return None
-
-def init_trucks(nums=8):
-    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
     trucks = []
     for i in range(nums):
+        if i >= 2:  # 从第3辆货车开始间隔改为5分钟
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 5 * 60 * (i - 2)))
+        else:
+            arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
         trucks.append({
-            "id": f"Truck_{i+1}",
-            "location": (random.randint(0, 20), random.randint(0, 20)),
-            "status": "idle",
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
         })
-    # 修改：id为0的船舶任务时长延长至20分钟
-    for truck in trucks:
-        if truck["id"] == "Truck_1":
-            truck["location"] = (random.randint(0, 20), random.randint(0, 20))
     return trucks
 
-def init_yard_blocks(nums=6):
-    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
-    yard_blocks = []
+# Zone_3堆积区当前库存增加43
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        yard_blocks.append({
-            "id": f"Block_{i+1}",
-            "capacity": 100,
-            "occupied": random.randint(0, 60),
-        })
-    # 修改：站位(7,9)发生故障，以该点为终点的调整为(8,9)
-    for yard_block in yard_blocks:
-        if yard_block["location"] == (7, 9):
-            yard_block["location"] = (8, 9)
-    return yard_blocks
+        if i == 2:  # Zone_3堆积区当前库存增加43
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 43,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+        else:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+    return zones
 
-# 其他函数保持不变
+# Zone_1堆积区发生故障不可用
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        if i == 0:  # Zone_1堆积区发生故障不可用
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}",
+                "status": "unavailable"
+            })
+        else:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0, 25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}"
+            })
+    return zones

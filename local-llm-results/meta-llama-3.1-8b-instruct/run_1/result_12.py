@@ -1,24 +1,55 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        if i == 0:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 10 * 60))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        if i == 9:  # 突发事件：站位(9,9)发生故障
+            continue
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i == 3:  # 突发事件：Forklift_3叉车发生故障不可用
+            continue
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
@@ -76,57 +107,20 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-def init_trucks(nums=8):
-    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
-    trucks = []
+def init_loading_docks(nums=4):
+    """
+    初始化装货月台。
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
     for i in range(nums):
-        trucks.append({
-            "id": f"Truck_{i+1}",
-            "location": (random.randint(0, 20), random.randint(0, 20)),
+        if i == 3 or i == 4 or i == 6 or i == 7:  # 突发事件：站位(3,6)(4,6)(3,7)(4,7)四个点发生故障
+            continue
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
             "status": "idle",
         })
-    return trucks
+    return docks
 
-def init_yard_blocks(nums=6):
-    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
-    yard_blocks = []
-    for i in range(nums):
-        yard_blocks.append({
-            "id": f"Block_{i+1}",
-            "capacity": 100,
-            "occupied": random.randint(0, 60),
-        })
-    return yard_blocks
-
-def init_berths(nums=4):
-    """初始化泊位，返回泊位列表，每个泊位包含id、位置、状态"""
-    berths = []
-    for i in range(nums):
-        berths.append({
-            "id": f"Berth_{i+1}",
-            "location": (i * 10, 0),
-            "status": "available",
-        })
-    return berths
-
-def init_containers(nums=12):
-    """初始化集装箱，返回集装箱列表，每个集装箱包含id、位置、类型"""
-    containers = []
-    for i in range(nums):
-        containers.append({
-            "id": f"Container_{i+1}",
-            "location": (random.randint(0, 10), random.randint(0, 10)),
-            "type": "general",
-        })
-    return containers
-
-def init_loading_tasks(nums=10):
-    """初始化装卸任务，返回任务列表，每个任务包含id、目标资源、状态"""
-    loading_tasks = []
-    for i in range(nums):
-        loading_tasks.append({
-            "id": f"Task_{i+1}",
-            "target": f"Container_{(i % 12) + 1}",
-            "status": "waiting",
-        })
-    return loading_tasks
+# ... (其他函数保持不变)

@@ -12,9 +12,9 @@ import shutil
 import review_code
 
 # 模型 Qwen/Qwen3-32B deepseek-ai/DeepSeek-V3.2 Qwen/Qwen3-Coder-480B-A35B-Instruct
-RESULT_DIR = "cllm-results/deepseek-v3.2"
+RESULT_DIR = "cllm-results/qwen3-32b"
 DATASET_FILE = "datasets/test.json"
-MODEL_NAME = "deepseek-ai/DeepSeek-V3.2"
+MODEL_NAME = "Qwen/Qwen3-32B"
 BASE_URL = "https://api-inference.modelscope.cn/v1"
 PER_THREAD_NUMS = 1
 

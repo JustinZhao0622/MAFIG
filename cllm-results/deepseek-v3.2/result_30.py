@@ -1,45 +1,56 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        interval = 3 if i < 5 else 5
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + interval * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+def init_stacking_zones(nums=4):
+    zones = []
+    for i in range(nums):
+        max_capacity = 100
+        if i == 1:
+            max_capacity = 141
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": max_capacity,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    return zones
+
+def init_forklifts(nums=3):
+    forklifts = []
     for i in range(nums):
         if i == 2:
             continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        location = (0, 25)
+        if i == 0:
+            location = (26, 32)
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": location,
+        })
+    return forklifts
 
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
-    参数:
-        begin_point: 起点坐标 (x, y)
-        end_point: 终点坐标 (x, y)
-        grid_size: 地图大小 (width, height)，默认 (100, 100)
-
-    返回:
-        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
-        如果没有路径则返回 None
-    """
     width, height = grid_size
-    blocked_points = {(4,5), (5,5), (4,6), (5,6), (8,8)}
-    adjusted_end = (9,8) if end_point == (8,8) else end_point
 
     def heuristic(pos):
-        return abs(pos[0] - adjusted_end[0]) + abs(pos[1] - adjusted_end[1])
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
 
     directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
+    blocked_points = [(3,3), (4,3), (3,4), (4,4)]
 
     counter = 0
     heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
@@ -48,7 +59,7 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
     while heap:
         f_score, _, current, path = heapq.heappop(heap)
 
-        if current == adjusted_end:
+        if current == end_point:
             return path
 
         for dx, dy in directions:
@@ -74,62 +85,112 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-
-def init_trucks(nums=8):
-    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
-    trucks = []
+def init_loading_docks(nums=4):
+    docks = []
     for i in range(nums):
-        trucks.append({
-            "id": f"Truck_{i+1}",
-            "location": (random.randint(0, 20), random.randint(0, 20)),
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
             "status": "idle",
         })
-    return trucks
+    return docks
 
-
-def init_yard_blocks(nums=6):
-    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
-    yard_blocks = []
+def init_unloading_docks(nums=4):
+    docks = []
     for i in range(nums):
-        yard_blocks.append({
-            "id": f"Block_{i+1}",
-            "capacity": 100,
-            "occupied": random.randint(0, 60),
+        docks.append({
+            "id": f"UnloadDock_{i+1}",
+            "location": (i * 5, 5),
+            "status": "idle",
         })
-    return yard_blocks
+    return docks
 
-
-def init_berths(nums=4):
-    """初始化泊位，返回泊位列表，每个泊位包含id、位置、状态"""
-    berths = []
+def init_shelves(nums=10):
+    shelves = []
     for i in range(nums):
-        berths.append({
-            "id": f"Berth_{i+1}",
-            "location": (i * 10, 0),
+        shelves.append({
+            "id": f"Shelf_{i+1}",
+            "location": (i % 5, i // 5),
+            "capacity": 50,
+        })
+    return shelves
+
+def init_sorting_stations(nums=3):
+    stations = []
+    for i in range(nums):
+        stations.append({
+            "id": f"SortStation_{i+1}",
+            "location": (10, i * 3),
+            "status": "idle",
+        })
+    return stations
+
+def init_workers(nums=6):
+    workers = []
+    for i in range(nums):
+        workers.append({
+            "id": f"Worker_{i+1}",
+            "role": "operator",
             "status": "available",
         })
-    return berths
+    return workers
 
-
-def init_containers(nums=12):
-    """初始化集装箱，返回集装箱列表，每个集装箱包含id、位置、类型"""
-    containers = []
+def init_pallets(nums=20):
+    pallets = []
     for i in range(nums):
-        containers.append({
-            "id": f"Container_{i+1}",
-            "location": (random.randint(0, 10), random.randint(0, 10)),
-            "type": "general",
+        pallets.append({
+            "id": f"Pallet_{i+1}",
+            "location": (i % 5, i // 5),
+            "max_weight": 1000,
         })
-    return containers
+    return pallets
 
-
-def init_loading_tasks(nums=10):
-    """初始化装卸任务，返回任务列表，每个任务包含id、目标资源、状态"""
-    loading_tasks = []
+def init_orders(nums=8):
+    orders = []
     for i in range(nums):
-        loading_tasks.append({
-            "id": f"Task_{i+1}",
-            "target": f"Container_{(i % 12) + 1}",
+        orders.append({
+            "id": f"Order_{i+1}",
+            "item_count": 10,
+            "status": "pending",
+        })
+    return orders
+
+def init_inventory_records(nums=10):
+    records = []
+    for i in range(nums):
+        records.append({
+            "id": f"Inventory_{i+1}",
+            "sku": f"SKU_{i+1}",
+            "quantity": 100,
+        })
+    return records
+
+def init_conveyors(nums=2):
+    conveyors = []
+    for i in range(nums):
+        conveyors.append({
+            "id": f"Conveyor_{i+1}",
+            "length": 20,
+            "status": "running",
+        })
+    return conveyors
+
+def init_picking_tasks(nums=6):
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"PickTask_{i+1}",
+            "target_shelf": f"Shelf_{(i % 5) + 1}",
             "status": "waiting",
         })
-    return loading_tasks
+    return tasks
+
+def init_shipping_tasks(nums=6):
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"ShipTask_{i+1}",
+            "target_dock": f"Dock_{(i % 4) + 1}",
+            "status": "waiting",
+        })
+    return tasks

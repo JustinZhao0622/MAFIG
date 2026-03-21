@@ -1,19 +1,14 @@
 import heapq
 import time
-import random 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
-    start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
     for i in range(nums):
-        delay = 0
-        if i == 0:
-            delay = 10 * 60
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i + delay))
-        
-        duration = 10
-        if i == 1:
-            duration = 20
-            
-        vessels.append({"time": vessel_time, "id": i, "duration": duration, "location": (i,10)})
-    return vessels
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (16, 36) if i == 0 else (0, 25),
+        })
+    return forklifts

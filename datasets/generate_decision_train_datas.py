@@ -19,9 +19,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import prompts as prompts_mod
 import generate_suitiations
 from review_code import run_verify_case
-
-EDIT_START = "<<EDIT_START>>"
-EDIT_END = "<<EDIT_END>>"
+import add_tokenizers
 
 from zai import ZhipuAiClient
 
@@ -31,13 +29,11 @@ RETRY_DELAY = 1
 OUT_DIR = "datasets/glm5"
 
 BASE_KEYS = [
-    "5c6d3d4312f94fa1a6773b17aa97b75d.w9cZbahrqSsPSeTt",
-    "5123fb6446a248648c88a1c20007a5a6.GzwNMUsco0qkbQl1",
-    "11724e5a71d24cd9bb1cccd52fe6a29a.DnAUeBnWIte1Nqvm",
+    "c1cfb551142947f9bbc72d9b30482f5a.UAA2t3R9PmX1uziH",
+    "35da9a35c1f149d6905d9accb5218caf.ynVDb5rZfz6RXRsp",
     "90bab6b6ce984d46897b139da16fa8df.k3X9o8wUFVCRAamq",
-    "893c0081a0df4938b8bb1e2c83a44fab.hchpXHmo65DHBrgX",
 ]
-API_KEYS = [key for key in BASE_KEYS for _ in range(3)]
+API_KEYS = [key for key in BASE_KEYS for _ in range(4)]
 
 def clean_code_block(text):
     return text.replace("```python", "").replace("```", "").strip()
@@ -167,82 +163,9 @@ def _verify_file(file_path, events):
     result = return_dict.get('result', {})
     return result.get('solved', 0) == result.get('total', 0)
 
-
-def _normalize_line(line):
-    line = re.sub(r"#.*$", "", line)
-    return re.sub(r"\s+", "", line)
-
-
-def _get_comparable_lines(text):
-    result = []
-    for idx, raw in enumerate(text.splitlines()):
-        norm = _normalize_line(raw)
-        if norm:
-            result.append((norm, idx))
-    return result
-
-
-def _to_line_ranges(indices):
-    if not indices:
-        return []
-    indices = sorted(set(indices))
-    ranges = []
-    start = end = indices[0]
-    for i in indices[1:]:
-        if i == end + 1:
-            end = i
-        else:
-            ranges.append((start, end))
-            start = end = i
-    ranges.append((start, end))
-    return ranges
-
-
-def _get_edit_line_ranges(original, generated):
-    orig_cmp = _get_comparable_lines(original)
-    gen_cmp = _get_comparable_lines(generated)
-    orig_norm = [x[0] for x in orig_cmp]
-    gen_norm = [x[0] for x in gen_cmp]
-    gen_line_map = [x[1] for x in gen_cmp]
-    matcher = SequenceMatcher(a=orig_norm, b=gen_norm, autojunk=False)
-    changed = []
-    for tag, _, _, b0, b1 in matcher.get_opcodes():
-        if tag != "equal" and b0 < b1:
-            changed.extend(gen_line_map[b0:b1])
-    return _to_line_ranges(changed)
-
-
-def _add_edit_markers(text, line_ranges):
-    if not line_ranges:
-        return text
-    lines = text.splitlines(keepends=True)
-    offsets = []
-    cur = 0
-    for ln in lines:
-        offsets.append(cur)
-        cur += len(ln)
-    result = text
-    for start_line, end_line in reversed(line_ranges):
-        if start_line < 0 or start_line >= len(lines):
-            continue
-        end_line = max(start_line, min(end_line, len(lines) - 1))
-        start_pos = offsets[start_line]
-        end_trim_len = len(lines[end_line].rstrip("\r\n"))
-        end_pos = offsets[end_line] + end_trim_len
-        result = result[:end_pos] + EDIT_END + result[end_pos:]
-        result = result[:start_pos] + EDIT_START + result[start_pos:]
-    return result
-
-
-def mark_edits(original_code, generated_code):
-    """对比原始代码和生成代码，在差异行上插入 EDIT_START/EDIT_END 标记"""
-    line_ranges = _get_edit_line_ranges(original_code, generated_code)
-    return _add_edit_markers(generated_code, line_ranges)
-
-
 def merge_and_format(
     emergency_situations,
-    index_offset=0,
+    index_offset=1,
     save_path="datasets/decision_train_datas.json",
 ):
     results = []
@@ -283,13 +206,18 @@ def merge_and_format(
 
 if __name__ == "__main__":
     raw_path = "datasets/decision_raw_train_datas.json"
-    index_offset = 0
+    index_offset = 1
+    # if os.path.exists(OUT_DIR):
+    #     shutil.rmtree(OUT_DIR)
+    # os.makedirs(OUT_DIR)
 
-    # events = generate_grouped_events(num_samples=200, save_path=raw_path)
-    # asyncio.run(generate_solutions(events, index_offset=index_offset))
+    events = generate_grouped_events(num_samples=150, save_path=raw_path)
+    asyncio.run(generate_solutions(events, index_offset=index_offset))
     
     # review code验证glm后，构建训练集
     with open(raw_path, "r", encoding="utf-8") as f:
         events = json.load(f)
 
     merge_and_format(events, index_offset=index_offset)
+    add_tokenizers.main()
+

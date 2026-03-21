@@ -1,28 +1,57 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        if i == 2:
-            vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 20 * 60))
-        vessels.append({"time": vessel_time, "id": i, "duration": 20 if i == 2 else 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+# 初始化货物堆积区域 (A, B, C, D 区)。
+def init_stacking_zones(nums=4):
+    """
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
     for i in range(nums):
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        zones.append({
+            "id": f"Zone_{i+1}",
+            "location": (0,25),
+            "current_stock": 0,
+            "max_capacity": 100,
+            "desc": f"货物堆积区域{i+1}"
+        })
+    # 根据突发事件，Zone_3堆积区当前库存增加65
+    zones[2]["current_stock"] += 65
+    return zones
 
+# 初始化叉车队。
+def init_forklifts(nums=3):
+    """
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        forklifts.append({
+            "id": f"Forklift_{i+1}",
+            "location": (0, 25),
+        })
+    return forklifts
+
+# 从一个点到另一个点的路径规划 (使用A*算法)
 def route_planning(begin_point, end_point, grid_size=(100, 100)):
-    """从一个点到另一个点的路径规划 (使用A*算法)
-
+    """ 
     参数:
         begin_point: 起点坐标 (x, y)
         end_point: 终点坐标 (x, y)
@@ -76,65 +105,390 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
 
-def init_trucks(nums=8):
-    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
-    trucks = []
+# 初始化装货月台。
+def init_loading_docks(nums=4):
+    """
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
     for i in range(nums):
-        trucks.append({
-            "id": f"Truck_{i+1}",
-            "location": (random.randint(0, 20), random.randint(0, 20)),
+        docks.append({
+            "id": f"Dock_{i+1}",
+            "location": (i * 5, 0),
             "status": "idle",
         })
-    return trucks
+    return docks
 
-def init_yard_blocks(nums=6):
-    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
-    yard_blocks = []
+# 初始化卸货月台。
+def init_unloading_docks(nums=4):
+    """
+    返回月台列表，每个月台包含id、位置、状态
+    """
+    docks = []
     for i in range(nums):
-        yard_blocks.append({
-            "id": f"Block_{i+1}",
-            "capacity": 100,
-            "occupied": random.randint(0, 60),
+        docks.append({
+            "id": f"UnloadDock_{i+1}",
+            "location": (i * 5, 5),
+            "status": "idle",
         })
-    return yard_blocks
+    return docks
 
-def init_berths(nums=4):
-    """初始化泊位，返回泊位列表，每个泊位包含id、位置、状态"""
-    berths = []
+# 初始化货架。
+def init_shelves(nums=10):
+    """
+    返回货架列表，每个货架包含id、位置、容量
+    """
+    shelves = []
     for i in range(nums):
-        berths.append({
-            "id": f"Berth_{i+1}",
-            "location": (i * 10, 0),
+        shelves.append({
+            "id": f"Shelf_{i+1}",
+            "location": (i % 5, i // 5),
+            "capacity": 50,
+        })
+    return shelves
+
+# 初始化分拣台。
+def init_sorting_stations(nums=3):
+    """
+    返回分拣台列表，每个分拣台包含id、位置、状态
+    """
+    stations = []
+    for i in range(nums):
+        stations.append({
+            "id": f"SortStation_{i+1}",
+            "location": (10, i * 3),
+            "status": "idle",
+        })
+    return stations
+
+# 初始化仓储作业人员。
+def init_workers(nums=6):
+    """
+    返回人员列表，每个人员包含id、岗位、状态
+    """
+    workers = []
+    for i in range(nums):
+        workers.append({
+            "id": f"Worker_{i+1}",
+            "role": "operator",
             "status": "available",
         })
-    return berths
+    return workers
 
-def init_containers(nums=12):
-    """初始化集装箱，返回集装箱列表，每个集装箱包含id、位置、类型"""
-    containers = []
+# 初始化托盘。
+def init_pallets(nums=20):
+    """
+    返回托盘列表，每个托盘包含id、位置、载重
+    """
+    pallets = []
     for i in range(nums):
-        containers.append({
-            "id": f"Container_{i+1}",
-            "location": (random.randint(0, 10), random.randint(0, 10)),
-            "type": "general",
+        pallets.append({
+            "id": f"Pallet_{i+1}",
+            "location": (i % 5, i // 5),
+            "max_weight": 1000,
         })
-    return containers
+    return pallets
 
-def init_loading_tasks(nums=10):
-    """初始化装卸任务，返回任务列表，每个任务包含id、目标资源、状态"""
-    loading_tasks = []
+# 初始化订单。
+def init_orders(nums=8):
+    """
+    返回订单列表，每个订单包含id、货物数量、状态
+    """
+    orders = []
     for i in range(nums):
-        if i == 3:
-            loading_tasks.append({
-                "id": f"Task_{i+1}",
-                "target": f"Container_{(i % 12) + 1}",
-                "status": "waiting",
-                "arrival_time": time.strftime("%H:%M:%S", time.localtime(time.time() + 10 * 60)),
-            })
-        else:
-            loading_tasks.append({
-                "id": f"Task_{i+1}",
-                "target": f"Container_{(i % 12) + 1}",
-                "status": "waiting",
-            })
-    return loading_tasks
+        orders.append({
+            "id": f"Order_{i+1}",
+            "item_count": 10,
+            "status": "pending",
+        })
+    return orders
+
+# 初始化库存记录。
+def init_inventory_records(nums=10):
+    """
+    返回库存记录列表，每条记录包含id、sku、数量
+    """
+    records = []
+    for i in range(nums):
+        records.append({
+            "id": f"Inventory_{i+1}",
+            "sku": f"SKU_{i+1}",
+            "quantity": 100,
+        })
+    return records
+
+# 初始化传送带。
+def init_conveyors(nums=2):
+    """
+    返回传送带列表，每条传送带包含id、长度、状态
+    """
+    conveyors = []
+    for i in range(nums):
+        conveyors.append({
+            "id": f"Conveyor_{i+1}",
+            "length": 20,
+            "status": "running",
+        })
+    return conveyors
+
+# 初始化拣货任务。
+def init_picking_tasks(nums=6):
+    """
+    返回任务列表，每个任务包含id、目标货架、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"PickTask_{i+1}",
+            "target_shelf": f"Shelf_{(i % 5) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 初始化发货任务。
+def init_shipping_tasks(nums=6):
+    """
+    返回任务列表，每个任务包含id、目标月台、状态
+    """
+    tasks = []
+    for i in range(nums):
+        tasks.append({
+            "id": f"ShipTask_{i+1}",
+            "target_dock": f"Dock_{(i % 4) + 1}",
+            "status": "waiting",
+        })
+    return tasks
+
+# 根据突发事件，站位(9,9)发生故障，调整为(10,9)
+def adjust_station_location(stations):
+    for station in stations:
+        if station["location"] == (9, 9):
+            station["location"] = (10, 9)
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status2(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status3(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status4(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status5(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status6(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status7(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status8(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status9(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status10(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status11(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status12(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status13(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status14(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status15(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status16(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status17(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status18(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status19(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status20(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status21(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status22(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status23(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status24(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status25(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status26(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status27(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status28(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status29(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status30(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status31(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station_status32(stations):
+    for station in stations:
+        if station["location"] in [(3, 3), (4, 3), (3, 4), (4, 4)]:
+            station["status"] = "faulty"
+    return stations
+
+# 根据突发事件，站位(3,3)(4,3)(3,4)(4,4)四个点发生故障
+def adjust_station

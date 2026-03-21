@@ -1,28 +1,60 @@
 import heapq
 import time
-import random 
 
-def init_cranes(nums=5,start_time="8:00:00"):
-    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
     start_time = time.strptime(start_time, "%H:%M:%S")
-    vessels = []
+    trucks = []
     for i in range(nums):
-        if i == 8:  # id为8的资源不可用
-            continue
-        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
-        vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
-    return vessels
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def init_resources(nums=10):
-    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
-    resources = []
+# 货车到达时间（修改为8分钟间隔）
+def init_truck_arrival_time_modified(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是8分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
     for i in range(nums):
-        if i == 8:  # id为8的资源不可用
-            continue
-        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
-    return resources
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 8 * 60 * i))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
 
-def route_planning(begin_point, end_point, grid_size=(100, 100)):
+# Forklift_1叉车初始位置调整为(47,47)
+def init_forklifts(nums=3):
+    """
+    初始化叉车队。
+    返回可用叉车列表，每个叉车包含id、坐标
+    """
+    forklifts = []
+    for i in range(nums):
+        if i == 0:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (47, 47),
+            })
+        else:
+            forklifts.append({
+                "id": f"Forklift_{i+1}",
+                "location": (0, 25),
+            })
+    return forklifts
+
+# 站位(6,5)(7,5)(6,6)(7,6)四个点发生故障
+def route_planning_modified(begin_point, end_point, grid_size=(100, 100)):
     """从一个点到另一个点的路径规划 (使用A*算法)
 
     参数:
@@ -69,6 +101,10 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             if next_pos in visited:
                 continue
 
+            # 检查是否在故障点
+            if (next_x, next_y) in [(6, 5), (7, 5), (6, 6), (7, 6)]:
+                continue
+
             visited.add(next_pos)
             new_path = path + [next_pos]
             g_score = len(new_path) - 1  # 实际代价
@@ -77,74 +113,3 @@ def route_planning(begin_point, end_point, grid_size=(100, 100)):
             counter += 1
             heapq.heappush(heap, (f_score, counter, next_pos, new_path))
     return None
-
-def init_trucks(nums=8):
-    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
-    trucks = []
-    for i in range(nums):
-        if i == 0:  # id为0的船舶任务时长延长至20分钟
-            trucks.append({
-                "id": f"Truck_{i+1}",
-                "location": (random.randint(0, 20), random.randint(0, 20)),
-                "status": "idle",
-                "duration": 20,
-            })
-        else:
-            trucks.append({
-                "id": f"Truck_{i+1}",
-                "location": (random.randint(0, 20), random.randint(0, 20)),
-                "status": "idle",
-            })
-    return trucks
-
-def init_yard_blocks(nums=6):
-    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
-    yard_blocks = []
-    for i in range(nums):
-        yard_blocks.append({
-            "id": f"Block_{i+1}",
-            "capacity": 100,
-            "occupied": random.randint(0, 60),
-        })
-    return yard_blocks
-
-def init_berths(nums=4):
-    """初始化泊位，返回泊位列表，每个泊位包含id、位置、状态"""
-    berths = []
-    for i in range(nums):
-        if i == 3:  # 第3艘到达的船舶延迟10分钟到达
-            berths.append({
-                "id": f"Berth_{i+1}",
-                "location": (i * 10, 0),
-                "status": "available",
-                "delay": 10,
-            })
-        else:
-            berths.append({
-                "id": f"Berth_{i+1}",
-                "location": (i * 10, 0),
-                "status": "available",
-            })
-    return berths
-
-def init_containers(nums=12):
-    """初始化集装箱，返回集装箱列表，每个集装箱包含id、位置、类型"""
-    containers = []
-    for i in range(nums):
-        containers.append({
-            "id": f"Container_{i+1}",
-            "location": (random.randint(0, 10), random.randint(0, 10)),
-            "type": "general",
-        })
-    return containers
-
-def init_loading_tasks(nums=10):
-    """初始化装卸任务，返回任务列表，每个任务包含id、目标资源、状态"""
-    loading_tasks = []
-    for i in range(nums):
-        loading_tasks.append({
-            "id": f"Task_{i+1}",
-            "target": f"Container_{(i % 12) + 1}",
-            "status": "waiting",
-        })
-    return loading_tasks
