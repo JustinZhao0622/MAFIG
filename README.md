@@ -1,8 +1,6 @@
-<div align="center">
-  <a href="./pipeline.pdf"><strong>Open the MAFIG pipeline diagram (PDF)</strong></a>
-</div>
+![MAFIG Pipeline](./pipeline.png)
 
-<embed src="./pipeline.pdf" type="application/pdf" width="100%" height="720px" />
+[Download the pipeline diagram as PDF](./pipeline.pdf)
 
 # MAFIG: Multi-agent Driven Formal Instruction Generation Framework
 
