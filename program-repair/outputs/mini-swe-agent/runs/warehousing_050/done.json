@@ -1,0 +1,72 @@
+{
+  "id": "warehousing_050",
+  "scene": "warehousing",
+  "dataset_index": 49,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_050",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": null,
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_050/trajectory.json",
+    "latency_sec": 426.76666951179504,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7277,
+          "completion_tokens": 6066
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "Submitted",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.22190475463867188,
+  "task_latency_sec": 426.766672372818,
+  "verify": {
+    "status": "pass",
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"total\": 4, \"solved\": 4, \"solved_events\": [{\"event\": \"Zone_3堆积区最大容量缩减至97\", \"function\": \"init_stacking_zones\"}, {\"event\": \"站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"Zone_4堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_2叉车发生故障不可用\", \"function\": \"init_forklifts\"}], \"unsolved\": [], \"feedback\": \"review 通过 4/4，所有突发事件均已解决。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "pass",
+      "total": 4,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "Zone_3堆积区最大容量缩减至97",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "Zone_4堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_2叉车发生故障不可用",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [],
+      "feedback": "review 通过 4/4，所有突发事件均已解决。"
+    }
+  }
+}

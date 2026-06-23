@@ -1,0 +1,81 @@
+{
+  "id": "deck_072",
+  "scene": "deck",
+  "dataset_index": 71,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_072",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_072/trajectory.json",
+    "latency_sec": 919.1110413074493,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9959,
+          "completion_tokens": 8446
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17711210250854492,
+  "task_latency_sec": 919.1110439300537,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"第4辆消防车初始位置调整为(3,2)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"第4辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(12,8)发生故障,以该点为终点的调整为(13,8)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_air_source_car_resources: 第4辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(12,8)发生故障,以该点为终点的调整为(13,8)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "第4辆消防车初始位置调整为(3,2)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(12,8)发生故障,以该点为终点的调整为(13,8)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_air_source_car_resources: 第4辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(12,8)发生故障,以该点为终点的调整为(13,8)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "warehousing_071",
+  "scene": "warehousing",
+  "dataset_index": 70,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_071",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_071/trajectory.json",
+    "latency_sec": 426.76372742652893,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7225,
+          "completion_tokens": 5901
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.21117806434631348,
+  "task_latency_sec": 426.7637302875519,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 3, \"solved_events\": [{\"event\": \"Forklift_1叉车初始位置调整为(35,49)\", \"function\": \"init_forklifts\"}, {\"event\": \"Zone_2堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}, {\"event\": \"站位(5,3)(6,3)(5,4)(6,4)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"Zone_3堆积区当前库存增加52\", \"function\": \"init_stacking_zones\", \"reason\": \"Zone_3.current_stock 应为 52，实际为 0。\"}], \"feedback\": \"review 通过 3/4，仍未解决：\\n- init_stacking_zones: Zone_3堆积区当前库存增加52\\n  原因: Zone_3.current_stock 应为 52，实际为 0。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "Forklift_1叉车初始位置调整为(35,49)",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "Zone_2堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "站位(5,3)(6,3)(5,4)(6,4)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_3堆积区当前库存增加52",
+          "function": "init_stacking_zones",
+          "reason": "Zone_3.current_stock 应为 52，实际为 0。"
+        }
+      ],
+      "feedback": "review 通过 3/4，仍未解决：\n- init_stacking_zones: Zone_3堆积区当前库存增加52\n  原因: Zone_3.current_stock 应为 52，实际为 0。"
+    }
+  }
+}

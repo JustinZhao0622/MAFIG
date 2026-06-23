@@ -1,0 +1,88 @@
+{
+  "id": "deck_073",
+  "scene": "deck",
+  "dataset_index": 72,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_073",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_073/trajectory.json",
+    "latency_sec": 919.1109418869019,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10241,
+          "completion_tokens": 8736
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.24968528747558594,
+  "task_latency_sec": 919.1109449863434,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 7, \"solved\": 4, \"solved_events\": [{\"event\": \"第5辆加氮车初始位置调整为(1,5)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"第5个固定保障资源初始位置调整为(0,0)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"站位(7,4)(8,4)(7,5)(8,5)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第5辆消防车初始位置调整为(1,1)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"第5辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第5个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第5辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 4/7，仍未解决：\\n- init_maintenance_vehicle_resources: 第5辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第5个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 7,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "第5辆加氮车初始位置调整为(1,5)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "第5个固定保障资源初始位置调整为(0,0)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "站位(7,4)(8,4)(7,5)(8,5)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第5辆消防车初始位置调整为(1,1)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第5辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第5个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第5辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 4/7，仍未解决：\n- init_maintenance_vehicle_resources: 第5辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第5个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "deck_043",
+  "scene": "deck",
+  "dataset_index": 42,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_043",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_043/trajectory.json",
+    "latency_sec": 919.1140229701996,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9849,
+          "completion_tokens": 8652
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.0640106201171875,
+  "task_latency_sec": 919.1140258312225,
+  "verify": {
+    "status": "invalid_code",
+    "parsed": {
+      "status": "invalid_code",
+      "total": 0,
+      "solved": 0,
+      "unsolved": []
+    },
+    "returncode": null,
+    "stdout": "",
+    "stderr": ""
+  }
+}

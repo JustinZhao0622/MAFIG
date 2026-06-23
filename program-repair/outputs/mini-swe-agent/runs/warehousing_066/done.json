@@ -1,0 +1,76 @@
+{
+  "id": "warehousing_066",
+  "scene": "warehousing",
+  "dataset_index": 65,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_066",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_066/trajectory.json",
+    "latency_sec": 426.7644624710083,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7277,
+          "completion_tokens": 5804
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17217612266540527,
+  "task_latency_sec": 426.76446533203125,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 1, \"solved_events\": [{\"event\": \"从第7辆货车开始间隔改为8分钟\", \"function\": \"init_truck_arrival_time\"}], \"unsolved\": [{\"event\": \"Zone_3堆积区当前库存增加31\", \"function\": \"init_stacking_zones\", \"reason\": \"Zone_3.current_stock 应为 31，实际为 0。\"}, {\"event\": \"Zone_1堆积区发生故障不可用\", \"function\": \"init_stacking_zones\", \"reason\": \"init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}, {\"event\": \"站位(4,3)(5,3)(4,4)(5,4)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(4, 3), (5, 3), (4, 4), (5, 4)]。\"}], \"feedback\": \"review 通过 1/4，仍未解决：\\n- init_stacking_zones: Zone_3堆积区当前库存增加31\\n  原因: Zone_3.current_stock 应为 31，实际为 0。\\n- init_stacking_zones: Zone_1堆积区发生故障不可用\\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\\n- route_planning: 站位(4,3)(5,3)(4,4)(5,4)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(4, 3), (5, 3), (4, 4), (5, 4)]。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "从第7辆货车开始间隔改为8分钟",
+          "function": "init_truck_arrival_time"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_3堆积区当前库存增加31",
+          "function": "init_stacking_zones",
+          "reason": "Zone_3.current_stock 应为 31，实际为 0。"
+        },
+        {
+          "event": "Zone_1堆积区发生故障不可用",
+          "function": "init_stacking_zones",
+          "reason": "init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+        },
+        {
+          "event": "站位(4,3)(5,3)(4,4)(5,4)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(4, 3), (5, 3), (4, 4), (5, 4)]。"
+        }
+      ],
+      "feedback": "review 通过 1/4，仍未解决：\n- init_stacking_zones: Zone_3堆积区当前库存增加31\n  原因: Zone_3.current_stock 应为 31，实际为 0。\n- init_stacking_zones: Zone_1堆积区发生故障不可用\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\n- route_planning: 站位(4,3)(5,3)(4,4)(5,4)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(4, 3), (5, 3), (4, 4), (5, 4)]。"
+    }
+  }
+}

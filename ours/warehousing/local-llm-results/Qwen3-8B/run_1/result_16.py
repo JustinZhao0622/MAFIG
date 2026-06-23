@@ -1,0 +1,55 @@
+import heapq
+import time
+import random
+
+"""
+原子函数库
+"""
+
+
+
+# 货车到达时间
+def init_truck_arrival_time(nums=10, start_time="8:00:00"):
+    """
+    初始化货车到达时间。货车到达的间隔时间是3分钟
+    返回货车列表，每个货车包含id和到达时间
+    """
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    trucks = []
+    for i in range(nums):
+        if i < 2:
+            total_seconds = 3 * 60 * i
+        else:
+            total_seconds = 3 * 60 * 2 + 5 * 60 * (i - 2)
+        arrival_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + total_seconds))
+        trucks.append({
+            "id": f"Truck_{i}",
+            "arrival_time": arrival_time,
+        })
+    return trucks
+
+def init_stacking_zones(nums=4):
+    """
+    初始化货物堆积区域 (A, B, C, D 区)。
+    每个区域包含：坐标、当前存放数量 (current_stock)、最大容量 (max_capacity)。
+    返回可用区域列表，每个区域包含id、坐标、当前存放数量、最大容量、描述
+    """
+    zones = []
+    for i in range(nums):
+        if i+1 == 1:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": 0,
+                "max_capacity": 100,
+                "desc": f"货物堆积区域{i+1}",
+                "status": "unavailable"
+            })
+        elif i+1 == 3:
+            zones.append({
+                "id": f"Zone_{i+1}",
+                "location": (0,25),
+                "current_stock": 51,
+                "max_capacity": 91,
+                "desc": f"货物堆积区域{i+1}"
+            })

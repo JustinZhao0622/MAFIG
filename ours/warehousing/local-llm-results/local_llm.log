@@ -1,0 +1,15 @@
+2026-03-19 23:15:19 - INFO - =======================================================
+2026-03-19 23:15:19 - INFO - start local llm benchmark: models=3, runs=2
+2026-03-19 23:18:01 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=1, time=151.18, accuracy=0.25879396984924624, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_1
+2026-03-19 23:20:43 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=2, time=151.89, accuracy=0.25879396984924624, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_2
+2026-03-19 23:28:28 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=1, time=453.49, accuracy=0.29396984924623115, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_1
+2026-03-19 23:35:26 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=2, time=407.56, accuracy=0.3015075376884422, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_2
+2026-03-19 23:38:55 - INFO - model=glm-4-9b-chat, run=1, time=197.75, accuracy=0.36180904522613067, out_dir=local-llm-results/glm-4-9b-chat/run_1
+2026-03-19 23:42:12 - INFO - model=glm-4-9b-chat, run=2, time=186.05, accuracy=0.36180904522613067, out_dir=local-llm-results/glm-4-9b-chat/run_2
+2026-06-16 19:19:56 - INFO - =======================================================
+2026-06-16 19:19:56 - INFO - start local llm benchmark: models=1, runs=2
+2026-06-16 19:35:26 - INFO - model=Qwen3-8B, run=1, time=920.17, accuracy=0.21608040201005024, out_dir=local-llm-results/Qwen3-8B/run_1
+2026-06-16 20:51:41 - INFO - =======================================================
+2026-06-16 20:51:41 - INFO - start local llm benchmark: models=1, runs=2
+2026-06-16 20:54:53 - INFO - model=Qwen2.5-7B-Instruct, run=1, time=181.50, accuracy=0.2864321608040201, out_dir=local-llm-results/Qwen2.5-7B-Instruct/run_1
+2026-06-16 20:58:06 - INFO - model=Qwen2.5-7B-Instruct, run=2, time=181.95, accuracy=0.2864321608040201, out_dir=local-llm-results/Qwen2.5-7B-Instruct/run_2

@@ -1,0 +1,76 @@
+{
+  "id": "warehousing_014",
+  "scene": "warehousing",
+  "dataset_index": 13,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_014",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_014/trajectory.json",
+    "latency_sec": 426.7714545726776,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7317,
+          "completion_tokens": 5752
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17871356010437012,
+  "task_latency_sec": 426.7714579105377,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 1, \"solved_events\": [{\"event\": \"从第5辆货车开始间隔改为5分钟\", \"function\": \"init_truck_arrival_time\"}], \"unsolved\": [{\"event\": \"站位(7,7)发生故障,以该点为终点的调整为(8,7)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (7, 7) 为终点时，路径应重定向到 (8, 7)，实际终点为 (7, 7)。\"}, {\"event\": \"Forklift_1叉车初始位置调整为(27,44)\", \"function\": \"init_forklifts\", \"reason\": \"Forklift_1.location 应为 (27, 44)，实际为 (0, 25)。\"}, {\"event\": \"Forklift_2叉车发生故障不可用\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。\"}], \"feedback\": \"review 通过 1/4，仍未解决：\\n- route_planning: 站位(7,7)发生故障,以该点为终点的调整为(8,7)\\n  原因: 以故障站位 (7, 7) 为终点时，路径应重定向到 (8, 7)，实际终点为 (7, 7)。\\n- init_forklifts: Forklift_1叉车初始位置调整为(27,44)\\n  原因: Forklift_1.location 应为 (27, 44)，实际为 (0, 25)。\\n- init_forklifts: Forklift_2叉车发生故障不可用\\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "从第5辆货车开始间隔改为5分钟",
+          "function": "init_truck_arrival_time"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+          "function": "route_planning",
+          "reason": "以故障站位 (7, 7) 为终点时，路径应重定向到 (8, 7)，实际终点为 (7, 7)。"
+        },
+        {
+          "event": "Forklift_1叉车初始位置调整为(27,44)",
+          "function": "init_forklifts",
+          "reason": "Forklift_1.location 应为 (27, 44)，实际为 (0, 25)。"
+        },
+        {
+          "event": "Forklift_2叉车发生故障不可用",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。"
+        }
+      ],
+      "feedback": "review 通过 1/4，仍未解决：\n- route_planning: 站位(7,7)发生故障,以该点为终点的调整为(8,7)\n  原因: 以故障站位 (7, 7) 为终点时，路径应重定向到 (8, 7)，实际终点为 (7, 7)。\n- init_forklifts: Forklift_1叉车初始位置调整为(27,44)\n  原因: Forklift_1.location 应为 (27, 44)，实际为 (0, 25)。\n- init_forklifts: Forklift_2叉车发生故障不可用\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。"
+    }
+  }
+}

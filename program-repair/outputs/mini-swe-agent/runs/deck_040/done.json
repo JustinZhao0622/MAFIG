@@ -1,0 +1,82 @@
+{
+  "id": "deck_040",
+  "scene": "deck",
+  "dataset_index": 39,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_040",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_040/trajectory.json",
+    "latency_sec": 919.1143267154694,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10029,
+          "completion_tokens": 8737
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.25572896003723145,
+  "task_latency_sec": 919.1143295764923,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 5, \"solved_events\": [{\"event\": \"第4辆液压车初始位置调整为(2,0)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第4辆消防车初始位置调整为(0,5)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第4辆牵引车初始位置调整为(1,2)\", \"function\": \"init_tractor_resources\"}, {\"event\": \"第4辆加氮车初始位置调整为(0,1)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"站位(5,8)(6,8)(5,9)(6,9)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第4个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 5/6，仍未解决：\\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第4辆液压车初始位置调整为(2,0)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第4辆消防车初始位置调整为(0,5)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第4辆牵引车初始位置调整为(1,2)",
+          "function": "init_tractor_resources"
+        },
+        {
+          "event": "第4辆加氮车初始位置调整为(0,1)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "站位(5,8)(6,8)(5,9)(6,9)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 5/6，仍未解决：\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

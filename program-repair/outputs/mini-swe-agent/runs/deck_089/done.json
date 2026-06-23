@@ -1,0 +1,91 @@
+{
+  "id": "deck_089",
+  "scene": "deck",
+  "dataset_index": 88,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_089",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_089/trajectory.json",
+    "latency_sec": 919.1094124317169,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10472,
+          "completion_tokens": 8791
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.22380733489990234,
+  "task_latency_sec": 919.1094150543213,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 8, \"solved\": 6, \"solved_events\": [{\"event\": \"第5辆牵引车初始位置调整为(0,7)\", \"function\": \"init_tractor_resources\"}, {\"event\": \"站位(6,4)(7,4)(6,5)(7,5)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第5辆液压车初始位置调整为(2,9)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第3个牵引任务目标站位调整为(1,6)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第5辆供电车初始位置调整为(3,6)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第5辆消防车初始位置调整为(2,2)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"站位(9,11)发生故障,以该点为终点的调整为(10,11)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}, {\"event\": \"第5辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 6/8，仍未解决：\\n- route_planning: 站位(9,11)发生故障,以该点为终点的调整为(10,11)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\\n- init_maintenance_vehicle_resources: 第5辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 8,
+      "solved": 6,
+      "solved_events": [
+        {
+          "event": "第5辆牵引车初始位置调整为(0,7)",
+          "function": "init_tractor_resources"
+        },
+        {
+          "event": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第5辆液压车初始位置调整为(2,9)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(1,6)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第5辆供电车初始位置调整为(3,6)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第5辆消防车初始位置调整为(2,2)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(9,11)发生故障,以该点为终点的调整为(10,11)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        },
+        {
+          "event": "第5辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 6/8，仍未解决：\n- route_planning: 站位(9,11)发生故障,以该点为终点的调整为(10,11)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\n- init_maintenance_vehicle_resources: 第5辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

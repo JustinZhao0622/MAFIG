@@ -1,0 +1,91 @@
+{
+  "id": "deck_057",
+  "scene": "deck",
+  "dataset_index": 56,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_057",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_057/trajectory.json",
+    "latency_sec": 919.1125030517578,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10242,
+          "completion_tokens": 8438
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18640375137329102,
+  "task_latency_sec": 919.1125059127808,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 7, \"solved\": 1, \"solved_events\": [{\"event\": \"第4辆加氮车初始位置调整为(0,5)\", \"function\": \"init_nitrogen_truck_resources\"}], \"unsolved\": [{\"event\": \"第4辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4个牵引任务目标站位调整为(0,0)\", \"function\": \"init_towing_tasks\", \"reason\": \"init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\"}, {\"event\": \"第4辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4辆牵引车初始位置调整为(2,1)\", \"function\": \"init_tractor_resources\", \"reason\": \"init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\"}, {\"event\": \"站位(12,11)发生故障,以该点为终点的调整为(13,11)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}], \"feedback\": \"review 通过 1/7，仍未解决：\\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_towing_tasks: 第4个牵引任务目标站位调整为(0,0)\\n  原因: init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_tractor_resources: 第4辆牵引车初始位置调整为(2,1)\\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\\n- route_planning: 站位(12,11)发生故障,以该点为终点的调整为(13,11)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 7,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "第4辆加氮车初始位置调整为(0,5)",
+          "function": "init_nitrogen_truck_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4个牵引任务目标站位调整为(0,0)",
+          "function": "init_towing_tasks",
+          "reason": "init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。"
+        },
+        {
+          "event": "第4辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4辆牵引车初始位置调整为(2,1)",
+          "function": "init_tractor_resources",
+          "reason": "init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "站位(12,11)发生故障,以该点为终点的调整为(13,11)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        }
+      ],
+      "feedback": "review 通过 1/7，仍未解决：\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第4个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_towing_tasks: 第4个牵引任务目标站位调整为(0,0)\n  原因: init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_tractor_resources: 第4辆牵引车初始位置调整为(2,1)\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\n- route_planning: 站位(12,11)发生故障,以该点为终点的调整为(13,11)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+    }
+  }
+}

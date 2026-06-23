@@ -1,0 +1,85 @@
+{
+  "id": "deck_069",
+  "scene": "deck",
+  "dataset_index": 68,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_069",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_069/trajectory.json",
+    "latency_sec": 919.1113350391388,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10519,
+          "completion_tokens": 8959
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2439124584197998,
+  "task_latency_sec": 919.1113376617432,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 2, \"solved_events\": [{\"event\": \"站位(7,3)(8,3)(7,4)(8,4)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第3个牵引任务目标站位调整为(1,9)\", \"function\": \"init_towing_tasks\"}], \"unsolved\": [{\"event\": \"第2辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(10,11)发生故障,以该点为终点的调整为(11,11)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}, {\"event\": \"第2个固定保障资源初始位置调整为(2,9)\", \"function\": \"init_fixed_resources\", \"reason\": \"init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\"}, {\"event\": \"第2辆消防车初始位置调整为(0,2)\", \"function\": \"init_fire_vehicle_resources\", \"reason\": \"init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。\"}], \"feedback\": \"review 通过 2/6，仍未解决：\\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(10,11)发生故障,以该点为终点的调整为(11,11)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\\n- init_fixed_resources: 第2个固定保障资源初始位置调整为(2,9)\\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\\n- init_fire_vehicle_resources: 第2辆消防车初始位置调整为(0,2)\\n  原因: init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "站位(7,3)(8,3)(7,4)(8,4)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(1,9)",
+          "function": "init_towing_tasks"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第2辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(10,11)发生故障,以该点为终点的调整为(11,11)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        },
+        {
+          "event": "第2个固定保障资源初始位置调整为(2,9)",
+          "function": "init_fixed_resources",
+          "reason": "init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第2辆消防车初始位置调整为(0,2)",
+          "function": "init_fire_vehicle_resources",
+          "reason": "init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。"
+        }
+      ],
+      "feedback": "review 通过 2/6，仍未解决：\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(10,11)发生故障,以该点为终点的调整为(11,11)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\n- init_fixed_resources: 第2个固定保障资源初始位置调整为(2,9)\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\n- init_fire_vehicle_resources: 第2辆消防车初始位置调整为(0,2)\n  原因: init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "deck_083",
+  "scene": "deck",
+  "dataset_index": 82,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_083",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_083/trajectory.json",
+    "latency_sec": 919.1099972724915,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10215,
+          "completion_tokens": 8925
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.24199199676513672,
+  "task_latency_sec": 919.110000371933,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"站位(8,3)(9,3)(8,4)(9,4)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第2辆加氮车初始位置调整为(1,10)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"第2个固定保障资源初始位置调整为(1,4)\", \"function\": \"init_fixed_resources\"}], \"unsolved\": [{\"event\": \"第2辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "站位(8,3)(9,3)(8,4)(9,4)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第2辆加氮车初始位置调整为(1,10)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "第2个固定保障资源初始位置调整为(1,4)",
+          "function": "init_fixed_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第2辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

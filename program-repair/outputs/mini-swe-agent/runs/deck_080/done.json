@@ -1,0 +1,78 @@
+{
+  "id": "deck_080",
+  "scene": "deck",
+  "dataset_index": 79,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_080",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_080/trajectory.json",
+    "latency_sec": 919.1102976799011,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10101,
+          "completion_tokens": 8703
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.22212982177734375,
+  "task_latency_sec": 919.1103005409241,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 4, \"solved_events\": [{\"event\": \"站位(7,9)发生故障,以该点为终点的调整为(8,9)\", \"function\": \"route_planning\"}, {\"event\": \"第3个固定保障资源初始位置调整为(1,3)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第3辆消防车初始位置调整为(0,8)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第3辆液压车初始位置调整为(1,1)\", \"function\": \"init_hydraulic_cart_resources\"}], \"unsolved\": [{\"event\": \"站位(6,7)(7,7)(6,8)(7,8)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}], \"feedback\": \"review 通过 4/5，仍未解决：\\n- route_planning: 站位(6,7)(7,7)(6,8)(7,8)四个点发生故障\\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+          "function": "route_planning"
+        },
+        {
+          "event": "第3个固定保障资源初始位置调整为(1,3)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第3辆消防车初始位置调整为(0,8)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第3辆液压车初始位置调整为(1,1)",
+          "function": "init_hydraulic_cart_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(6,7)(7,7)(6,8)(7,8)四个点发生故障",
+          "function": "route_planning",
+          "reason": "route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+        }
+      ],
+      "feedback": "review 通过 4/5，仍未解决：\n- route_planning: 站位(6,7)(7,7)(6,8)(7,8)四个点发生故障\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+    }
+  }
+}

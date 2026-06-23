@@ -1,0 +1,80 @@
+{
+  "id": "deck_041",
+  "scene": "deck",
+  "dataset_index": 40,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_041",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_041/trajectory.json",
+    "latency_sec": 919.1142196655273,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9785,
+          "completion_tokens": 8183
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.11714959144592285,
+  "task_latency_sec": 919.1142222881317,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 2, \"solved_events\": [{\"event\": \"第5辆液压车初始位置调整为(2,3)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第2个牵引任务目标站位调整为(1,2)\", \"function\": \"init_towing_tasks\"}], \"unsolved\": [{\"event\": \"第5辆供电车初始位置调整为(0,6)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}, {\"event\": \"站位(8,12)发生故障,以该点为终点的调整为(9,12)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}, {\"event\": \"站位(7,5)(8,5)(7,6)(8,6)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}], \"feedback\": \"review 通过 2/5，仍未解决：\\n- init_power_cart_resources: 第5辆供电车初始位置调整为(0,6)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\\n- route_planning: 站位(8,12)发生故障,以该点为终点的调整为(9,12)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\\n- route_planning: 站位(7,5)(8,5)(7,6)(8,6)四个点发生故障\\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第5辆液压车初始位置调整为(2,3)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第2个牵引任务目标站位调整为(1,2)",
+          "function": "init_towing_tasks"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第5辆供电车初始位置调整为(0,6)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "站位(8,12)发生故障,以该点为终点的调整为(9,12)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        },
+        {
+          "event": "站位(7,5)(8,5)(7,6)(8,6)四个点发生故障",
+          "function": "route_planning",
+          "reason": "route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+        }
+      ],
+      "feedback": "review 通过 2/5，仍未解决：\n- init_power_cart_resources: 第5辆供电车初始位置调整为(0,6)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\n- route_planning: 站位(8,12)发生故障,以该点为终点的调整为(9,12)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\n- route_planning: 站位(7,5)(8,5)(7,6)(8,6)四个点发生故障\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "deck_077",
+  "scene": "deck",
+  "dataset_index": 76,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_077",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_077/trajectory.json",
+    "latency_sec": 919.1105988025665,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9768,
+          "completion_tokens": 8270
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.19988393783569336,
+  "task_latency_sec": 919.1106016635895,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 4, \"solved_events\": [{\"event\": \"第1辆液压车初始位置调整为(1,5)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第1辆消防车初始位置调整为(3,3)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第1辆加氮车初始位置调整为(2,6)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"第1辆牵引车初始位置调整为(1,6)\", \"function\": \"init_tractor_resources\"}], \"unsolved\": [{\"event\": \"第1辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第1辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 4/6，仍未解决：\\n- init_air_source_car_resources: 第1辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_maintenance_vehicle_resources: 第1辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "第1辆液压车初始位置调整为(1,5)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第1辆消防车初始位置调整为(3,3)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第1辆加氮车初始位置调整为(2,6)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "第1辆牵引车初始位置调整为(1,6)",
+          "function": "init_tractor_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第1辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第1辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 4/6，仍未解决：\n- init_air_source_car_resources: 第1辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_maintenance_vehicle_resources: 第1辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

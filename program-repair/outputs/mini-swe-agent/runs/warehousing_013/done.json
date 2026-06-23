@@ -1,0 +1,70 @@
+{
+  "id": "warehousing_013",
+  "scene": "warehousing",
+  "dataset_index": 12,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_013",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_013/trajectory.json",
+    "latency_sec": 426.7715721130371,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7081,
+          "completion_tokens": 5770
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.25212574005126953,
+  "task_latency_sec": 426.7715756893158,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 3, \"solved\": 2, \"solved_events\": [{\"event\": \"从第5辆货车开始间隔改为8分钟\", \"function\": \"init_truck_arrival_time\"}, {\"event\": \"站位(6,5)(7,5)(6,6)(7,6)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"Forklift_1叉车初始位置调整为(47,47)\", \"function\": \"init_forklifts\", \"reason\": \"Forklift_1.location 应为 (47, 47)，实际为 (47, 25)。\"}], \"feedback\": \"review 通过 2/3，仍未解决：\\n- init_forklifts: Forklift_1叉车初始位置调整为(47,47)\\n  原因: Forklift_1.location 应为 (47, 47)，实际为 (47, 25)。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 3,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "从第5辆货车开始间隔改为8分钟",
+          "function": "init_truck_arrival_time"
+        },
+        {
+          "event": "站位(6,5)(7,5)(6,6)(7,6)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Forklift_1叉车初始位置调整为(47,47)",
+          "function": "init_forklifts",
+          "reason": "Forklift_1.location 应为 (47, 47)，实际为 (47, 25)。"
+        }
+      ],
+      "feedback": "review 通过 2/3，仍未解决：\n- init_forklifts: Forklift_1叉车初始位置调整为(47,47)\n  原因: Forklift_1.location 应为 (47, 47)，实际为 (47, 25)。"
+    }
+  }
+}

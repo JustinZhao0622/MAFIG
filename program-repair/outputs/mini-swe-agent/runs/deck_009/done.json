@@ -1,0 +1,76 @@
+{
+  "id": "deck_009",
+  "scene": "deck",
+  "dataset_index": 8,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_009",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": null,
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_009/trajectory.json",
+    "latency_sec": 919.1174306869507,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 2,
+          "prompt_tokens": 6555,
+          "completion_tokens": 5791
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "Submitted",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1305079460144043,
+  "task_latency_sec": 919.1174340248108,
+  "verify": {
+    "status": "pass",
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"total\": 5, \"solved\": 5, \"solved_events\": [{\"event\": \"第2个固定保障资源初始位置调整为(2,1)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第2辆牵引车初始位置调整为(3,3)\", \"function\": \"init_tractor_resources\"}, {\"event\": \"第2辆供电车初始位置调整为(1,10)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第2辆消防车初始位置调整为(1,9)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第2个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\"}], \"unsolved\": [], \"feedback\": \"review 通过 5/5，所有突发事件均已解决。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "pass",
+      "total": 5,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第2个固定保障资源初始位置调整为(2,1)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第2辆牵引车初始位置调整为(3,3)",
+          "function": "init_tractor_resources"
+        },
+        {
+          "event": "第2辆供电车初始位置调整为(1,10)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第2辆消防车初始位置调整为(1,9)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第2个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources"
+        }
+      ],
+      "unsolved": [],
+      "feedback": "review 通过 5/5，所有突发事件均已解决。"
+    }
+  }
+}

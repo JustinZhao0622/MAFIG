@@ -1,0 +1,16 @@
+import heapq
+import time
+import random
+
+def init_air_source_car_resources(nums=10):
+    """初始化气源车资源，返回资源列表，每个资源包含id、类型"""
+    air_source_car_resources = []
+    for i in range(nums):
+        resource = {"id": i, "type": "air_source_car", "location": (random.randint(0, 3), random.randint(0, 10))}
+        # 标记第1辆气源车（id=0）为故障状态
+        if i == 0:
+            resource["status"] = "fault"
+        else:
+            resource["status"] = "normal"
+        air_source_car_resources.append(resource)
+    return air_source_car_resources

@@ -1,0 +1,71 @@
+{
+  "id": "warehousing_037",
+  "scene": "warehousing",
+  "dataset_index": 36,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_037",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_037/trajectory.json",
+    "latency_sec": 426.76845359802246,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7172,
+          "completion_tokens": 5734
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1826765537261963,
+  "task_latency_sec": 426.7684564590454,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 3, \"solved\": 1, \"solved_events\": [{\"event\": \"Forklift_3叉车初始位置调整为(48,15)\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\"}, {\"event\": \"Forklift_3叉车发生故障不可用\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_3；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。\"}], \"feedback\": \"review 通过 1/3，仍未解决：\\n- route_planning: 站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\\n- init_forklifts: Forklift_3叉车发生故障不可用\\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_3；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 3,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "Forklift_3叉车初始位置调整为(48,15)",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。"
+        },
+        {
+          "event": "Forklift_3叉车发生故障不可用",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_3；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。"
+        }
+      ],
+      "feedback": "review 通过 1/3，仍未解决：\n- route_planning: 站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\n- init_forklifts: Forklift_3叉车发生故障不可用\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_3；当前 ids=['Forklift_1', 'Forklift_2', 'Forklift_3']。"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "warehousing_070",
+  "scene": "warehousing",
+  "dataset_index": 69,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_070",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_070/trajectory.json",
+    "latency_sec": 426.76387119293213,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7173,
+          "completion_tokens": 5798
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2022237777709961,
+  "task_latency_sec": 426.7638738155365,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 3, \"solved_events\": [{\"event\": \"Zone_1堆积区当前库存增加69\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Zone_1堆积区最大容量缩减至71\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_3叉车发生故障不可用\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"站位(8,9)发生故障,以该点为终点的调整为(9,9)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (8, 9) 为终点时，路径应重定向到 (9, 9)，实际终点为 (8, 9)。\"}], \"feedback\": \"review 通过 3/4，仍未解决：\\n- route_planning: 站位(8,9)发生故障,以该点为终点的调整为(9,9)\\n  原因: 以故障站位 (8, 9) 为终点时，路径应重定向到 (9, 9)，实际终点为 (8, 9)。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "Zone_1堆积区当前库存增加69",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Zone_1堆积区最大容量缩减至71",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_3叉车发生故障不可用",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(8,9)发生故障,以该点为终点的调整为(9,9)",
+          "function": "route_planning",
+          "reason": "以故障站位 (8, 9) 为终点时，路径应重定向到 (9, 9)，实际终点为 (8, 9)。"
+        }
+      ],
+      "feedback": "review 通过 3/4，仍未解决：\n- route_planning: 站位(8,9)发生故障,以该点为终点的调整为(9,9)\n  原因: 以故障站位 (8, 9) 为终点时，路径应重定向到 (9, 9)，实际终点为 (8, 9)。"
+    }
+  }
+}

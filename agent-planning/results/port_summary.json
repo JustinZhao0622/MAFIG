@@ -1,0 +1,22 @@
+{
+  "react_review_loop": [
+    {
+      "scene": "all",
+      "cases": 50,
+      "case_solve_rate": 0.2,
+      "event_solve_rate": 0.628140703517588,
+      "avg_rounds": 2.7,
+      "verify_errors": 1,
+      "avg_latency_sec": 423.782785820961
+    },
+    {
+      "scene": "port",
+      "cases": 50,
+      "case_solve_rate": 0.2,
+      "event_solve_rate": 0.628140703517588,
+      "avg_rounds": 2.7,
+      "verify_errors": 1,
+      "avg_latency_sec": 423.782785820961
+    }
+  ]
+}

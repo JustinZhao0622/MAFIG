@@ -1,0 +1,75 @@
+{
+  "id": "warehousing_068",
+  "scene": "warehousing",
+  "dataset_index": 67,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_068",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_068/trajectory.json",
+    "latency_sec": 426.764164686203,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7232,
+          "completion_tokens": 5714
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.19277381896972656,
+  "task_latency_sec": 426.76416754722595,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 2, \"solved_events\": [{\"event\": \"Forklift_2叉车发生故障不可用\", \"function\": \"init_forklifts\"}, {\"event\": \"Zone_3堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"站位(8,8)发生故障,以该点为终点的调整为(9,8)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。\"}, {\"event\": \"Forklift_2叉车初始位置调整为(24,29)\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 未返回 Forklift_2，无法检查位置。\"}], \"feedback\": \"review 通过 2/4，仍未解决：\\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\\n  原因: 以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。\\n- init_forklifts: Forklift_2叉车初始位置调整为(24,29)\\n  原因: init_forklifts() 未返回 Forklift_2，无法检查位置。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Forklift_2叉车发生故障不可用",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "Zone_3堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+          "function": "route_planning",
+          "reason": "以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。"
+        },
+        {
+          "event": "Forklift_2叉车初始位置调整为(24,29)",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 未返回 Forklift_2，无法检查位置。"
+        }
+      ],
+      "feedback": "review 通过 2/4，仍未解决：\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\n  原因: 以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。\n- init_forklifts: Forklift_2叉车初始位置调整为(24,29)\n  原因: init_forklifts() 未返回 Forklift_2，无法检查位置。"
+    }
+  }
+}

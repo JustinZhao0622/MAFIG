@@ -1,0 +1,81 @@
+{
+  "id": "deck_086",
+  "scene": "deck",
+  "dataset_index": 85,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_086",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_086/trajectory.json",
+    "latency_sec": 919.1097085475922,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10049,
+          "completion_tokens": 8528
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2419910430908203,
+  "task_latency_sec": 919.1097118854523,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第4辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4辆液压车初始位置调整为(0,0)\", \"function\": \"init_hydraulic_cart_resources\", \"reason\": \"init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}, {\"event\": \"第4辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4辆供电车初始位置调整为(1,7)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\\n- init_hydraulic_cart_resources: 第4辆液压车初始位置调整为(0,0)\\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\\n- init_oxygen_truck_resources: 第4辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- init_power_cart_resources: 第4辆供电车初始位置调整为(1,7)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4辆液压车初始位置调整为(0,0)",
+          "function": "init_hydraulic_cart_resources",
+          "reason": "init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第4辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4辆供电车初始位置调整为(1,7)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\n- init_hydraulic_cart_resources: 第4辆液压车初始位置调整为(0,0)\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\n- init_oxygen_truck_resources: 第4辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- init_power_cart_resources: 第4辆供电车初始位置调整为(1,7)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+    }
+  }
+}

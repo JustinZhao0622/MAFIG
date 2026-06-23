@@ -1,0 +1,75 @@
+{
+  "id": "warehousing_002",
+  "scene": "warehousing",
+  "dataset_index": 1,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_002",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_002/trajectory.json",
+    "latency_sec": 426.77318596839905,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7325,
+          "completion_tokens": 5838
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17298340797424316,
+  "task_latency_sec": 426.7731912136078,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 2, \"solved_events\": [{\"event\": \"Zone_2堆积区最大容量缩减至102\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_3叉车发生故障不可用\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\"}, {\"event\": \"Forklift_2叉车初始位置调整为(34,50)\", \"function\": \"init_forklifts\", \"reason\": \"Forklift_2.location 应为 (34, 50)，实际为 (0, 25)。\"}], \"feedback\": \"review 通过 2/4，仍未解决：\\n- route_planning: 站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\\n- init_forklifts: Forklift_2叉车初始位置调整为(34,50)\\n  原因: Forklift_2.location 应为 (34, 50)，实际为 (0, 25)。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Zone_2堆积区最大容量缩减至102",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_3叉车发生故障不可用",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(6,3)(7,3)(6,4)(7,4)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。"
+        },
+        {
+          "event": "Forklift_2叉车初始位置调整为(34,50)",
+          "function": "init_forklifts",
+          "reason": "Forklift_2.location 应为 (34, 50)，实际为 (0, 25)。"
+        }
+      ],
+      "feedback": "review 通过 2/4，仍未解决：\n- route_planning: 站位(6,3)(7,3)(6,4)(7,4)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(6, 3), (7, 3), (6, 4), (7, 4)]。\n- init_forklifts: Forklift_2叉车初始位置调整为(34,50)\n  原因: Forklift_2.location 应为 (34, 50)，实际为 (0, 25)。"
+    }
+  }
+}

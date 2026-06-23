@@ -1,0 +1,22 @@
+{
+  "react_review_loop": [
+    {
+      "scene": "all",
+      "cases": 100,
+      "case_solve_rate": 0.08,
+      "event_solve_rate": 0.4501557632398754,
+      "avg_rounds": 2.94,
+      "verify_errors": 13,
+      "avg_latency_sec": 2936.757329006195
+    },
+    {
+      "scene": "deck",
+      "cases": 100,
+      "case_solve_rate": 0.08,
+      "event_solve_rate": 0.4501557632398754,
+      "avg_rounds": 2.94,
+      "verify_errors": 13,
+      "avg_latency_sec": 2936.757329006195
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "deck_006",
+  "scene": "deck",
+  "dataset_index": 5,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_006",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_006/trajectory.json",
+    "latency_sec": 919.1176726818085,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10124,
+          "completion_tokens": 8514
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2648191452026367,
+  "task_latency_sec": 919.1176767349243,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 2, \"solved_events\": [{\"event\": \"第3辆加氮车初始位置调整为(1,5)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"站位(3,4)(4,4)(3,5)(4,5)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第3辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆供电车初始位置调整为(3,2)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆液压车初始位置调整为(3,1)\", \"function\": \"init_hydraulic_cart_resources\", \"reason\": \"init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}], \"feedback\": \"review 通过 2/6，仍未解决：\\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_power_cart_resources: 第3辆供电车初始位置调整为(3,2)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_hydraulic_cart_resources: 第3辆液压车初始位置调整为(3,1)\\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第3辆加氮车初始位置调整为(1,5)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第3辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆供电车初始位置调整为(3,2)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆液压车初始位置调整为(3,1)",
+          "function": "init_hydraulic_cart_resources",
+          "reason": "init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+        }
+      ],
+      "feedback": "review 通过 2/6，仍未解决：\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_power_cart_resources: 第3辆供电车初始位置调整为(3,2)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_hydraulic_cart_resources: 第3辆液压车初始位置调整为(3,1)\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+    }
+  }
+}

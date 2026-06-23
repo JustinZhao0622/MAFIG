@@ -1,0 +1,81 @@
+{
+  "id": "deck_032",
+  "scene": "deck",
+  "dataset_index": 31,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_032",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_032/trajectory.json",
+    "latency_sec": 919.115076303482,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9878,
+          "completion_tokens": 8339
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1902456283569336,
+  "task_latency_sec": 919.1150794029236,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"第3辆消防车初始位置调整为(2,10)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"第3辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆液压车初始位置调整为(0,10)\", \"function\": \"init_hydraulic_cart_resources\", \"reason\": \"init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆牵引车初始位置调整为(1,6)\", \"function\": \"init_tractor_resources\", \"reason\": \"init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆供电车初始位置调整为(1,1)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_oxygen_truck_resources: 第3辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- init_hydraulic_cart_resources: 第3辆液压车初始位置调整为(0,10)\\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\\n- init_tractor_resources: 第3辆牵引车初始位置调整为(1,6)\\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\\n- init_power_cart_resources: 第3辆供电车初始位置调整为(1,1)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "第3辆消防车初始位置调整为(2,10)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第3辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆液压车初始位置调整为(0,10)",
+          "function": "init_hydraulic_cart_resources",
+          "reason": "init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆牵引车初始位置调整为(1,6)",
+          "function": "init_tractor_resources",
+          "reason": "init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆供电车初始位置调整为(1,1)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_oxygen_truck_resources: 第3辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- init_hydraulic_cart_resources: 第3辆液压车初始位置调整为(0,10)\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\n- init_tractor_resources: 第3辆牵引车初始位置调整为(1,6)\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\n- init_power_cart_resources: 第3辆供电车初始位置调整为(1,1)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+    }
+  }
+}

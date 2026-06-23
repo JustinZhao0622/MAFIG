@@ -1,0 +1,88 @@
+{
+  "id": "deck_015",
+  "scene": "deck",
+  "dataset_index": 14,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_015",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_015/trajectory.json",
+    "latency_sec": 919.1167795658112,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10532,
+          "completion_tokens": 9247
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.26009249687194824,
+  "task_latency_sec": 919.1167826652527,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 7, \"solved\": 4, \"solved_events\": [{\"event\": \"第2个固定保障资源初始位置调整为(1,6)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第2辆液压车初始位置调整为(1,2)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第2辆消防车初始位置调整为(2,7)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"站位(7,4)(8,4)(7,5)(8,5)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第2辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"从第6架舰载机开始到达间隔改为8分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}, {\"event\": \"第2辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 4/7，仍未解决：\\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_planes: 从第6架舰载机开始到达间隔改为8分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 7,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "第2个固定保障资源初始位置调整为(1,6)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第2辆液压车初始位置调整为(1,2)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第2辆消防车初始位置调整为(2,7)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "站位(7,4)(8,4)(7,5)(8,5)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第2辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "从第6架舰载机开始到达间隔改为8分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        },
+        {
+          "event": "第2辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 4/7，仍未解决：\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_planes: 从第6架舰载机开始到达间隔改为8分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

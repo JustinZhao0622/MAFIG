@@ -1,0 +1,82 @@
+{
+  "id": "deck_003",
+  "scene": "deck",
+  "dataset_index": 2,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_003",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_003/trajectory.json",
+    "latency_sec": 919.1180047988892,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10067,
+          "completion_tokens": 8720
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2441866397857666,
+  "task_latency_sec": 919.1180090904236,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 5, \"solved_events\": [{\"event\": \"第2个牵引任务目标站位调整为(3,10)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第4辆消防车初始位置调整为(0,3)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"站位(6,4)(7,4)(6,5)(7,5)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第4辆供电车初始位置调整为(0,9)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第4辆加氮车初始位置调整为(2,4)\", \"function\": \"init_nitrogen_truck_resources\"}], \"unsolved\": [{\"event\": \"第4辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 5/6，仍未解决：\\n- init_air_source_car_resources: 第4辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第2个牵引任务目标站位调整为(3,10)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第4辆消防车初始位置调整为(0,3)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第4辆供电车初始位置调整为(0,9)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第4辆加氮车初始位置调整为(2,4)",
+          "function": "init_nitrogen_truck_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 5/6，仍未解决：\n- init_air_source_car_resources: 第4辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

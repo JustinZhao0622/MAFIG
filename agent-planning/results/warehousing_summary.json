@@ -1,0 +1,22 @@
+{
+  "react_review_loop": [
+    {
+      "scene": "all",
+      "cases": 100,
+      "case_solve_rate": 0.04,
+      "event_solve_rate": 0.5150753768844221,
+      "avg_rounds": 2.93,
+      "verify_errors": 1,
+      "avg_latency_sec": 1852.4765792393684
+    },
+    {
+      "scene": "warehousing",
+      "cases": 100,
+      "case_solve_rate": 0.04,
+      "event_solve_rate": 0.5150753768844221,
+      "avg_rounds": 2.93,
+      "verify_errors": 1,
+      "avg_latency_sec": 1852.4765792393684
+    }
+  ]
+}

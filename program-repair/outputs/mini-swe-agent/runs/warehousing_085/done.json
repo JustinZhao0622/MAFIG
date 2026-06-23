@@ -1,0 +1,75 @@
+{
+  "id": "warehousing_085",
+  "scene": "warehousing",
+  "dataset_index": 84,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_085",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_085/trajectory.json",
+    "latency_sec": 426.76170468330383,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7323,
+          "completion_tokens": 6114
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.19077372550964355,
+  "task_latency_sec": 426.7617073059082,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 2, \"solved_events\": [{\"event\": \"Zone_3堆积区当前库存增加78\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_2叉车初始位置调整为(27,12)\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"Zone_1堆积区最大容量缩减至54\", \"function\": \"init_stacking_zones\", \"reason\": \"Zone_1.max_capacity 应为 54，实际为 100。\"}, {\"event\": \"Zone_2堆积区发生故障不可用\", \"function\": \"init_stacking_zones\", \"reason\": \"init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_2；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}], \"feedback\": \"review 通过 2/4，仍未解决：\\n- init_stacking_zones: Zone_1堆积区最大容量缩减至54\\n  原因: Zone_1.max_capacity 应为 54，实际为 100。\\n- init_stacking_zones: Zone_2堆积区发生故障不可用\\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_2；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Zone_3堆积区当前库存增加78",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_2叉车初始位置调整为(27,12)",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_1堆积区最大容量缩减至54",
+          "function": "init_stacking_zones",
+          "reason": "Zone_1.max_capacity 应为 54，实际为 100。"
+        },
+        {
+          "event": "Zone_2堆积区发生故障不可用",
+          "function": "init_stacking_zones",
+          "reason": "init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_2；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+        }
+      ],
+      "feedback": "review 通过 2/4，仍未解决：\n- init_stacking_zones: Zone_1堆积区最大容量缩减至54\n  原因: Zone_1.max_capacity 应为 54，实际为 100。\n- init_stacking_zones: Zone_2堆积区发生故障不可用\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_2；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+    }
+  }
+}

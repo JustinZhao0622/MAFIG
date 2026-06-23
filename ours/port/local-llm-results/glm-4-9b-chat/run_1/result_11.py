@@ -1,0 +1,109 @@
+import heapq
+import time
+import random 
+
+def init_cranes(nums=5,start_time="8:00:00"):
+    """初始化船舶，每隔三分钟到达一艘船舶，返回船舶列表，每个船舶包含时间、id，任务时长都为10分钟"""
+    start_time = time.strptime(start_time, "%H:%M:%S")
+    vessels = []
+    for i in range(nums):
+        vessel_time = time.strftime("%H:%M:%S", time.localtime(time.mktime(start_time) + 3 * 60 * i))
+        if i == 4:
+            vessels.append({"time": vessel_time, "id": i, "duration": 20, "location": (i,10)})
+        else:
+            vessels.append({"time": vessel_time, "id": i, "duration": 10, "location": (i,10)})
+    return vessels
+
+def init_resources(nums=10):
+    """初始化资源，返回可用资源列表，每个资源包含id、类型"""
+    resources = []
+    for i in range(nums):
+        resources.append({"id": i, "type": "crane", "location": (random.randint(0, 3), random.randint(0, 10))})
+    # 禁用id为7的资源
+    resources[7]["status"] = "unavailable"
+    return resources
+
+def route_planning(begin_point, end_point, grid_size=(100, 100)):
+    """从一个点到另一个点的路径规划 (使用A*算法)
+
+    参数:
+        begin_point: 起点坐标 (x, y)
+        end_point: 终点坐标 (x, y)
+        grid_size: 地图大小 (width, height)，默认 (100, 100)
+
+    返回:
+        包含路径点的列表，每个点为 (x, y) 元组，从起点到终点
+        如果没有路径则返回 None
+    """
+    width, height = grid_size
+
+    # 曼哈顿距离启发式函数
+    def heuristic(pos):
+        return abs(pos[0] - end_point[0]) + abs(pos[1] - end_point[1])
+
+    # 四个方向：上、下、左、右
+    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+
+    # 优先队列：(f值, 计数器, 当前点, 路径)
+    counter = 0
+    heap = [(heuristic(begin_point), counter, begin_point, [begin_point])]
+    visited = {begin_point}
+
+    while heap:
+        f_score, _, current, path = heapq.heappop(heap)
+
+        # 到达终点
+        if current == end_point:
+            return path
+
+        # 探索四个方向
+        for dx, dy in directions:
+            next_x = current[0] + dx
+            next_y = current[1] + dy
+            next_pos = (next_x, next_y)
+
+            # 检查是否在网格范围内
+            if not (0 <= next_x < width and 0 <= next_y < height):
+                continue
+
+            # 检查是否已访问
+            if next_pos in visited:
+                continue
+
+            visited.add(next_pos)
+            new_path = path + [next_pos]
+            g_score = len(new_path) - 1  # 实际代价
+            f_score = g_score + heuristic(next_pos)  # 总评估代价
+
+            counter += 1
+            heapq.heappush(heap, (f_score, counter, next_pos, new_path))
+    return None
+
+def init_trucks(nums=8):
+    """初始化集卡车队，返回车辆列表，每辆车包含id、位置、状态"""
+    trucks = []
+    for i in range(nums):
+        trucks.append({
+            "id": f"Truck_{i+1}",
+            "location": (random.randint(0, 20), random.randint(0, 20)),
+            "status": "idle",
+        })
+    # 延迟第1艘到达的船舶10分钟
+    if trucks:
+        trucks[0]["arrival_time"] = time.time() + 10 * 60
+    return trucks
+
+def init_yard_blocks(nums=6):
+    """初始化堆场区块，返回区块列表，每个区块包含id、容量、当前占用"""
+    yard_blocks = []
+    for i in range(nums):
+        yard_blocks.append({
+            "id": f"Block_{i+1}",
+            "capacity": 100,
+            "occupied": random.randint(0, 60),
+        })
+    # 调整站位(9,8)的终点为(10,8)
+    yard_blocks[8]["location"] = (10, 8)
+    return yard_blocks
+
+# 其他函数保持不变

@@ -1,0 +1,76 @@
+{
+  "id": "warehousing_096",
+  "scene": "warehousing",
+  "dataset_index": 95,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_096",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_096/trajectory.json",
+    "latency_sec": 426.76016092300415,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7220,
+          "completion_tokens": 5771
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1752469539642334,
+  "task_latency_sec": 426.7601637840271,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 1, \"solved_events\": [{\"event\": \"Forklift_3叉车初始位置调整为(30,36)\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"Zone_1堆积区发生故障不可用\", \"function\": \"init_stacking_zones\", \"reason\": \"调用 init_stacking_zones() 失败：list index out of range\"}, {\"event\": \"站位(9,8)发生故障,以该点为终点的调整为(10,8)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\"}, {\"event\": \"Zone_4堆积区当前库存增加48\", \"function\": \"init_stacking_zones\", \"reason\": \"调用 init_stacking_zones() 失败：list index out of range\"}], \"feedback\": \"review 通过 1/4，仍未解决：\\n- init_stacking_zones: Zone_1堆积区发生故障不可用\\n  原因: 调用 init_stacking_zones() 失败：list index out of range\\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\\n- init_stacking_zones: Zone_4堆积区当前库存增加48\\n  原因: 调用 init_stacking_zones() 失败：list index out of range\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "Forklift_3叉车初始位置调整为(30,36)",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_1堆积区发生故障不可用",
+          "function": "init_stacking_zones",
+          "reason": "调用 init_stacking_zones() 失败：list index out of range"
+        },
+        {
+          "event": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+          "function": "route_planning",
+          "reason": "以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。"
+        },
+        {
+          "event": "Zone_4堆积区当前库存增加48",
+          "function": "init_stacking_zones",
+          "reason": "调用 init_stacking_zones() 失败：list index out of range"
+        }
+      ],
+      "feedback": "review 通过 1/4，仍未解决：\n- init_stacking_zones: Zone_1堆积区发生故障不可用\n  原因: 调用 init_stacking_zones() 失败：list index out of range\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\n- init_stacking_zones: Zone_4堆积区当前库存增加48\n  原因: 调用 init_stacking_zones() 失败：list index out of range"
+    }
+  }
+}

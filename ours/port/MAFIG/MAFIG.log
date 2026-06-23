@@ -1,0 +1,4 @@
+2026-06-16 19:05:49 - INFO - model=Qwen2.5-7B-Instruct, run_idx=1, perception_time=14.66s, decision_time=33.94s,total_time=48.61s, accuracy=0.3920
+2026-06-16 19:09:06 - INFO - model=Qwen3-8B, run_idx=1, perception_time=28.53s, decision_time=161.00s,total_time=189.54s, accuracy=0.4925
+2026-06-16 19:11:14 - INFO - model=Qwen2.5-Coder-7B-Instruct, run_idx=1, perception_time=14.24s, decision_time=32.75s,total_time=46.99s, accuracy=0.6332
+2026-06-16 20:50:37 - INFO - model=Qwen2.5-7B-Instruct, run_idx=1, perception_time=18.43s, decision_time=46.21s,total_time=64.65s, accuracy=0.3869

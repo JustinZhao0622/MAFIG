@@ -1,0 +1,68 @@
+{
+  "id": "port_042",
+  "scene": "port",
+  "dataset_index": 41,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/port_042",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": null,
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/port_042/trajectory.json",
+    "latency_sec": 194.84225511550903,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 5137,
+          "completion_tokens": 3817
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "Submitted",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.21687030792236328,
+  "task_latency_sec": 194.84225845336914,
+  "verify": {
+    "status": "pass",
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"total\": 3, \"solved\": 3, \"solved_events\": [{\"event\": \"第2艘到达的船舶延迟10分钟到达\", \"function\": \"init_cranes\"}, {\"event\": \"站位(6,4)(7,4)(6,5)(7,5)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"id为3的船舶任务时长延长至20分钟\", \"function\": \"init_cranes\"}], \"unsolved\": [], \"feedback\": \"review 通过 3/3，所有突发事件均已解决。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "pass",
+      "total": 3,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "第2艘到达的船舶延迟10分钟到达",
+          "function": "init_cranes"
+        },
+        {
+          "event": "站位(6,4)(7,4)(6,5)(7,5)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "id为3的船舶任务时长延长至20分钟",
+          "function": "init_cranes"
+        }
+      ],
+      "unsolved": [],
+      "feedback": "review 通过 3/3，所有突发事件均已解决。"
+    }
+  }
+}

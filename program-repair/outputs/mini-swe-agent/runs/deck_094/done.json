@@ -1,0 +1,92 @@
+{
+  "id": "deck_094",
+  "scene": "deck",
+  "dataset_index": 93,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_094",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_094/trajectory.json",
+    "latency_sec": 919.1089134216309,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10220,
+          "completion_tokens": 8646
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18999409675598145,
+  "task_latency_sec": 919.1089165210724,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 8, \"solved\": 5, \"solved_events\": [{\"event\": \"第3辆供电车初始位置调整为(1,9)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第3辆消防车初始位置调整为(1,3)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第3个固定保障资源初始位置调整为(0,2)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第1个牵引任务目标站位调整为(3,6)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第3辆加氮车初始位置调整为(2,1)\", \"function\": \"init_nitrogen_truck_resources\"}], \"unsolved\": [{\"event\": \"第3辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(7,7)发生故障,以该点为终点的调整为(8,7)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}], \"feedback\": \"review 通过 5/8，仍未解决：\\n- init_fuel_truck_resources: 第3辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(7,7)发生故障,以该点为终点的调整为(8,7)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 8,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第3辆供电车初始位置调整为(1,9)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第3辆消防车初始位置调整为(1,3)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第3个固定保障资源初始位置调整为(0,2)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第1个牵引任务目标站位调整为(3,6)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第3辆加氮车初始位置调整为(2,1)",
+          "function": "init_nitrogen_truck_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第3辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(7,7)发生故障,以该点为终点的调整为(8,7)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        }
+      ],
+      "feedback": "review 通过 5/8，仍未解决：\n- init_fuel_truck_resources: 第3辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(7,7)发生故障,以该点为终点的调整为(8,7)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+    }
+  }
+}

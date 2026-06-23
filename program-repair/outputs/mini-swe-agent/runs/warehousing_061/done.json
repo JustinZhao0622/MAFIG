@@ -1,0 +1,75 @@
+{
+  "id": "warehousing_061",
+  "scene": "warehousing",
+  "dataset_index": 60,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_061",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_061/trajectory.json",
+    "latency_sec": 426.7651629447937,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7339,
+          "completion_tokens": 5873
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18904876708984375,
+  "task_latency_sec": 426.76516580581665,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 2, \"solved_events\": [{\"event\": \"Zone_1堆积区最大容量缩减至146\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Zone_3堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"站位(8,7)发生故障,以该点为终点的调整为(9,7)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (8, 7) 为终点时，路径应重定向到 (9, 7)，实际终点为 (8, 7)。\"}, {\"event\": \"站位(4,6)(5,6)(4,7)(5,7)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(4, 6), (5, 6), (4, 7), (5, 7)]。\"}], \"feedback\": \"review 通过 2/4，仍未解决：\\n- route_planning: 站位(8,7)发生故障,以该点为终点的调整为(9,7)\\n  原因: 以故障站位 (8, 7) 为终点时，路径应重定向到 (9, 7)，实际终点为 (8, 7)。\\n- route_planning: 站位(4,6)(5,6)(4,7)(5,7)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(4, 6), (5, 6), (4, 7), (5, 7)]。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Zone_1堆积区最大容量缩减至146",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Zone_3堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(8,7)发生故障,以该点为终点的调整为(9,7)",
+          "function": "route_planning",
+          "reason": "以故障站位 (8, 7) 为终点时，路径应重定向到 (9, 7)，实际终点为 (8, 7)。"
+        },
+        {
+          "event": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(4, 6), (5, 6), (4, 7), (5, 7)]。"
+        }
+      ],
+      "feedback": "review 通过 2/4，仍未解决：\n- route_planning: 站位(8,7)发生故障,以该点为终点的调整为(9,7)\n  原因: 以故障站位 (8, 7) 为终点时，路径应重定向到 (9, 7)，实际终点为 (8, 7)。\n- route_planning: 站位(4,6)(5,6)(4,7)(5,7)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(4, 6), (5, 6), (4, 7), (5, 7)]。"
+    }
+  }
+}

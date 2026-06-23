@@ -1,0 +1,76 @@
+{
+  "id": "port_011",
+  "scene": "port",
+  "dataset_index": 10,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/port_011",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/port_011/trajectory.json",
+    "latency_sec": 194.84510493278503,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 5689,
+          "completion_tokens": 4272
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1882953643798828,
+  "task_latency_sec": 194.84510779380798,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 1, \"solved_events\": [{\"event\": \"id为4的船舶任务时长延长至20分钟\", \"function\": \"init_cranes\"}], \"unsolved\": [{\"event\": \"id为7的资源不可用\", \"function\": \"init_resources\", \"reason\": \"init_resources(15) 返回的资源 id 仍包含不可用资源 7；当前 ids=[0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14]。\"}, {\"event\": \"站位(9,8)发生故障,以该点为终点的调整为(10,8)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\"}, {\"event\": \"第1艘到达的船舶延迟10分钟到达\", \"function\": \"init_cranes\", \"reason\": \"第 1 艘船 time 应为 08:10:00，实际为 08:00:00。\"}], \"feedback\": \"review 通过 1/4，仍未解决：\\n- init_resources: id为7的资源不可用\\n  原因: init_resources(15) 返回的资源 id 仍包含不可用资源 7；当前 ids=[0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14]。\\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\\n- init_cranes: 第1艘到达的船舶延迟10分钟到达\\n  原因: 第 1 艘船 time 应为 08:10:00，实际为 08:00:00。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "id为4的船舶任务时长延长至20分钟",
+          "function": "init_cranes"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "id为7的资源不可用",
+          "function": "init_resources",
+          "reason": "init_resources(15) 返回的资源 id 仍包含不可用资源 7；当前 ids=[0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14]。"
+        },
+        {
+          "event": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+          "function": "route_planning",
+          "reason": "以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。"
+        },
+        {
+          "event": "第1艘到达的船舶延迟10分钟到达",
+          "function": "init_cranes",
+          "reason": "第 1 艘船 time 应为 08:10:00，实际为 08:00:00。"
+        }
+      ],
+      "feedback": "review 通过 1/4，仍未解决：\n- init_resources: id为7的资源不可用\n  原因: init_resources(15) 返回的资源 id 仍包含不可用资源 7；当前 ids=[0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14]。\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\n- init_cranes: 第1艘到达的船舶延迟10分钟到达\n  原因: 第 1 艘船 time 应为 08:10:00，实际为 08:00:00。"
+    }
+  }
+}

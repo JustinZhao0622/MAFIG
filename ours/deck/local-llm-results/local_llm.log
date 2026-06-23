@@ -1,0 +1,16 @@
+2026-03-19 14:07:03 - INFO - =======================================================
+2026-03-19 14:07:03 - INFO - start local llm benchmark: models=3, runs=2
+2026-03-19 14:11:18 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=1, time=251.54, accuracy=0.17133956386292834, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_1
+2026-03-19 14:15:32 - INFO - model=Qwen2.5-Coder-7B-Instruct, run=2, time=251.07, accuracy=0.17289719626168223, out_dir=local-llm-results/qwen2.5-coder-7b-instruct/run_2
+2026-03-19 14:23:22 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=1, time=466.15, accuracy=0.010903426791277258, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_1
+2026-03-19 14:30:54 - INFO - model=Meta-Llama-3.1-8B-Instruct, run=2, time=449.40, accuracy=0.010903426791277258, out_dir=local-llm-results/meta-llama-3.1-8b-instruct/run_2
+2026-03-19 14:36:26 - INFO - model=glm-4-9b-chat, run=1, time=328.78, accuracy=0.24454828660436137, out_dir=local-llm-results/glm-4-9b-chat/run_1
+2026-03-19 14:40:43 - INFO - model=glm-4-9b-chat, run=2, time=253.64, accuracy=0.24610591900311526, out_dir=local-llm-results/glm-4-9b-chat/run_2
+2026-06-16 19:47:43 - INFO - =======================================================
+2026-06-16 19:47:43 - INFO - start local llm benchmark: models=1, runs=2
+2026-06-16 20:04:46 - INFO - model=Qwen3-8B, run=1, time=1019.71, accuracy=0.22118380062305296, out_dir=local-llm-results/Qwen3-8B/run_1
+2026-06-16 20:21:49 - INFO - model=Qwen3-8B, run=2, time=1020.15, accuracy=0.22118380062305296, out_dir=local-llm-results/Qwen3-8B/run_2
+2026-06-16 21:06:22 - INFO - =======================================================
+2026-06-16 21:06:22 - INFO - start local llm benchmark: models=1, runs=2
+2026-06-16 21:10:32 - INFO - model=Qwen2.5-7B-Instruct, run=1, time=246.51, accuracy=0.16043613707165108, out_dir=local-llm-results/Qwen2.5-7B-Instruct/run_1
+2026-06-16 21:14:43 - INFO - model=Qwen2.5-7B-Instruct, run=2, time=247.10, accuracy=0.16199376947040497, out_dir=local-llm-results/Qwen2.5-7B-Instruct/run_2

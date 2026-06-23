@@ -1,0 +1,20 @@
+{
+    "Perception_Train_data": {
+        "file_name": "/root/code/MAFIG/ours/warehousing/datasets/perception_train_datas.json",
+        "columns": {
+            "system":"system",
+            "prompt":"instruction",
+            "query":"input",
+            "response":"output"
+        }
+    },
+    "Decision_Train_data": {
+        "file_name": "/root/code/MAFIG/ours/warehousing/datasets/decision_loss_train_datas.json",
+        "columns": {
+            "system":"system",
+            "prompt":"instruction",
+            "query":"input",
+            "response":"loss"
+        }
+    }
+}

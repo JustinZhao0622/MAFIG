@@ -1,0 +1,82 @@
+{
+  "id": "deck_012",
+  "scene": "deck",
+  "dataset_index": 11,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_012",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_012/trajectory.json",
+    "latency_sec": 919.1170816421509,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9903,
+          "completion_tokens": 8528
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18363261222839355,
+  "task_latency_sec": 919.1170845031738,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 5, \"solved_events\": [{\"event\": \"第4辆加氮车初始位置调整为(2,5)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"第4辆供电车初始位置调整为(3,0)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第5个牵引任务目标站位调整为(1,0)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第4个固定保障资源初始位置调整为(2,7)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第4辆牵引车初始位置调整为(1,4)\", \"function\": \"init_tractor_resources\"}], \"unsolved\": [{\"event\": \"从第5架舰载机开始到达间隔改为5分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}], \"feedback\": \"review 通过 5/6，仍未解决：\\n- init_planes: 从第5架舰载机开始到达间隔改为5分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第4辆加氮车初始位置调整为(2,5)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "第4辆供电车初始位置调整为(3,0)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第5个牵引任务目标站位调整为(1,0)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第4个固定保障资源初始位置调整为(2,7)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第4辆牵引车初始位置调整为(1,4)",
+          "function": "init_tractor_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "从第5架舰载机开始到达间隔改为5分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        }
+      ],
+      "feedback": "review 通过 5/6，仍未解决：\n- init_planes: 从第5架舰载机开始到达间隔改为5分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+    }
+  }
+}

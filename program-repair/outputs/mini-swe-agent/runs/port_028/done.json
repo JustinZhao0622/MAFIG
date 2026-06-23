@@ -1,0 +1,54 @@
+{
+  "id": "port_028",
+  "scene": "port",
+  "dataset_index": 27,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/port_028",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/port_028/trajectory.json",
+    "latency_sec": 194.84354162216187,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 5389,
+          "completion_tokens": 3945
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 10.191480159759521,
+  "task_latency_sec": 194.84354448318481,
+  "verify": {
+    "status": "timeout",
+    "returncode": 1,
+    "stdout": "{\"status\": \"timeout\", \"total\": 5, \"solved\": 0, \"unsolved\": [], \"feedback\": \"review 超时\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "timeout",
+      "total": 5,
+      "solved": 0,
+      "unsolved": [],
+      "feedback": "review 超时"
+    }
+  }
+}

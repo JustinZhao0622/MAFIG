@@ -1,0 +1,79 @@
+{
+  "id": "deck_051",
+  "scene": "deck",
+  "dataset_index": 50,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_051",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_051/trajectory.json",
+    "latency_sec": 919.1131963729858,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10132,
+          "completion_tokens": 8889
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1781625747680664,
+  "task_latency_sec": 919.1131994724274,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"第1个固定保障资源初始位置调整为(2,9)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第4个牵引任务目标站位调整为(1,1)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第1辆牵引车初始位置调整为(0,10)\", \"function\": \"init_tractor_resources\"}], \"unsolved\": [{\"event\": \"第1辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(7,10)发生故障,以该点为终点的调整为(8,10)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- init_maintenance_vehicle_resources: 第1辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(7,10)发生故障,以该点为终点的调整为(8,10)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "第1个固定保障资源初始位置调整为(2,9)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第4个牵引任务目标站位调整为(1,1)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第1辆牵引车初始位置调整为(0,10)",
+          "function": "init_tractor_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第1辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(7,10)发生故障,以该点为终点的调整为(8,10)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- init_maintenance_vehicle_resources: 第1辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(7,10)发生故障,以该点为终点的调整为(8,10)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+    }
+  }
+}

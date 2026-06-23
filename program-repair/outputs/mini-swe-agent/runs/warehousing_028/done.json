@@ -1,0 +1,72 @@
+{
+  "id": "warehousing_028",
+  "scene": "warehousing",
+  "dataset_index": 27,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_028",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": null,
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_028/trajectory.json",
+    "latency_sec": 426.76968336105347,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 2,
+          "prompt_tokens": 4766,
+          "completion_tokens": 3853
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "Submitted",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.15993332862854004,
+  "task_latency_sec": 426.7696866989136,
+  "verify": {
+    "status": "pass",
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"total\": 4, \"solved\": 4, \"solved_events\": [{\"event\": \"Forklift_2叉车初始位置调整为(27,16)\", \"function\": \"init_forklifts\"}, {\"event\": \"站位(3,5)(4,5)(3,6)(4,6)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"从第5辆货车开始间隔改为6分钟\", \"function\": \"init_truck_arrival_time\"}, {\"event\": \"Zone_3堆积区最大容量缩减至61\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [], \"feedback\": \"review 通过 4/4，所有突发事件均已解决。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "pass",
+      "total": 4,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "Forklift_2叉车初始位置调整为(27,16)",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "站位(3,5)(4,5)(3,6)(4,6)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "从第5辆货车开始间隔改为6分钟",
+          "function": "init_truck_arrival_time"
+        },
+        {
+          "event": "Zone_3堆积区最大容量缩减至61",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [],
+      "feedback": "review 通过 4/4，所有突发事件均已解决。"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "deck_024",
+  "scene": "deck",
+  "dataset_index": 23,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_024",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_024/trajectory.json",
+    "latency_sec": 919.1159093379974,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10414,
+          "completion_tokens": 9071
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.21793723106384277,
+  "task_latency_sec": 919.1159126758575,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 7, \"solved\": 5, \"solved_events\": [{\"event\": \"第5个固定保障资源初始位置调整为(2,7)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第3个牵引任务目标站位调整为(2,8)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第5辆牵引车初始位置调整为(0,3)\", \"function\": \"init_tractor_resources\"}, {\"event\": \"第5辆供电车初始位置调整为(1,7)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"站位(8,8)发生故障,以该点为终点的调整为(9,8)\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第5辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(8,3)(9,3)(8,4)(9,4)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}], \"feedback\": \"review 通过 5/7，仍未解决：\\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(8,3)(9,3)(8,4)(9,4)四个点发生故障\\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 7,
+      "solved": 5,
+      "solved_events": [
+        {
+          "event": "第5个固定保障资源初始位置调整为(2,7)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(2,8)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第5辆牵引车初始位置调整为(0,3)",
+          "function": "init_tractor_resources"
+        },
+        {
+          "event": "第5辆供电车初始位置调整为(1,7)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第5辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(8,3)(9,3)(8,4)(9,4)四个点发生故障",
+          "function": "route_planning",
+          "reason": "route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+        }
+      ],
+      "feedback": "review 通过 5/7，仍未解决：\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(8,3)(9,3)(8,4)(9,4)四个点发生故障\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+    }
+  }
+}

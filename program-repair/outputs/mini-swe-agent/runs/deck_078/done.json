@@ -1,0 +1,81 @@
+{
+  "id": "deck_078",
+  "scene": "deck",
+  "dataset_index": 77,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_078",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_078/trajectory.json",
+    "latency_sec": 919.1104974746704,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10128,
+          "completion_tokens": 8629
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.23912262916564941,
+  "task_latency_sec": 919.1105000972748,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"站位(4,7)(5,7)(4,8)(5,8)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第4辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4个固定保障资源初始位置调整为(0,9)\", \"function\": \"init_fixed_resources\", \"reason\": \"init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\"}, {\"event\": \"第4个牵引任务目标站位调整为(0,7)\", \"function\": \"init_towing_tasks\", \"reason\": \"init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\"}, {\"event\": \"从第5架舰载机开始到达间隔改为6分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\\n- init_fixed_resources: 第4个固定保障资源初始位置调整为(0,9)\\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\\n- init_towing_tasks: 第4个牵引任务目标站位调整为(0,7)\\n  原因: init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\\n- init_planes: 从第5架舰载机开始到达间隔改为6分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "站位(4,7)(5,7)(4,8)(5,8)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4个固定保障资源初始位置调整为(0,9)",
+          "function": "init_fixed_resources",
+          "reason": "init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第4个牵引任务目标站位调整为(0,7)",
+          "function": "init_towing_tasks",
+          "reason": "init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。"
+        },
+        {
+          "event": "从第5架舰载机开始到达间隔改为6分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_fuel_truck_resources: 第4辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\n- init_fixed_resources: 第4个固定保障资源初始位置调整为(0,9)\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\n- init_towing_tasks: 第4个牵引任务目标站位调整为(0,7)\n  原因: init_towing_tasks 中指定牵引任务目标站位未调整到事件给定坐标。\n- init_planes: 从第5架舰载机开始到达间隔改为6分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+    }
+  }
+}

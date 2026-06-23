@@ -1,0 +1,79 @@
+{
+  "id": "warehousing_015",
+  "scene": "warehousing",
+  "dataset_index": 14,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_015",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_015/trajectory.json",
+    "latency_sec": 426.7713234424591,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7316,
+          "completion_tokens": 5948
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18954062461853027,
+  "task_latency_sec": 426.7713270187378,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"Forklift_3叉车发生故障不可用\", \"function\": \"init_forklifts\"}, {\"event\": \"从第3辆货车开始间隔改为5分钟\", \"function\": \"init_truck_arrival_time\"}, {\"event\": \"Zone_2堆积区最大容量缩减至93\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"Zone_4堆积区当前库存增加48\", \"function\": \"init_stacking_zones\", \"reason\": \"Zone_4.current_stock 应为 48，实际为 0。\"}, {\"event\": \"Zone_1堆积区发生故障不可用\", \"function\": \"init_stacking_zones\", \"reason\": \"init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- init_stacking_zones: Zone_4堆积区当前库存增加48\\n  原因: Zone_4.current_stock 应为 48，实际为 0。\\n- init_stacking_zones: Zone_1堆积区发生故障不可用\\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "Forklift_3叉车发生故障不可用",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "从第3辆货车开始间隔改为5分钟",
+          "function": "init_truck_arrival_time"
+        },
+        {
+          "event": "Zone_2堆积区最大容量缩减至93",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_4堆积区当前库存增加48",
+          "function": "init_stacking_zones",
+          "reason": "Zone_4.current_stock 应为 48，实际为 0。"
+        },
+        {
+          "event": "Zone_1堆积区发生故障不可用",
+          "function": "init_stacking_zones",
+          "reason": "init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- init_stacking_zones: Zone_4堆积区当前库存增加48\n  原因: Zone_4.current_stock 应为 48，实际为 0。\n- init_stacking_zones: Zone_1堆积区发生故障不可用\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_1；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+    }
+  }
+}

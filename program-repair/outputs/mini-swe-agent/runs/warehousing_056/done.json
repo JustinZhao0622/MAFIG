@@ -1,0 +1,68 @@
+{
+  "id": "warehousing_056",
+  "scene": "warehousing",
+  "dataset_index": 55,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_056",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": null,
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_056/trajectory.json",
+    "latency_sec": 426.7658340930939,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7094,
+          "completion_tokens": 5836
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "Submitted",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.19436049461364746,
+  "task_latency_sec": 426.765837430954,
+  "verify": {
+    "status": "pass",
+    "returncode": 0,
+    "stdout": "{\"status\": \"pass\", \"total\": 3, \"solved\": 3, \"solved_events\": [{\"event\": \"Zone_1堆积区当前库存增加71\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_1叉车发生故障不可用\", \"function\": \"init_forklifts\"}, {\"event\": \"站位(6,6)(7,6)(6,7)(7,7)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [], \"feedback\": \"review 通过 3/3，所有突发事件均已解决。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "pass",
+      "total": 3,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "Zone_1堆积区当前库存增加71",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_1叉车发生故障不可用",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [],
+      "feedback": "review 通过 3/3，所有突发事件均已解决。"
+    }
+  }
+}

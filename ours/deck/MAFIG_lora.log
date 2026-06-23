@@ -1,0 +1,10 @@
+2026-03-19 21:58:40 - INFO - =======================================================
+2026-03-19 22:04:39 - INFO - num: 75, actual_num: 75, per_type_num: 5, accuracy: 0.7538940809968847, time_lora: 139.68426513671875, time_decision: 88.88093304634094
+2026-03-19 22:09:35 - INFO - num: 90, actual_num: 90, per_type_num: 6, accuracy: 0.8940809968847352, time_lora: 161.5761058330536, time_decision: 89.68592882156372
+2026-03-19 22:15:09 - INFO - num: 120, actual_num: 120, per_type_num: 8, accuracy: 0.9750778816199377, time_lora: 220.4261610507965, time_decision: 88.47946548461914
+2026-03-19 22:21:16 - INFO - num: 150, actual_num: 145, per_type_num: 10,accuracy: 0.9719626168224299, time_lora: 253.14588022232056, time_decision: 87.47312140464783
+2026-06-18 11:51:26 - INFO - =======================================================
+2026-06-18 11:56:08 - INFO - num: 75, actual_num: 75, per_type_num: 5, skipped_types: {}, accuracy: 0.8753894080996885, time_lora: 162.6331775188446, time_decision: 92.54013323783875
+2026-06-18 12:00:45 - INFO - num: 90, actual_num: 90, per_type_num: 6, skipped_types: {}, accuracy: 0.8404984423676013, time_lora: 164.9684693813324, time_decision: 86.1194019317627
+2026-06-18 12:06:25 - INFO - num: 120, actual_num: 120, per_type_num: 8, skipped_types: {}, accuracy: 0.8738317757009346, time_lora: 222.38603258132935, time_decision: 92.09565448760986
+2026-06-18 12:13:28 - INFO - num: 150, actual_num: 145, per_type_num: 10, skipped_types: {'air_source_car_unavailable': 9, 'oxygen_truck_unavailable': 8, 'planes_interval': 9, 'route_endpoint_change': 9}, accuracy: 0.7866043613707165, time_lora: 256.7947072982788, time_decision: 89.04200053215027

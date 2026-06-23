@@ -1,0 +1,81 @@
+{
+  "id": "deck_037",
+  "scene": "deck",
+  "dataset_index": 36,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_037",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_037/trajectory.json",
+    "latency_sec": 919.1145989894867,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9974,
+          "completion_tokens": 8504
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18650555610656738,
+  "task_latency_sec": 919.1146025657654,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"第1个牵引任务目标站位调整为(1,8)\", \"function\": \"init_towing_tasks\"}], \"unsolved\": [{\"event\": \"第3辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆供电车初始位置调整为(0,9)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_power_cart_resources: 第3辆供电车初始位置调整为(0,9)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\\n- init_mobile_resources: 第3个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_fuel_truck_resources: 第3辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "第1个牵引任务目标站位调整为(1,8)",
+          "function": "init_towing_tasks"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第3辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆供电车初始位置调整为(0,9)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_power_cart_resources: 第3辆供电车初始位置调整为(0,9)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\n- init_mobile_resources: 第3个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_fuel_truck_resources: 第3辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

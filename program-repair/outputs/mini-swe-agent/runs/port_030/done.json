@@ -1,0 +1,71 @@
+{
+  "id": "port_030",
+  "scene": "port",
+  "dataset_index": 29,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/port_030",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/port_030/trajectory.json",
+    "latency_sec": 194.84333539009094,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 5121,
+          "completion_tokens": 3693
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.19689273834228516,
+  "task_latency_sec": 194.8433382511139,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 3, \"solved\": 1, \"solved_events\": [{\"event\": \"id为2的资源不可用\", \"function\": \"init_resources\"}], \"unsolved\": [{\"event\": \"站位(4,5)(5,5)(4,6)(5,6)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(4, 5), (5, 5), (4, 6), (5, 6)]。\"}, {\"event\": \"站位(8,8)发生故障,以该点为终点的调整为(9,8)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。\"}], \"feedback\": \"review 通过 1/3，仍未解决：\\n- route_planning: 站位(4,5)(5,5)(4,6)(5,6)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(4, 5), (5, 5), (4, 6), (5, 6)]。\\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\\n  原因: 以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 3,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "id为2的资源不可用",
+          "function": "init_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(4,5)(5,5)(4,6)(5,6)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(4, 5), (5, 5), (4, 6), (5, 6)]。"
+        },
+        {
+          "event": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+          "function": "route_planning",
+          "reason": "以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。"
+        }
+      ],
+      "feedback": "review 通过 1/3，仍未解决：\n- route_planning: 站位(4,5)(5,5)(4,6)(5,6)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(4, 5), (5, 5), (4, 6), (5, 6)]。\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\n  原因: 以故障站位 (8, 8) 为终点时，路径应重定向到 (9, 8)，实际终点为 (8, 8)。"
+    }
+  }
+}

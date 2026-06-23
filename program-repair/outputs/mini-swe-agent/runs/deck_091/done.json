@@ -1,0 +1,80 @@
+{
+  "id": "deck_091",
+  "scene": "deck",
+  "dataset_index": 90,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_091",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_091/trajectory.json",
+    "latency_sec": 919.1092214584351,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9909,
+          "completion_tokens": 8434
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.16587352752685547,
+  "task_latency_sec": 919.109224319458,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 2, \"solved_events\": [{\"event\": \"第5辆消防车初始位置调整为(3,1)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"第3个牵引任务目标站位调整为(3,4)\", \"function\": \"init_towing_tasks\"}], \"unsolved\": [{\"event\": \"站位(8,8)发生故障,以该点为终点的调整为(9,8)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}, {\"event\": \"第5辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第5辆液压车初始位置调整为(2,3)\", \"function\": \"init_hydraulic_cart_resources\", \"reason\": \"init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}], \"feedback\": \"review 通过 2/5，仍未解决：\\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- init_hydraulic_cart_resources: 第5辆液压车初始位置调整为(2,3)\\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第5辆消防车初始位置调整为(3,1)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(3,4)",
+          "function": "init_towing_tasks"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(8,8)发生故障,以该点为终点的调整为(9,8)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        },
+        {
+          "event": "第5辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第5辆液压车初始位置调整为(2,3)",
+          "function": "init_hydraulic_cart_resources",
+          "reason": "init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+        }
+      ],
+      "feedback": "review 通过 2/5，仍未解决：\n- route_planning: 站位(8,8)发生故障,以该点为终点的调整为(9,8)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\n- init_oxygen_truck_resources: 第5辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- init_hydraulic_cart_resources: 第5辆液压车初始位置调整为(2,3)\n  原因: init_hydraulic_cart_resources 中指定液压车的位置未调整到事件给定坐标。"
+    }
+  }
+}

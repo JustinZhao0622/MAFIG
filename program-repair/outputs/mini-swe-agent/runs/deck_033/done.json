@@ -1,0 +1,95 @@
+{
+  "id": "deck_033",
+  "scene": "deck",
+  "dataset_index": 32,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_033",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_033/trajectory.json",
+    "latency_sec": 919.1149823665619,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10454,
+          "completion_tokens": 8583
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17714762687683105,
+  "task_latency_sec": 919.1149854660034,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 8, \"solved\": 2, \"solved_events\": [{\"event\": \"第4辆供电车初始位置调整为(2,0)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"第4辆消防车初始位置调整为(2,5)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"站位(11,10)发生故障,以该点为终点的调整为(12,10)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}, {\"event\": \"第4辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第4个固定保障资源初始位置调整为(2,8)\", \"function\": \"init_fixed_resources\", \"reason\": \"init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\"}, {\"event\": \"站位(3,4)(4,4)(3,5)(4,5)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\"}, {\"event\": \"第4辆加氮车初始位置调整为(1,10)\", \"function\": \"init_nitrogen_truck_resources\", \"reason\": \"init_nitrogen_truck_resources 中指定加氮车的位置未调整到事件给定坐标。\"}, {\"event\": \"第4辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 2/8，仍未解决：\\n- route_planning: 站位(11,10)发生故障,以该点为终点的调整为(12,10)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_fixed_resources: 第4个固定保障资源初始位置调整为(2,8)\\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\\n- route_planning: 站位(3,4)(4,4)(3,5)(4,5)四个点发生故障\\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\\n- init_nitrogen_truck_resources: 第4辆加氮车初始位置调整为(1,10)\\n  原因: init_nitrogen_truck_resources 中指定加氮车的位置未调整到事件给定坐标。\\n- init_oxygen_truck_resources: 第4辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 8,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第4辆供电车初始位置调整为(2,0)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "第4辆消防车初始位置调整为(2,5)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(11,10)发生故障,以该点为终点的调整为(12,10)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        },
+        {
+          "event": "第4辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第4个固定保障资源初始位置调整为(2,8)",
+          "function": "init_fixed_resources",
+          "reason": "init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "站位(3,4)(4,4)(3,5)(4,5)四个点发生故障",
+          "function": "route_planning",
+          "reason": "route_planning 仍会经过故障站位，或没有正确绕开四个故障点。"
+        },
+        {
+          "event": "第4辆加氮车初始位置调整为(1,10)",
+          "function": "init_nitrogen_truck_resources",
+          "reason": "init_nitrogen_truck_resources 中指定加氮车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第4辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 2/8，仍未解决：\n- route_planning: 站位(11,10)发生故障,以该点为终点的调整为(12,10)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_fixed_resources: 第4个固定保障资源初始位置调整为(2,8)\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\n- route_planning: 站位(3,4)(4,4)(3,5)(4,5)四个点发生故障\n  原因: route_planning 仍会经过故障站位，或没有正确绕开四个故障点。\n- init_nitrogen_truck_resources: 第4辆加氮车初始位置调整为(1,10)\n  原因: init_nitrogen_truck_resources 中指定加氮车的位置未调整到事件给定坐标。\n- init_oxygen_truck_resources: 第4辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

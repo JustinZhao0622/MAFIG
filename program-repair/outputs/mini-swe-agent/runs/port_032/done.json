@@ -1,0 +1,79 @@
+{
+  "id": "port_032",
+  "scene": "port",
+  "dataset_index": 31,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/port_032",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/port_032/trajectory.json",
+    "latency_sec": 194.84314680099487,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 5410,
+          "completion_tokens": 3824
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.16926360130310059,
+  "task_latency_sec": 194.84314966201782,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"id为4的船舶任务时长延长至20分钟\", \"function\": \"init_cranes\"}, {\"event\": \"id为0的资源不可用\", \"function\": \"init_resources\"}, {\"event\": \"第1艘到达的船舶延迟10分钟到达\", \"function\": \"init_cranes\"}], \"unsolved\": [{\"event\": \"站位(9,7)发生故障,以该点为终点的调整为(10,7)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (9, 7) 为终点时，路径应重定向到 (10, 7)，实际终点为 (9, 7)。\"}, {\"event\": \"站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- route_planning: 站位(9,7)发生故障,以该点为终点的调整为(10,7)\\n  原因: 以故障站位 (9, 7) 为终点时，路径应重定向到 (10, 7)，实际终点为 (9, 7)。\\n- route_planning: 站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "id为4的船舶任务时长延长至20分钟",
+          "function": "init_cranes"
+        },
+        {
+          "event": "id为0的资源不可用",
+          "function": "init_resources"
+        },
+        {
+          "event": "第1艘到达的船舶延迟10分钟到达",
+          "function": "init_cranes"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(9,7)发生故障,以该点为终点的调整为(10,7)",
+          "function": "route_planning",
+          "reason": "以故障站位 (9, 7) 为终点时，路径应重定向到 (10, 7)，实际终点为 (9, 7)。"
+        },
+        {
+          "event": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- route_planning: 站位(9,7)发生故障,以该点为终点的调整为(10,7)\n  原因: 以故障站位 (9, 7) 为终点时，路径应重定向到 (10, 7)，实际终点为 (9, 7)。\n- route_planning: 站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。"
+    }
+  }
+}

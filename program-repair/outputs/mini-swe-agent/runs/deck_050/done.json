@@ -1,0 +1,78 @@
+{
+  "id": "deck_050",
+  "scene": "deck",
+  "dataset_index": 49,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_050",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_050/trajectory.json",
+    "latency_sec": 919.1133160591125,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10090,
+          "completion_tokens": 8843
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.24806833267211914,
+  "task_latency_sec": 919.1133191585541,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 4, \"solved_events\": [{\"event\": \"第2个固定保障资源初始位置调整为(1,10)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第2辆液压车初始位置调整为(1,4)\", \"function\": \"init_hydraulic_cart_resources\"}, {\"event\": \"第2辆供电车初始位置调整为(0,4)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"站位(4,6)(5,6)(4,7)(5,7)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第2个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 4/5，仍未解决：\\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "第2个固定保障资源初始位置调整为(1,10)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第2辆液压车初始位置调整为(1,4)",
+          "function": "init_hydraulic_cart_resources"
+        },
+        {
+          "event": "第2辆供电车初始位置调整为(0,4)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第2个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 4/5，仍未解决：\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

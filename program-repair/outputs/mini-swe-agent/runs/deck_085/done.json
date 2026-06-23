@@ -1,0 +1,84 @@
+{
+  "id": "deck_085",
+  "scene": "deck",
+  "dataset_index": 84,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_085",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_085/trajectory.json",
+    "latency_sec": 919.1098110675812,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10126,
+          "completion_tokens": 8629
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2714517116546631,
+  "task_latency_sec": 919.1098141670227,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 3, \"solved_events\": [{\"event\": \"第5辆供电车初始位置调整为(3,2)\", \"function\": \"init_power_cart_resources\"}, {\"event\": \"站位(4,6)(5,6)(4,7)(5,7)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"第3个牵引任务目标站位调整为(1,2)\", \"function\": \"init_towing_tasks\"}], \"unsolved\": [{\"event\": \"第5个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第5辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"从第6架舰载机开始到达间隔改为5分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}], \"feedback\": \"review 通过 3/6，仍未解决：\\n- init_mobile_resources: 第5个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_air_source_car_resources: 第5辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_planes: 从第6架舰载机开始到达间隔改为5分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "第5辆供电车初始位置调整为(3,2)",
+          "function": "init_power_cart_resources"
+        },
+        {
+          "event": "站位(4,6)(5,6)(4,7)(5,7)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(1,2)",
+          "function": "init_towing_tasks"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第5个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第5辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "从第6架舰载机开始到达间隔改为5分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        }
+      ],
+      "feedback": "review 通过 3/6，仍未解决：\n- init_mobile_resources: 第5个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_air_source_car_resources: 第5辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_planes: 从第6架舰载机开始到达间隔改为5分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+    }
+  }
+}

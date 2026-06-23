@@ -1,0 +1,81 @@
+{
+  "id": "warehousing_072",
+  "scene": "warehousing",
+  "dataset_index": 71,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_072",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_072/trajectory.json",
+    "latency_sec": 426.7635793685913,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7358,
+          "completion_tokens": 5889
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18316650390625,
+  "task_latency_sec": 426.76358222961426,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 1, \"solved_events\": [{\"event\": \"Zone_3堆积区当前库存增加79\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"Forklift_3叉车初始位置调整为(36,15)\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 未返回 Forklift_3，无法检查位置。\"}, {\"event\": \"Zone_2堆积区最大容量缩减至51\", \"function\": \"init_stacking_zones\", \"reason\": \"Zone_2.max_capacity 应为 51，实际为 100。\"}, {\"event\": \"Zone_3堆积区发生故障不可用\", \"function\": \"init_stacking_zones\", \"reason\": \"init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_3；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\"}, {\"event\": \"Forklift_2叉车发生故障不可用\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2']。\"}], \"feedback\": \"review 通过 1/5，仍未解决：\\n- init_forklifts: Forklift_3叉车初始位置调整为(36,15)\\n  原因: init_forklifts() 未返回 Forklift_3，无法检查位置。\\n- init_stacking_zones: Zone_2堆积区最大容量缩减至51\\n  原因: Zone_2.max_capacity 应为 51，实际为 100。\\n- init_stacking_zones: Zone_3堆积区发生故障不可用\\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_3；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\\n- init_forklifts: Forklift_2叉车发生故障不可用\\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2']。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 1,
+      "solved_events": [
+        {
+          "event": "Zone_3堆积区当前库存增加79",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Forklift_3叉车初始位置调整为(36,15)",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 未返回 Forklift_3，无法检查位置。"
+        },
+        {
+          "event": "Zone_2堆积区最大容量缩减至51",
+          "function": "init_stacking_zones",
+          "reason": "Zone_2.max_capacity 应为 51，实际为 100。"
+        },
+        {
+          "event": "Zone_3堆积区发生故障不可用",
+          "function": "init_stacking_zones",
+          "reason": "init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_3；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。"
+        },
+        {
+          "event": "Forklift_2叉车发生故障不可用",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2']。"
+        }
+      ],
+      "feedback": "review 通过 1/5，仍未解决：\n- init_forklifts: Forklift_3叉车初始位置调整为(36,15)\n  原因: init_forklifts() 未返回 Forklift_3，无法检查位置。\n- init_stacking_zones: Zone_2堆积区最大容量缩减至51\n  原因: Zone_2.max_capacity 应为 51，实际为 100。\n- init_stacking_zones: Zone_3堆积区发生故障不可用\n  原因: init_stacking_zones() 返回的堆积区 id 仍包含故障堆积区 Zone_3；当前 ids=['Zone_1', 'Zone_2', 'Zone_3', 'Zone_4']。\n- init_forklifts: Forklift_2叉车发生故障不可用\n  原因: init_forklifts() 返回的叉车 id 仍包含故障叉车 Forklift_2；当前 ids=['Forklift_1', 'Forklift_2']。"
+    }
+  }
+}

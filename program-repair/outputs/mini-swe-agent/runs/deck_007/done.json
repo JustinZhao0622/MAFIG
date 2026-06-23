@@ -1,0 +1,96 @@
+{
+  "id": "deck_007",
+  "scene": "deck",
+  "dataset_index": 6,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_007",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_007/trajectory.json",
+    "latency_sec": 919.1175901889801,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10688,
+          "completion_tokens": 8805
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.16342473030090332,
+  "task_latency_sec": 919.117594242096,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 8, \"solved\": 0, \"solved_events\": [], \"unsolved\": [{\"event\": \"第3辆供电车初始位置调整为(0,8)\", \"function\": \"init_power_cart_resources\", \"reason\": \"init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3个固定保障资源初始位置调整为(1,7)\", \"function\": \"init_fixed_resources\", \"reason\": \"init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第3辆消防车初始位置调整为(1,6)\", \"function\": \"init_fire_vehicle_resources\", \"reason\": \"init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。\"}, {\"event\": \"第3辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"站位(9,9)发生故障,以该点为终点的调整为(10,9)\", \"function\": \"route_planning\", \"reason\": \"route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}], \"feedback\": \"review 通过 0/8，仍未解决：\\n- init_power_cart_resources: 第3辆供电车初始位置调整为(0,8)\\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_fixed_resources: 第3个固定保障资源初始位置调整为(1,7)\\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第3个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_fire_vehicle_resources: 第3辆消防车初始位置调整为(1,6)\\n  原因: init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。\\n- init_oxygen_truck_resources: 第3辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- route_planning: 站位(9,9)发生故障,以该点为终点的调整为(10,9)\\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 8,
+      "solved": 0,
+      "solved_events": [],
+      "unsolved": [
+        {
+          "event": "第3辆供电车初始位置调整为(0,8)",
+          "function": "init_power_cart_resources",
+          "reason": "init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3个固定保障资源初始位置调整为(1,7)",
+          "function": "init_fixed_resources",
+          "reason": "init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第3辆消防车初始位置调整为(1,6)",
+          "function": "init_fire_vehicle_resources",
+          "reason": "init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第3辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "站位(9,9)发生故障,以该点为终点的调整为(10,9)",
+          "function": "route_planning",
+          "reason": "route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+        }
+      ],
+      "feedback": "review 通过 0/8，仍未解决：\n- init_power_cart_resources: 第3辆供电车初始位置调整为(0,8)\n  原因: init_power_cart_resources 中指定供电车的位置未调整到事件给定坐标。\n- init_air_source_car_resources: 第3辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_fixed_resources: 第3个固定保障资源初始位置调整为(1,7)\n  原因: init_fixed_resources 中指定固定保障资源的位置未调整到事件给定坐标。\n- init_maintenance_vehicle_resources: 第3辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第3个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_fire_vehicle_resources: 第3辆消防车初始位置调整为(1,6)\n  原因: init_fire_vehicle_resources 中指定消防车的位置未调整到事件给定坐标。\n- init_oxygen_truck_resources: 第3辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- route_planning: 站位(9,9)发生故障,以该点为终点的调整为(10,9)\n  原因: route_planning 以故障站位为终点时，没有重定向到事件给定的新终点。"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "deck_048",
+  "scene": "deck",
+  "dataset_index": 47,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_048",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_048/trajectory.json",
+    "latency_sec": 919.1135013103485,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10451,
+          "completion_tokens": 8693
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1780080795288086,
+  "task_latency_sec": 919.11350440979,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 8, \"solved\": 2, \"solved_events\": [{\"event\": \"第6个牵引任务目标站位调整为(3,7)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第2个固定保障资源初始位置调整为(2,2)\", \"function\": \"init_fixed_resources\"}], \"unsolved\": [{\"event\": \"第2辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2辆牵引车初始位置调整为(0,6)\", \"function\": \"init_tractor_resources\", \"reason\": \"init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\"}, {\"event\": \"第2辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2个通用移动资源发生故障不可用\", \"function\": \"init_mobile_resources\", \"reason\": \"init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"从第4架舰载机开始到达间隔改为5分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}], \"feedback\": \"review 通过 2/8，仍未解决：\\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_tractor_resources: 第2辆牵引车初始位置调整为(0,6)\\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- init_planes: 从第4架舰载机开始到达间隔改为5分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 8,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第6个牵引任务目标站位调整为(3,7)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第2个固定保障资源初始位置调整为(2,2)",
+          "function": "init_fixed_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第2辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2辆牵引车初始位置调整为(0,6)",
+          "function": "init_tractor_resources",
+          "reason": "init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。"
+        },
+        {
+          "event": "第2辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2个通用移动资源发生故障不可用",
+          "function": "init_mobile_resources",
+          "reason": "init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "从第4架舰载机开始到达间隔改为5分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        }
+      ],
+      "feedback": "review 通过 2/8，仍未解决：\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_tractor_resources: 第2辆牵引车初始位置调整为(0,6)\n  原因: init_tractor_resources 中指定牵引车的位置未调整到事件给定坐标。\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\n- init_mobile_resources: 第2个通用移动资源发生故障不可用\n  原因: init_mobile_resources 中指定通用移动资源仍可用或仍保留在可用资源列表中。\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- init_planes: 从第4架舰载机开始到达间隔改为5分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+    }
+  }
+}

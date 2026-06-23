@@ -1,0 +1,70 @@
+{
+  "id": "warehousing_042",
+  "scene": "warehousing",
+  "dataset_index": 41,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_042",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_042/trajectory.json",
+    "latency_sec": 426.7677948474884,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7043,
+          "completion_tokens": 5746
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17493510246276855,
+  "task_latency_sec": 426.76779794692993,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 3, \"solved\": 2, \"solved_events\": [{\"event\": \"Forklift_3叉车发生故障不可用\", \"function\": \"init_forklifts\"}, {\"event\": \"Zone_3堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"Zone_3堆积区当前库存增加72\", \"function\": \"init_stacking_zones\", \"reason\": \"init_stacking_zones() 未返回 Zone_3，无法检查库存。\"}], \"feedback\": \"review 通过 2/3，仍未解决：\\n- init_stacking_zones: Zone_3堆积区当前库存增加72\\n  原因: init_stacking_zones() 未返回 Zone_3，无法检查库存。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 3,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Forklift_3叉车发生故障不可用",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "Zone_3堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Zone_3堆积区当前库存增加72",
+          "function": "init_stacking_zones",
+          "reason": "init_stacking_zones() 未返回 Zone_3，无法检查库存。"
+        }
+      ],
+      "feedback": "review 通过 2/3，仍未解决：\n- init_stacking_zones: Zone_3堆积区当前库存增加72\n  原因: init_stacking_zones() 未返回 Zone_3，无法检查库存。"
+    }
+  }
+}

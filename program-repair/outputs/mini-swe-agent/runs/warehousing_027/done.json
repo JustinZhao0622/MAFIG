@@ -1,0 +1,70 @@
+{
+  "id": "warehousing_027",
+  "scene": "warehousing",
+  "dataset_index": 26,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_027",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_027/trajectory.json",
+    "latency_sec": 426.769828081131,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7036,
+          "completion_tokens": 5684
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.18240690231323242,
+  "task_latency_sec": 426.7698314189911,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 3, \"solved\": 2, \"solved_events\": [{\"event\": \"从第5辆货车开始间隔改为5分钟\", \"function\": \"init_truck_arrival_time\"}, {\"event\": \"Zone_3堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"站位(7,9)发生故障,以该点为终点的调整为(8,9)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (7, 9) 为终点时，路径应重定向到 (8, 9)，实际终点为 (7, 9)。\"}], \"feedback\": \"review 通过 2/3，仍未解决：\\n- route_planning: 站位(7,9)发生故障,以该点为终点的调整为(8,9)\\n  原因: 以故障站位 (7, 9) 为终点时，路径应重定向到 (8, 9)，实际终点为 (7, 9)。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 3,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "从第5辆货车开始间隔改为5分钟",
+          "function": "init_truck_arrival_time"
+        },
+        {
+          "event": "Zone_3堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(7,9)发生故障,以该点为终点的调整为(8,9)",
+          "function": "route_planning",
+          "reason": "以故障站位 (7, 9) 为终点时，路径应重定向到 (8, 9)，实际终点为 (7, 9)。"
+        }
+      ],
+      "feedback": "review 通过 2/3，仍未解决：\n- route_planning: 站位(7,9)发生故障,以该点为终点的调整为(8,9)\n  原因: 以故障站位 (7, 9) 为终点时，路径应重定向到 (8, 9)，实际终点为 (7, 9)。"
+    }
+  }
+}

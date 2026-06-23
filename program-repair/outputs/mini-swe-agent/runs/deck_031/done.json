@@ -1,0 +1,79 @@
+{
+  "id": "deck_031",
+  "scene": "deck",
+  "dataset_index": 30,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_031",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_031/trajectory.json",
+    "latency_sec": 919.1151812076569,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10099,
+          "completion_tokens": 8715
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.2598757743835449,
+  "task_latency_sec": 919.1151843070984,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"第5个固定保障资源初始位置调整为(0,0)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第5辆消防车初始位置调整为(0,9)\", \"function\": \"init_fire_vehicle_resources\"}, {\"event\": \"站位(6,7)(7,7)(6,8)(7,8)四个点发生故障\", \"function\": \"route_planning\"}], \"unsolved\": [{\"event\": \"第5辆加油车发生故障不可用\", \"function\": \"init_fuel_truck_resources\", \"reason\": \"init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第5辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- init_fuel_truck_resources: 第5辆加油车发生故障不可用\\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\\n- init_air_source_car_resources: 第5辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "第5个固定保障资源初始位置调整为(0,0)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第5辆消防车初始位置调整为(0,9)",
+          "function": "init_fire_vehicle_resources"
+        },
+        {
+          "event": "站位(6,7)(7,7)(6,8)(7,8)四个点发生故障",
+          "function": "route_planning"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第5辆加油车发生故障不可用",
+          "function": "init_fuel_truck_resources",
+          "reason": "init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第5辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- init_fuel_truck_resources: 第5辆加油车发生故障不可用\n  原因: init_fuel_truck_resources 中指定加油车仍可用或仍保留在可用资源列表中。\n- init_air_source_car_resources: 第5辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

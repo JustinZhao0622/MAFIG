@@ -1,0 +1,78 @@
+{
+  "id": "deck_011",
+  "scene": "deck",
+  "dataset_index": 10,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_011",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_011/trajectory.json",
+    "latency_sec": 919.1171879768372,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 9984,
+          "completion_tokens": 8850
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.21666932106018066,
+  "task_latency_sec": 919.1171913146973,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 4, \"solved_events\": [{\"event\": \"第4个固定保障资源初始位置调整为(1,2)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第4辆加氮车初始位置调整为(3,7)\", \"function\": \"init_nitrogen_truck_resources\"}, {\"event\": \"第3个牵引任务目标站位调整为(0,0)\", \"function\": \"init_towing_tasks\"}, {\"event\": \"第4辆消防车初始位置调整为(3,3)\", \"function\": \"init_fire_vehicle_resources\"}], \"unsolved\": [{\"event\": \"第4辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 4/5，仍未解决：\\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 4,
+      "solved_events": [
+        {
+          "event": "第4个固定保障资源初始位置调整为(1,2)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第4辆加氮车初始位置调整为(3,7)",
+          "function": "init_nitrogen_truck_resources"
+        },
+        {
+          "event": "第3个牵引任务目标站位调整为(0,0)",
+          "function": "init_towing_tasks"
+        },
+        {
+          "event": "第4辆消防车初始位置调整为(3,3)",
+          "function": "init_fire_vehicle_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "第4辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 4/5，仍未解决：\n- init_maintenance_vehicle_resources: 第4辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "deck_093",
+  "scene": "deck",
+  "dataset_index": 92,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/deck_093",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/deck_093/trajectory.json",
+    "latency_sec": 919.1090133190155,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 10097,
+          "completion_tokens": 8570
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.1976642608642578,
+  "task_latency_sec": 919.109016418457,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 6, \"solved\": 2, \"solved_events\": [{\"event\": \"第2个固定保障资源初始位置调整为(1,3)\", \"function\": \"init_fixed_resources\"}, {\"event\": \"第2辆供电车初始位置调整为(2,3)\", \"function\": \"init_power_cart_resources\"}], \"unsolved\": [{\"event\": \"从第3架舰载机开始到达间隔改为5分钟\", \"function\": \"init_planes\", \"reason\": \"init_planes 未把指定序号舰载机的到达间隔改成事件要求。\"}, {\"event\": \"第2辆维修车发生故障不可用\", \"function\": \"init_maintenance_vehicle_resources\", \"reason\": \"init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2辆充氧车发生故障不可用\", \"function\": \"init_oxygen_truck_resources\", \"reason\": \"init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\"}, {\"event\": \"第2辆气源车发生故障不可用\", \"function\": \"init_air_source_car_resources\", \"reason\": \"init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}], \"feedback\": \"review 通过 2/6，仍未解决：\\n- init_planes: 从第3架舰载机开始到达间隔改为5分钟\\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 6,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "第2个固定保障资源初始位置调整为(1,3)",
+          "function": "init_fixed_resources"
+        },
+        {
+          "event": "第2辆供电车初始位置调整为(2,3)",
+          "function": "init_power_cart_resources"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "从第3架舰载机开始到达间隔改为5分钟",
+          "function": "init_planes",
+          "reason": "init_planes 未把指定序号舰载机的到达间隔改成事件要求。"
+        },
+        {
+          "event": "第2辆维修车发生故障不可用",
+          "function": "init_maintenance_vehicle_resources",
+          "reason": "init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2辆充氧车发生故障不可用",
+          "function": "init_oxygen_truck_resources",
+          "reason": "init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。"
+        },
+        {
+          "event": "第2辆气源车发生故障不可用",
+          "function": "init_air_source_car_resources",
+          "reason": "init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+        }
+      ],
+      "feedback": "review 通过 2/6，仍未解决：\n- init_planes: 从第3架舰载机开始到达间隔改为5分钟\n  原因: init_planes 未把指定序号舰载机的到达间隔改成事件要求。\n- init_maintenance_vehicle_resources: 第2辆维修车发生故障不可用\n  原因: init_maintenance_vehicle_resources 中指定维修车仍可用或仍保留在可用资源列表中。\n- init_oxygen_truck_resources: 第2辆充氧车发生故障不可用\n  原因: init_oxygen_truck_resources 中指定充氧车仍可用或仍保留在可用资源列表中。\n- init_air_source_car_resources: 第2辆气源车发生故障不可用\n  原因: init_air_source_car_resources 中指定气源车仍可用或仍保留在可用资源列表中。"
+    }
+  }
+}

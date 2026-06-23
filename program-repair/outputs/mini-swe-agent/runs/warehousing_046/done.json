@@ -1,0 +1,79 @@
+{
+  "id": "warehousing_046",
+  "scene": "warehousing",
+  "dataset_index": 45,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_046",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_046/trajectory.json",
+    "latency_sec": 426.76722049713135,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7411,
+          "completion_tokens": 6061
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.25087928771972656,
+  "task_latency_sec": 426.7672233581543,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 5, \"solved\": 3, \"solved_events\": [{\"event\": \"站位(6,6)(7,6)(6,7)(7,7)四个点发生故障\", \"function\": \"route_planning\"}, {\"event\": \"Zone_4堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}, {\"event\": \"Forklift_2叉车发生故障不可用\", \"function\": \"init_forklifts\"}], \"unsolved\": [{\"event\": \"Forklift_3叉车初始位置调整为(10,38)\", \"function\": \"init_forklifts\", \"reason\": \"init_forklifts() 未返回 Forklift_3，无法检查位置。\"}, {\"event\": \"从第3辆货车开始间隔改为5分钟\", \"function\": \"init_truck_arrival_time\", \"reason\": \"第 3 辆到下一辆的间隔应为 5 分钟，实际为 9 分钟。\"}], \"feedback\": \"review 通过 3/5，仍未解决：\\n- init_forklifts: Forklift_3叉车初始位置调整为(10,38)\\n  原因: init_forklifts() 未返回 Forklift_3，无法检查位置。\\n- init_truck_arrival_time: 从第3辆货车开始间隔改为5分钟\\n  原因: 第 3 辆到下一辆的间隔应为 5 分钟，实际为 9 分钟。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 5,
+      "solved": 3,
+      "solved_events": [
+        {
+          "event": "站位(6,6)(7,6)(6,7)(7,7)四个点发生故障",
+          "function": "route_planning"
+        },
+        {
+          "event": "Zone_4堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        },
+        {
+          "event": "Forklift_2叉车发生故障不可用",
+          "function": "init_forklifts"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "Forklift_3叉车初始位置调整为(10,38)",
+          "function": "init_forklifts",
+          "reason": "init_forklifts() 未返回 Forklift_3，无法检查位置。"
+        },
+        {
+          "event": "从第3辆货车开始间隔改为5分钟",
+          "function": "init_truck_arrival_time",
+          "reason": "第 3 辆到下一辆的间隔应为 5 分钟，实际为 9 分钟。"
+        }
+      ],
+      "feedback": "review 通过 3/5，仍未解决：\n- init_forklifts: Forklift_3叉车初始位置调整为(10,38)\n  原因: init_forklifts() 未返回 Forklift_3，无法检查位置。\n- init_truck_arrival_time: 从第3辆货车开始间隔改为5分钟\n  原因: 第 3 辆到下一辆的间隔应为 5 分钟，实际为 9 分钟。"
+    }
+  }
+}

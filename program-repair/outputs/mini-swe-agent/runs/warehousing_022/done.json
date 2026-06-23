@@ -1,0 +1,75 @@
+{
+  "id": "warehousing_022",
+  "scene": "warehousing",
+  "dataset_index": 21,
+  "repo": "code-editing/outputs/mini-swe-agent/workdirs/warehousing_022",
+  "runner_version": "direct-codegen",
+  "model_name": "Qwen2.5-Coder-7B-Instruct",
+  "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+  "agent_result": {
+    "error": "Reached repair round limit: 3",
+    "trajectory_path": "code-editing/outputs/mini-swe-agent/runs/warehousing_022/trajectory.json",
+    "latency_sec": 426.7704482078552,
+    "agent": {
+      "info": {
+        "model_stats": {
+          "instance_cost": 0.0,
+          "api_calls": 3,
+          "prompt_tokens": 7323,
+          "completion_tokens": 5754
+        },
+        "config": {
+          "agent": {
+            "mode": "direct_code_generation",
+            "step_limit": 3
+          },
+          "model": {
+            "model_name": "Qwen2.5-Coder-7B-Instruct",
+            "model_path": "/data/huggingface/Qwen2.5-Coder-7B-Instruct",
+            "temperature": 0.0,
+            "top_p": 0.95,
+            "max_tokens": 8000
+          }
+        },
+        "exit_status": "LimitsExceeded",
+        "submission": ""
+      }
+    }
+  },
+  "verify_latency_sec": 0.17275381088256836,
+  "task_latency_sec": 426.7704517841339,
+  "verify": {
+    "status": "fail",
+    "returncode": 1,
+    "stdout": "{\"status\": \"fail\", \"total\": 4, \"solved\": 2, \"solved_events\": [{\"event\": \"Forklift_1叉车初始位置调整为(28,38)\", \"function\": \"init_forklifts\"}, {\"event\": \"Zone_4堆积区发生故障不可用\", \"function\": \"init_stacking_zones\"}], \"unsolved\": [{\"event\": \"站位(9,8)发生故障,以该点为终点的调整为(10,8)\", \"function\": \"route_planning\", \"reason\": \"以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\"}, {\"event\": \"站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\", \"function\": \"route_planning\", \"reason\": \"故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。\"}], \"feedback\": \"review 通过 2/4，仍未解决：\\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\\n- route_planning: 站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\\n  原因: 故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。\"}\n",
+    "stderr": "",
+    "parsed": {
+      "status": "fail",
+      "total": 4,
+      "solved": 2,
+      "solved_events": [
+        {
+          "event": "Forklift_1叉车初始位置调整为(28,38)",
+          "function": "init_forklifts"
+        },
+        {
+          "event": "Zone_4堆积区发生故障不可用",
+          "function": "init_stacking_zones"
+        }
+      ],
+      "unsolved": [
+        {
+          "event": "站位(9,8)发生故障,以该点为终点的调整为(10,8)",
+          "function": "route_planning",
+          "reason": "以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。"
+        },
+        {
+          "event": "站位(5,6)(6,6)(5,7)(6,7)四个点发生故障",
+          "function": "route_planning",
+          "reason": "故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。"
+        }
+      ],
+      "feedback": "review 通过 2/4，仍未解决：\n- route_planning: 站位(9,8)发生故障,以该点为终点的调整为(10,8)\n  原因: 以故障站位 (9, 8) 为终点时，路径应重定向到 (10, 8)，实际终点为 (9, 8)。\n- route_planning: 站位(5,6)(6,6)(5,7)(6,7)四个点发生故障\n  原因: 故障站位仍可作为终点到达：[(5, 6), (6, 6), (5, 7), (6, 7)]。"
+    }
+  }
+}
